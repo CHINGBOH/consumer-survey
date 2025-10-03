@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>专业消费者调研平台 - Consumer Survey</title>
+    <title>消费者调研问卷模板 - Consumer Survey Template</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
     <style>
         body {
@@ -144,7 +144,10 @@
 </head>
 <body>
     <div class="container">
-        <h1>📊 专业消费者调研平台 - Consumer Survey</h1>
+        <h1>📊 消费者调研问卷模板 - Consumer Survey Template</h1>
+        <p style="text-align: center; color: #666; font-size: 14px; margin-bottom: 20px;">
+            ⚠️ 这是一个通用模板，请根据您的具体产品/服务进行定制。详见<a href="问卷设计指南.md" target="_blank">《问卷设计指南》</a>
+        </p>
         <div class="progress">
             <div class="progress-bar" id="progressBar"></div>
         </div>
@@ -162,104 +165,124 @@
         </div>
 
         <form id="surveyForm">
+            <!-- 调研背景介绍 -->
+            <div class="survey-intro">
+                <h3>📋 调研说明</h3>
+                <p>您好！我们正在进行一项关于<strong>[请填写具体调研主题]</strong>的消费者调研。</p>
+                <p>本次调研预计需要3-5分钟，您的宝贵意见将帮助我们更好地了解市场需求。</p>
+                <p><strong>参与奖励：</strong> 完成问卷后可获得<strong>[请填写奖励内容]</strong>。</p>
+            </div>
+
             <!-- 基本信息 -->
             <div class="question">
-                <h3>1. 您的年龄是？<span class="required">*</span></h3>
+                <h3>1. 您的年龄段是？<span class="required">*</span></h3>
                 <div class="options">
-                    <label class="option"><input type="radio" name="age" value="18-25"> 18-25岁</label>
-                    <label class="option"><input type="radio" name="age" value="26-35"> 26-35岁</label>
-                    <label class="option"><input type="radio" name="age" value="36-45"> 36-45岁</label>
-                    <label class="option"><input type="radio" name="age" value="46+"> 46岁以上</label>
+                    <label class="option"><input type="radio" name="age" value="18-24"> 18-24岁</label>
+                    <label class="option"><input type="radio" name="age" value="25-34"> 25-34岁</label>
+                    <label class="option"><input type="radio" name="age" value="35-44"> 35-44岁</label>
+                    <label class="option"><input type="radio" name="age" value="45+"> 45岁以上</label>
                 </div>
             </div>
 
             <div class="question">
                 <h3>2. 您的性别是？<span class="required">*</span></h3>
                 <div class="options">
-                    <label class="option"><input type="radio" name="gender" value="男"> 男</label>
                     <label class="option"><input type="radio" name="gender" value="女"> 女</label>
+                    <label class="option"><input type="radio" name="gender" value="男"> 男</label>
                     <label class="option"><input type="radio" name="gender" value="其他"> 其他</label>
                 </div>
             </div>
 
             <div class="question">
-                <h3>3. 您的月收入水平是？<span class="required">*</span></h3>
+                <h3>3. 您所在的城市是？</h3>
+                <select name="city">
+                    <option value="">请选择</option>
+                    <option value="北京">北京</option>
+                    <option value="上海">上海</option>
+                    <option value="广州">广州</option>
+                    <option value="深圳">深圳</option>
+                    <option value="杭州">杭州</option>
+                    <option value="其他">其他</option>
+                </select>
+            </div>
+
+            <div class="question">
+                <h3>4. 您的月收入水平是？<span class="required">*</span></h3>
                 <div class="options">
                     <label class="option"><input type="radio" name="income" value="3000以下"> 3000元以下</label>
                     <label class="option"><input type="radio" name="income" value="3000-5000"> 3000-5000元</label>
                     <label class="option"><input type="radio" name="income" value="5000-8000"> 5000-8000元</label>
                     <label class="option"><input type="radio" name="income" value="8000-12000"> 8000-12000元</label>
-                    <label class="option"><input type="radio" name="income" value="12000+"> 12000元以上</label>
+                    <label class="option"><input type="radio" name="income" value="12000以上"> 12000元以上</label>
                 </div>
             </div>
 
-            <!-- 消费行为 -->
+            <!-- 产品相关问题 - 需要根据具体产品调整 -->
             <div class="question">
-                <h3>4. 您平均每月在购物上的花费是？</h3>
+                <h3>5. 您听说过我们的<strong>[产品名称]</strong>吗？</h3>
                 <div class="options">
-                    <label class="option"><input type="radio" name="spending" value="500以下"> 500元以下</label>
-                    <label class="option"><input type="radio" name="spending" value="500-1000"> 500-1000元</label>
-                    <label class="option"><input type="radio" name="spending" value="1000-2000"> 1000-2000元</label>
-                    <label class="option"><input type="radio" name="spending" value="2000-5000"> 2000-5000元</label>
-                    <label class="option"><input type="radio" name="spending" value="5000+"> 5000元以上</label>
+                    <label class="option"><input type="radio" name="awareness" value="非常了解"> 非常了解</label>
+                    <label class="option"><input type="radio" name="awareness" value="听说过"> 听说过</label>
+                    <label class="option"><input type="radio" name="awareness" value="略有耳闻"> 略有耳闻</label>
+                    <label class="option"><input type="radio" name="awareness" value="完全没听说过"> 完全没听说过</label>
                 </div>
             </div>
 
             <div class="question">
-                <h3>5. 您最常使用的购物平台是？（可多选）</h3>
+                <h3>6. 您对<strong>[产品名称]</strong>的主要需求是什么？（可多选）</h3>
                 <div class="options">
-                    <label class="option"><input type="checkbox" name="platforms" value="淘宝"> 淘宝</label>
-                    <label class="option"><input type="checkbox" name="platforms" value="京东"> 京东</label>
-                    <label class="option"><input type="checkbox" name="platforms" value="拼多多"> 拼多多</label>
-                    <label class="option"><input type="checkbox" name="platforms" value="小红书"> 小红书</label>
-                    <label class="option"><input type="checkbox" name="platforms" value="抖音"> 抖音</label>
-                    <label class="option"><input type="checkbox" name="platforms" value="其他"> 其他</label>
+                    <label class="option"><input type="checkbox" name="needs" value="性价比"> 性价比高</label>
+                    <label class="option"><input type="checkbox" name="needs" value="质量"> 高质量</label>
+                    <label class="option"><input type="checkbox" name="needs" value="设计"> 外观设计</label>
+                    <label class="option"><input type="checkbox" name="needs" value="功能"> 功能丰富</label>
+                    <label class="option"><input type="checkbox" name="needs" value="品牌"> 知名品牌</label>
+                    <label class="option"><input type="checkbox" name="needs" value="服务"> 售后服务</label>
                 </div>
             </div>
 
             <div class="question">
-                <h3>6. 您购买商品时最看重哪些因素？（可多选）</h3>
+                <h3>7. 您购买<strong>[产品类别]</strong>时的决策因素有哪些？（可多选）</h3>
                 <div class="options">
                     <label class="option"><input type="checkbox" name="factors" value="价格"> 价格</label>
-                    <label class="option"><input type="checkbox" name="factors" value="质量"> 质量</label>
-                    <label class="option"><input type="checkbox" name="factors" value="品牌"> 品牌</label>
-                    <label class="option"><input type="checkbox" name="factors" value="设计"> 设计/颜值</label>
                     <label class="option"><input type="checkbox" name="factors" value="评价"> 用户评价</label>
-                    <label class="option"><input type="checkbox" name="factors" value="售后"> 售后服务</label>
+                    <label class="option"><input type="checkbox" name="factors" value="推荐"> 朋友推荐</label>
+                    <label class="option"><input type="checkbox" name="factors" value="广告"> 广告宣传</label>
+                    <label class="option"><input type="checkbox" name="factors" value="体验"> 亲身体验</label>
+                    <label class="option"><input type="checkbox" name="factors" value="品牌"> 品牌影响力</label>
                 </div>
             </div>
 
-            <!-- 产品体验 -->
+            <!-- 使用体验问题 -->
             <div class="question">
-                <h3>7. 您对最近购买的产品满意度如何？</h3>
+                <h3>8. 您使用过类似产品吗？</h3>
                 <div class="options">
-                    <label class="option"><input type="radio" name="satisfaction" value="1"> 很不满意</label>
-                    <label class="option"><input type="radio" name="satisfaction" value="2"> 不满意</label>
-                    <label class="option"><input type="radio" name="satisfaction" value="3"> 一般</label>
-                    <label class="option"><input type="radio" name="satisfaction" value="4"> 满意</label>
-                    <label class="option"><input type="radio" name="satisfaction" value="5"> 很满意</label>
+                    <label class="option"><input type="radio" name="experience" value="经常使用"> 经常使用</label>
+                    <label class="option"><input type="radio" name="experience" value="偶尔使用"> 偶尔使用</label>
+                    <label class="option"><input type="radio" name="experience" value="很少使用"> 很少使用</label>
+                    <label class="option"><input type="radio" name="experience" value="从未使用"> 从未使用</label>
                 </div>
             </div>
 
             <div class="question">
-                <h3>8. 您使用该产品的频率是？</h3>
+                <h3>9. 如果您购买我们的产品，您的预算范围是？</h3>
                 <div class="options">
-                    <label class="option"><input type="radio" name="usage" value="高频"> 高频（每天）</label>
-                    <label class="option"><input type="radio" name="usage" value="中频"> 中频（每周）</label>
-                    <label class="option"><input type="radio" name="usage" value="低频"> 低频（每月几次）</label>
-                    <label class="option"><input type="radio" name="usage" value="偶尔"> 偶尔</label>
+                    <label class="option"><input type="radio" name="budget" value="100以下"> 100元以下</label>
+                    <label class="option"><input type="radio" name="budget" value="100-300"> 100-300元</label>
+                    <label class="option"><input type="radio" name="budget" value="300-500"> 300-500元</label>
+                    <label class="option"><input type="radio" name="budget" value="500-1000"> 500-1000元</label>
+                    <label class="option"><input type="radio" name="budget" value="1000以上"> 1000元以上</label>
                 </div>
             </div>
 
             <!-- 开放性问题 -->
             <div class="question">
-                <h3>9. 您对产品的改进建议是什么？</h3>
-                <textarea name="suggestions" placeholder="请分享您的宝贵意见..."></textarea>
+                <h3>10. 您对<strong>[产品/服务]</strong>有哪些期望或建议？</h3>
+                <textarea name="expectations" placeholder="请分享您的想法和建议..." rows="4"></textarea>
             </div>
 
             <div class="question">
-                <h3>10. 还有什么想补充的吗？</h3>
-                <textarea name="additional" placeholder="其他想法或建议..."></textarea>
+                <h3>11. 还有什么想告诉我们的吗？</h3>
+                <textarea name="additional" placeholder="其他意见或建议..." rows="3"></textarea>
             </div>
 
             <button type="submit" class="submit-btn">提交问卷</button>
