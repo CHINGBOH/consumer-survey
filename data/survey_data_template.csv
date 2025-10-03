@@ -1,0 +1,12 @@
+respondent_id,gender,age,education,monthly_income,shopping_frequency,preferred_platform,price_sensitivity,brand_importance,service_importance
+1,女,22,本科学历,3000-5000,经常,淘宝京东,4,4,5
+2,男,25,研究生,5000-8000,偶尔,实体店,3,5,4
+3,女,21,大专,3000-5000,经常,小红书抖音,5,3,4
+4,男,24,本科学历,3000-5000,经常,淘宝京东,4,4,4
+5,女,23,研究生,5000-8000,偶尔,实体店,2,5,5
+6,男,26,本科学历,5000-8000,经常,淘宝京东,3,4,4
+7,女,22,大专,3000-5000,经常,小红书抖音,5,3,4
+8,男,24,本科学历,3000-5000,偶尔,实体店,3,4,5
+9,女,25,研究生,8000以上,经常,淘宝京东,2,5,5
+10,男,23,本科学历,5000-8000,经常,淘宝京东,4,4,4</content>
+<parameter name="filePath">C:\Users\l\Documents\GitHub\SurveyAnalysis\data\sample_survey_data.csv

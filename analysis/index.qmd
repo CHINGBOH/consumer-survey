@@ -1,0 +1,293 @@
+---
+title: "数据分析框架"
+subtitle: "消费行为数据的统计分析与可视化"
+author: "调研团队"
+date: today
+format: html
+---
+
+# 📊 数据分析框架
+
+## 🎯 分析流程
+
+```mermaid
+graph TD
+    A[数据收集] --> B[数据清洗]
+    B --> C[描述性统计]
+    C --> D[探索性分析]
+    D --> E[假设检验]
+    E --> F[回归分析]
+    F --> G[聚类分析]
+    G --> H[结果解读]
+    H --> I[报告生成]
+```
+
+## 📋 数据预处理
+
+### 数据质量检查
+
+```{r}
+#| label: data-quality-check
+#| echo: true
+#| eval: false
+
+# 加载必要的包
+library(tidyverse)
+library(janitor)
+
+# 读取数据
+raw_data <- read_csv("data/survey_raw.csv")
+
+# 数据概览
+glimpse(raw_data)
+
+# 检查缺失值
+missing_summary <- raw_data %>%
+  summarise_all(~sum(is.na(.))) %>%
+  pivot_longer(everything(), names_to = "variable", values_to = "missing_count")
+
+# 检查重复记录
+duplicate_count <- sum(duplicated(raw_data))
+
+# 数据质量报告
+cat("数据质量检查结果：\n")
+cat("总记录数：", nrow(raw_data), "\n")
+cat("重复记录数：", duplicate_count, "\n")
+cat("缺失值最多的变量：\n")
+missing_summary %>% arrange(desc(missing_count)) %>% head(5)
+```
+
+### 数据清洗
+
+```{r}
+#| label: data-cleaning
+#| echo: true
+#| eval: false
+
+# 数据清洗流程
+clean_data <- raw_data %>%
+  # 移除完全重复的记录
+  distinct() %>%
+  # 处理缺失值
+  mutate(
+    age = ifelse(is.na(age), median(age, na.rm = TRUE), age),
+    income = ifelse(is.na(income), "未填写", income)
+  ) %>%
+  # 数据类型转换
+  mutate(
+    age_group = cut(age, breaks = c(0, 20, 25, 30, 100),
+                   labels = c("18-20", "21-25", "26-30", "30+")),
+    gender = factor(gender, levels = c("男", "女"))
+  ) %>%
+  # 移除异常值
+  filter(age >= 18 & age <= 80)
+
+# 保存清洗后的数据
+write_csv(clean_data, "data/survey_clean.csv")
+```
+
+## 📈 描述性统计
+
+### 基本统计量
+
+```{r}
+#| label: descriptive-stats
+#| echo: true
+#| eval: false
+
+# 数值变量统计
+numeric_summary <- clean_data %>%
+  select(where(is.numeric)) %>%
+  summary()
+
+# 分类变量统计
+categorical_summary <- clean_data %>%
+  select(where(is.factor) | where(is.character)) %>%
+  pivot_longer(everything()) %>%
+  count(name, value) %>%
+  group_by(name) %>%
+  mutate(prop = n / sum(n)) %>%
+  ungroup()
+```
+
+### 数据可视化
+
+```{r}
+#| label: basic-plots
+#| echo: true
+#| eval: false
+#| fig-cap: "年龄分布直方图"
+
+# 年龄分布
+ggplot(clean_data, aes(x = age)) +
+  geom_histogram(binwidth = 5, fill = "skyblue", color = "white") +
+  theme_minimal() +
+  labs(title = "受访者年龄分布",
+       x = "年龄", y = "频数")
+```
+
+## 🔍 探索性数据分析 (EDA)
+
+### 相关性分析
+
+```{r}
+#| label: correlation-analysis
+#| echo: true
+#| eval: false
+
+# 选择数值变量进行相关性分析
+numeric_vars <- clean_data %>% select(where(is.numeric))
+
+# 计算相关系数矩阵
+cor_matrix <- cor(numeric_vars, use = "complete.obs")
+
+# 可视化相关性矩阵
+library(corrplot)
+corrplot(cor_matrix, method = "color", type = "upper",
+         addCoef.col = "black", tl.col = "black")
+```
+
+### 组间差异分析
+
+```{r}
+#| label: group-differences
+#| echo: true
+#| eval: false
+
+# 性别差异分析
+gender_analysis <- clean_data %>%
+  group_by(gender) %>%
+  summarise(
+    n = n(),
+    mean_age = mean(age, na.rm = TRUE),
+    mean_income = mean(as.numeric(income), na.rm = TRUE),
+    .groups = "drop"
+  )
+
+# t检验：性别与消费金额差异
+t_test_result <- t.test(monthly_spending ~ gender, data = clean_data)
+```
+
+## 📊 高级分析方法
+
+### 因子分析
+
+```{r}
+#| label: factor-analysis
+#| echo: true
+#| eval: false
+
+library(psych)
+
+# 因子分析
+fa_result <- fa(clean_data[, consumption_vars], nfactors = 3, rotate = "varimax")
+
+# 因子载荷
+print(fa_result$loadings)
+
+# 可视化因子载荷
+fa.diagram(fa_result)
+```
+
+### 聚类分析
+
+```{r}
+#| label: cluster-analysis
+#| echo: true
+#| eval: false
+
+# K-means聚类
+set.seed(123)
+kmeans_result <- kmeans(scale(numeric_vars), centers = 3)
+
+# 添加聚类标签
+clustered_data <- clean_data %>%
+  mutate(cluster = as.factor(kmeans_result$cluster))
+
+# 可视化聚类结果
+ggplot(clustered_data, aes(x = PC1, y = PC2, color = cluster)) +
+  geom_point() +
+  theme_minimal() +
+  labs(title = "消费行为聚类分析")
+```
+
+## 🎯 假设检验
+
+### 卡方检验
+
+```{r}
+#| label: chi-square-test
+#| echo: true
+#| eval: false
+
+# 性别与消费偏好关联
+chisq_result <- chisq.test(table(clean_data$gender, clean_data$shopping_preference))
+
+print(chisq_result)
+```
+
+### 方差分析
+
+```{r}
+#| label: anova-test
+#| echo: true
+#| eval: false
+
+# 年龄组与消费金额差异
+anova_result <- aov(monthly_spending ~ age_group, data = clean_data)
+
+summary(anova_result)
+
+# 事后检验
+TukeyHSD(anova_result)
+```
+
+## 📈 回归分析
+
+### 多元线性回归
+
+```{r}
+#| label: regression-analysis
+#| echo: true
+#| eval: false
+
+# 消费行为影响因素分析
+regression_model <- lm(monthly_spending ~ age + gender + education + income,
+                       data = clean_data)
+
+# 模型摘要
+summary(regression_model)
+
+# 模型诊断
+par(mfrow = c(2, 2))
+plot(regression_model)
+```
+
+## 📋 分析报告生成
+
+### 自动化报告
+
+```{r}
+#| label: automated-report
+#| echo: true
+#| eval: false
+
+library(rmarkdown)
+
+# 生成分析报告
+render("analysis_report.Rmd",
+       output_file = "消费行为分析报告.html",
+       params = list(data = clean_data))
+```
+
+---
+
+::: {.callout-tip}
+## 💡 分析建议
+
+1. **数据质量第一**：宁可少而精，不要多而乱
+2. **可视化先行**：图表比数字更有说服力
+3. **假设检验严谨**：确保统计方法选择正确
+4. **结果解读深入**：不仅看p值，更要看实际意义
+:::</content>
+<parameter name="filePath">C:\Users\l\Documents\GitHub\SurveyAnalysis\analysis\index.qmd
