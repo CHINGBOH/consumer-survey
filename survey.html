@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>美容避坑指南 - 3分钟测出你的护肤风险</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💄</text></svg>">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', 'PingFang SC', sans-serif;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            color: #333;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* 头部 */
+        .header {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            font-size: 28px;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 16px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #f0f0f0;
+            border-radius: 4px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #3498db, #2c3e50);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        /* 问卷卡片 */
+        .question-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            display: none;
+        }
+
+        .question-card.active {
+            display: block;
+        }
+
+        .question-number {
+            color: #ff69b4;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .question-text {
+            font-size: 18px;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .option {
+            padding: 15px 20px;
+            border: 2px solid #f0f0f0;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 16px;
+        }
+
+        .option:hover {
+            border-color: #3498db;
+            background: #f8f9fa;
+        }
+
+        .option.selected {
+            border-color: #3498db;
+            background: #f8f9fa;
+        }
+
+        /* 按钮 */
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            margin: 10px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(44, 62, 80, 0.3);
+        }
+
+        .btn-secondary {
+            background: #f8f9fa;
+            color: #666;
+            border: 2px solid #e9ecef;
+        }
+
+        .btn-secondary:hover {
+            background: #e9ecef;
+        }
+
+        .button-group {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        /* 结果页面 */
+        .result-page {
+            display: none;
+        }
+
+        .result-page.active {
+            display: block;
+        }
+
+        .result-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .risk-score {
+            font-size: 48px;
+            font-weight: bold;
+            color: #3498db;
+            margin: 20px 0;
+        }
+
+        .risk-level {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .result-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .result-title {
+            color: #ff69b4;
+            font-size: 20px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .result-title::before {
+            content: "💡";
+            margin-right: 10px;
+        }
+
+        .share-section {
+            text-align: center;
+            margin-top: 40px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+        }
+
+        .share-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .share-btn {
+            padding: 12px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .share-wechat {
+            background: #07C160;
+            color: white;
+        }
+
+        .share-weibo {
+            background: #E6162D;
+            color: white;
+        }
+
+        .share-link {
+            background: #666;
+            color: white;
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .header h1 {
+                font-size: 24px;
+            }
+
+            .question-text {
+                font-size: 16px;
+            }
+
+            .share-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 开始页面 -->
+        <div id="start-page" class="question-card active">
+            <div class="header">
+                <h1>💄 美容避坑指南</h1>
+                <p>3分钟测出你的护肤风险，获得个性化避坑建议</p>
+                <div style="background: rgba(255,255,255,0.9); padding: 20px; border-radius: 15px; margin-top: 20px;">
+                    <h3 style="color: #2c3e50; margin-bottom: 15px;">✨ 测试亮点</h3>
+                    <ul style="text-align: left; color: #666; line-height: 1.8;">
+                        <li>🎯 15个精准问题，覆盖护肤全场景</li>
+                        <li>⚡ 3分钟快速完成，即时看到结果</li>
+                        <li>💡 个性化避坑建议，实用又具体</li>
+                        <li>📱 生成美观结果图，分享给闺蜜</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="button-group">
+                <button class="btn btn-primary" onclick="startQuiz()">开始测试 🚀</button>
+            </div>
+        </div>
+
+        <!-- 进度条 -->
+        <div class="progress-bar" id="progress-bar" style="display: none;">
+            <div class="progress-fill" id="progress-fill"></div>
+        </div>
+
+        <!-- 问题页面 -->
+        <div id="question-1" class="question-card">
+            <div class="question-number">问题 1/15</div>
+            <div class="question-text">你的年龄段是？</div>
+            <div class="options">
+                <div class="option" data-value="1" onclick="selectOption(this)">18-22岁（学生党/刚工作）</div>
+                <div class="option" data-value="2" onclick="selectOption(this)">23-28岁（职场新人/适婚年龄）</div>
+                <div class="option" data-value="3" onclick="selectOption(this)">29-35岁（事业上升期/已婚）</div>
+                <div class="option" data-value="4" onclick="selectOption(this)">36岁以上（成熟女性）</div>
+            </div>
+        </div>
+
+        <div id="question-2" class="question-card">
+            <div class="question-number">问题 2/15</div>
+            <div class="question-text">你每周护肤的预算大约是？</div>
+            <div class="options">
+                <div class="option" data-value="1" onclick="selectOption(this)">200元以下（学生/刚工作）</div>
+                <div class="option" data-value="2" onclick="selectOption(this)">200-500元（中等消费）</div>
+                <div class="option" data-value="3" onclick="selectOption(this)">500-1000元（品质优先）</div>
+                <div class="option" data-value="4" onclick="selectOption(this)">1000元以上（高端护肤）</div>
+            </div>
+        </div>
+
+        <div id="question-3" class="question-card">
+            <div class="question-number">问题 3/15</div>
+            <div class="question-text">你最常去哪种类型的美容机构？</div>
+            <div class="options">
+                <div class="option" data-value="4" onclick="selectOption(this)">高端医美诊所</div>
+                <div class="option" data-value="3" onclick="selectOption(this)">中档美容院</div>
+                <div class="option" data-value="2" onclick="selectOption(this)">街边小店/快时尚店</div>
+                <div class="option" data-value="1" onclick="selectOption(this)">很少去美容机构</div>
+            </div>
+        </div>
+
+        <div id="question-4" class="question-card">
+            <div class="question-number">问题 4/15</div>
+            <div class="question-text">你对护肤品的了解程度如何？</div>
+            <div class="options">
+                <div class="option" data-value="1" onclick="selectOption(this)">完全不懂，只用广告上看到的</div>
+                <div class="option" data-value="2" onclick="selectOption(this)">懂一点，经常看小红书/抖音</div>
+                <div class="option" data-value="3" onclick="selectOption(this)">比较了解，关注成分和品牌</div>
+                <div class="option" data-value="4" onclick="selectOption(this)">很专业，研究过护肤原理</div>
+            </div>
+        </div>
+
+        <div id="question-5" class="question-card">
+            <div class="question-number">问题 5/15</div>
+            <div class="question-text">你最担心的皮肤问题是？</div>
+            <div class="options">
+                <div class="option" data-value="3" onclick="selectOption(this)">皱纹/松弛（抗衰老）</div>
+                <div class="option" data-value="2" onclick="selectOption(this)">色斑/暗沉（美白）</div>
+                <div class="option" data-value="2" onclick="selectOption(this)">痘痘/毛孔粗大（祛痘）</div>
+                <div class="option" data-value="1" onclick="selectOption(this)">干燥/敏感（保湿修复）</div>
+            </div>
+        </div>
+
+        <div id="question-6" class="question-card">
+            <div class="question-number">问题 6/15</div>
+            <div class="question-text">你尝试过哪些美容项目？（多选）</div>
+            <div class="options">
+                <div class="option multi-select" data-value="2" onclick="toggleMultiSelect(this)">水光针/玻尿酸</div>
+                <div class="option multi-select" data-value="3" onclick="toggleMultiSelect(this)">热玛吉/超声刀</div>
+                <div class="option multi-select" data-value="1" onclick="toggleMultiSelect(this)">基础护理/面部清洁</div>
+                <div class="option multi-select" data-value="1" onclick="toggleMultiSelect(this)">从未尝试过</div>
+            </div>
+        </div>
+
+        <div id="question-7" class="question-card">
+            <div class="question-number">问题 7/15</div>
+            <div class="question-text">你购买护肤品主要通过什么渠道？</div>
+            <div class="options">
+                <div class="option" data-value="2" onclick="selectOption(this)">线上旗舰店/官网</div>
+                <div class="option" data-value="3" onclick="selectOption(this)">专柜/专业店</div>
+                <div class="option" data-value="1" onclick="selectOption(this)">直播/网红推荐</div>
+                <div class="option" data-value="1" onclick="selectOption(this)">街边小店/超市</div>
+            </div>
+        </div>
+
+        <div id="question-8" class="question-card">
+            <div class="question-number">问题 8/15</div>
+            <div class="question-text">你对医美项目的态度是？</div>
+            <div class="options">
+                <div class="option" data-value="1" onclick="selectOption(this)">完全不敢尝试</div>
+                <div class="option" data-value="2" onclick="selectOption(this)">有兴趣但很谨慎</div>
+                <div class="option" data-value="3" onclick="selectOption(this)">已经尝试过一些</div>
+                <div class="option" data-value="4" onclick="selectOption(this)">积极拥抱新技术</div>
+            </div>
+        </div>
+
+        <div id="question-9" class="question-card">
+            <div class="question-number">问题 9/15</div>
+            <div class="question-text">你是否经常被"网红爆款"吸引？</div>
+            <div class="options">
+                <div class="option" data-value="4" onclick="selectOption(this)">是的，经常冲动购买</div>
+                <div class="option" data-value="3" onclick="selectOption(this)">偶尔会买来试试</div>
+                <div class="option" data-value="2" onclick="selectOption(this)">很少，比较理性</div>
+                <div class="option" data-value="1" onclick="selectOption(this)">从不，相信专业建议</div>
+            </div>
+        </div>
+
+        <div id="question-10" class="question-card">
+            <div class="question-number">问题 10/15</div>
+            <div class="question-text">你对护肤的日常坚持程度？</div>
+            <div class="options">
+                <div class="option" data-value="1" onclick="selectOption(this)">三天打鱼两天晒网</div>
+                <div class="option" data-value="2" onclick="selectOption(this)">周末记得做护理</div>
+                <div class="option" data-value="3" onclick="selectOption(this)">基本每天都做</div>
+                <div class="option" data-value="4" onclick="selectOption(this)">严格按照程序执行</div>
+            </div>
+        </div>
+
+        <div id="question-11" class="question-card">
+            <div class="question-number">问题 11/15</div>
+            <div class="question-text">你是否了解自己的肤质？</div>
+            <div class="options">
+                <div class="option" data-value="1" onclick="selectOption(this)">完全不清楚</div>
+                <div class="option" data-value="2" onclick="selectOption(this)">大概知道是干性/油性</div>
+                <div class="option" data-value="3" onclick="selectOption(this)">做过专业测试</div>
+                <div class="option" data-value="4" onclick="selectOption(this)">非常了解，定期检测</div>
+            </div>
+        </div>
+
+        <div id="question-12" class="question-card">
+            <div class="question-number">问题 12/15</div>
+            <div class="question-text">你最容易相信哪种护肤建议？</div>
+            <div class="options">
+                <div class="option" data-value="4" onclick="selectOption(this)">明星/网红推荐</div>
+                <div class="option" data-value="2" onclick="selectOption(this)">朋友/闺蜜分享</div>
+                <div class="option" data-value="1" onclick="selectOption(this)">专业医生建议</div>
+                <div class="option" data-value="3" onclick="selectOption(this)">品牌广告宣传</div>
+            </div>
+        </div>
+
+        <div id="question-13" class="question-card">
+            <div class="question-number">问题 13/15</div>
+            <div class="question-text">你对"成分党"的看法？</div>
+            <div class="options">
+                <div class="option" data-value="1" onclick="selectOption(this)">完全不懂成分</div>
+                <div class="option" data-value="2" onclick="selectOption(this)">知道一些基本成分</div>
+                <div class="option" data-value="3" onclick="selectOption(this)">很注重成分表</div>
+                <div class="option" data-value="4" onclick="selectOption(this)">资深成分研究者</div>
+            </div>
+        </div>
+
+        <div id="question-14" class="question-card">
+            <div class="question-number">问题 14/15</div>
+            <div class="question-text">你是否经常更换护肤品牌？</div>
+            <div class="options">
+                <div class="option" data-value="4" onclick="selectOption(this)">经常换，追求新鲜</div>
+                <div class="option" data-value="3" onclick="selectOption(this)">偶尔换，试试新品</div>
+                <div class="option" data-value="2" onclick="selectOption(this)">很少换，用习惯的就好</div>
+                <div class="option" data-value="1" onclick="selectOption(this)">坚持用同一个品牌</div>
+            </div>
+        </div>
+
+        <div id="question-15" class="question-card">
+            <div class="question-number">问题 15/15</div>
+            <div class="question-text">你对美容消费的理性程度？</div>
+            <div class="options">
+                <div class="option" data-value="1" onclick="selectOption(this)">理性消费，精打细算</div>
+                <div class="option" data-value="2" onclick="selectOption(this)">适度消费，性价比优先</div>
+                <div class="option" data-value="3" onclick="selectOption(this)">品质消费，值得的就买</div>
+                <div class="option" data-value="4" onclick="selectOption(this)">冲动消费，看到喜欢就买</div>
+            </div>
+        </div>
+
+        <!-- 结果页面 -->
+        <div id="result-page" class="result-page">
+            <div class="result-header">
+                <h1>🎉 你的美容避坑报告</h1>
+                <div class="risk-score" id="risk-score">75</div>
+                <div class="risk-level" id="risk-level">中等风险</div>
+                <p id="risk-description">你的护肤选择还算理性，但还有一些需要注意的地方</p>
+            </div>
+
+            <div class="result-card">
+                <h3 class="result-title">💡 你的护肤风险点</h3>
+                <div id="risk-analysis">
+                    <!-- 动态生成的风险分析 -->
+                </div>
+            </div>
+
+            <div class="result-card">
+                <h3 class="result-title">🎯 个性化避坑建议</h3>
+                <div id="personal-advice">
+                    <!-- 动态生成的个性化建议 -->
+                </div>
+            </div>
+
+            <div class="result-card">
+                <h3 class="result-title">📋 护肤行动清单</h3>
+                <div id="action-plan">
+                    <!-- 动态生成的行动计划 -->
+                </div>
+            </div>
+
+            <div class="share-section">
+                <h3>📱 分享给闺蜜，一起避坑！</h3>
+                <p>让更多姐妹看到这份报告，共同成长</p>
+                <div class="share-buttons">
+                    <a href="#" class="share-btn share-wechat" onclick="shareToWechat()">分享到微信</a>
+                    <a href="#" class="share-btn share-weibo" onclick="shareToWeibo()">分享到微博</a>
+                    <a href="#" class="share-btn share-link" onclick="copyLink()">复制链接</a>
+                </div>
+            </div>
+
+            <div class="button-group">
+                <button class="btn btn-secondary" onclick="retakeQuiz()">重新测试</button>
+                <a href="contact.html" class="btn btn-primary">咨询专业建议</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentQuestion = 0;
+        let answers = {};
+        let totalQuestions = 15;
+
+        function startQuiz() {
+            document.getElementById('start-page').classList.remove('active');
+            document.getElementById('progress-bar').style.display = 'block';
+            showQuestion(1);
+        }
+
+        function showQuestion(num) {
+            // 隐藏所有问题
+            for (let i = 1; i <= totalQuestions; i++) {
+                document.getElementById('question-' + i).classList.remove('active');
+            }
+
+            // 显示当前问题
+            document.getElementById('question-' + num).classList.add('active');
+            currentQuestion = num;
+
+            // 更新进度条
+            const progress = (num / totalQuestions) * 100;
+            document.getElementById('progress-fill').style.width = progress + '%';
+        }
+
+        function selectOption(element) {
+            // 移除其他选项的选中状态
+            const options = element.parentElement.querySelectorAll('.option');
+            options.forEach(opt => opt.classList.remove('selected'));
+
+            // 选中当前选项
+            element.classList.add('selected');
+
+            // 保存答案
+            const questionId = element.parentElement.parentElement.id;
+            const questionNum = parseInt(questionId.split('-')[1]);
+            answers[questionNum] = parseInt(element.dataset.value);
+
+            // 自动进入下一题
+            setTimeout(() => {
+                if (currentQuestion < totalQuestions) {
+                    showQuestion(currentQuestion + 1);
+                } else {
+                    calculateResult();
+                }
+            }, 500);
+        }
+
+        function toggleMultiSelect(element) {
+            element.classList.toggle('selected');
+            const questionId = element.parentElement.parentElement.id;
+            const questionNum = parseInt(questionId.split('-')[1]);
+
+            if (!answers[questionNum]) answers[questionNum] = [];
+
+            const value = parseInt(element.dataset.value);
+            const index = answers[questionNum].indexOf(value);
+
+            if (index > -1) {
+                answers[questionNum].splice(index, 1);
+            } else {
+                answers[questionNum].push(value);
+            }
+        }
+
+        function calculateResult() {
+            // 计算总分
+            let totalScore = 0;
+            let count = 0;
+
+            for (let i = 1; i <= totalQuestions; i++) {
+                if (answers[i]) {
+                    if (Array.isArray(answers[i])) {
+                        // 多选题取平均值
+                        const avg = answers[i].reduce((a, b) => a + b, 0) / answers[i].length;
+                        totalScore += avg;
+                    } else {
+                        totalScore += answers[i];
+                    }
+                    count++;
+                }
+            }
+
+            const averageScore = totalScore / count;
+            const riskScore = Math.round((averageScore / 4) * 100);
+
+            // 识别用户类型
+            const userType = identifyUserType(answers);
+
+            // 显示结果
+            showResult(riskScore, userType);
+        }
+
+        function identifyUserType(answers) {
+            // 理性护肤型评分
+            let rationalScore = 0;
+            // 懂得基础知识（问题4选择3-4）
+            if (answers[4] >= 3) rationalScore += 2;
+            // 消费理性（问题15选择1）
+            if (answers[15] === 1) rationalScore += 2;
+            // 了解肤质（问题11选择3-4）
+            if (answers[11] >= 3) rationalScore += 2;
+            // 相信专业建议（问题12选择1）
+            if (answers[12] === 1) rationalScore += 2;
+            // 护肤坚持度高（问题10选择3-4）
+            if (answers[10] >= 3) rationalScore += 1;
+
+            // 冲动消费型评分
+            let impulsiveScore = 0;
+            // 容易被网红吸引（问题9选择4）
+            if (answers[9] === 4) impulsiveScore += 2;
+            // 消费冲动（问题15选择4）
+            if (answers[15] === 4) impulsiveScore += 2;
+            // 购买渠道是直播/网红（问题7选择1）
+            if (answers[7] === 1) impulsiveScore += 2;
+            // 经常更换品牌（问题14选择4）
+            if (answers[14] === 4) impulsiveScore += 1;
+            // 预算较高但决策不理性（问题2选择3-4且问题4选择1-2）
+            if (answers[2] >= 3 && answers[4] <= 2) impulsiveScore += 1;
+
+            // 科学美容型评分
+            let scientificScore = 0;
+            // 注重成分（问题13选择3-4）
+            if (answers[13] >= 3) scientificScore += 2;
+            // 了解护肤原理（问题4选择3-4）
+            if (answers[4] >= 3) scientificScore += 2;
+            // 定期检测（问题11选择4）
+            if (answers[11] === 4) scientificScore += 2;
+            // 相信专业建议（问题12选择1）
+            if (answers[12] === 1) scientificScore += 1;
+
+            // 效果至上型评分
+            let effectScore = 0;
+            // 愿意尝试医美（问题8选择3-4）
+            if (answers[8] >= 3) effectScore += 2;
+            // 追求效果但知识中等（问题4选择2-3）
+            if (answers[4] >= 2 && answers[4] <= 3) effectScore += 2;
+            // 尝试过医美项目（问题6包含2或3）
+            if (Array.isArray(answers[6]) && (answers[6].includes(2) || answers[6].includes(3))) effectScore += 2;
+            // 预算中等偏上（问题2选择3）
+            if (answers[2] === 3) effectScore += 1;
+
+            // 美容小白型评分
+            let newbieScore = 0;
+            // 护肤知识缺乏（问题4选择1）
+            if (answers[4] === 1) newbieScore += 2;
+            // 肤质不了解（问题11选择1）
+            if (answers[11] === 1) newbieScore += 2;
+            // 预算低（问题2选择1）
+            if (answers[2] === 1) newbieScore += 2;
+            // 年龄较小（问题1选择1）
+            if (answers[1] === 1) newbieScore += 1;
+            // 很少去美容机构（问题3选择1）
+            if (answers[3] === 1) newbieScore += 1;
+
+            // 找出最高分的类型
+            const scores = {
+                rational: rationalScore,
+                impulsive: impulsiveScore,
+                scientific: scientificScore,
+                effect: effectScore,
+                newbie: newbieScore
+            };
+
+            const maxScore = Math.max(...Object.values(scores));
+            const userTypes = Object.keys(scores).filter(key => scores[key] === maxScore);
+
+            // 如果有多个最高分，选择最相关的
+            if (userTypes.length > 1) {
+                // 优先级：理性 > 科学 > 效果 > 小白 > 冲动
+                const priority = ['rational', 'scientific', 'effect', 'newbie', 'impulsive'];
+                for (const type of priority) {
+                    if (userTypes.includes(type)) {
+                        return type;
+                    }
+                }
+            }
+
+            return userTypes[0] || 'rational'; // 默认理性型
+        }
+
+        function showResult(score, userType) {
+            // 隐藏问题页面
+            for (let i = 1; i <= totalQuestions; i++) {
+                document.getElementById('question-' + i).classList.remove('active');
+            }
+            document.getElementById('progress-bar').style.display = 'none';
+
+            // 显示结果页面
+            document.getElementById('result-page').classList.add('active');
+
+            // 设置分数和等级
+            document.getElementById('risk-score').textContent = score;
+
+            let riskLevel, description, analysis, advice, actionPlan, typeName, typeIcon;
+
+            // 根据用户类型生成个性化结果
+            switch (userType) {
+                case 'rational':
+                    typeName = '理性护肤型';
+                    typeIcon = '🧠';
+                    riskLevel = "低风险 ✅";
+                    description = "你属于理性护肤型，对护肤有很好的基础认知！";
+                    analysis = `
+                        <p><strong>你的优势：</strong></p>
+                        <ul>
+                            <li>具备扎实的护肤基础知识</li>
+                            <li>消费决策理性且有规划</li>
+                            <li>对自身肤质和需求了解清楚</li>
+                            <li>能够辨别专业建议和营销话术</li>
+                        </ul>
+                    `;
+                    advice = `
+                        <p><strong>继续保持并精进：</strong></p>
+                        <ul>
+                            <li>定期学习新的护肤科技和成分知识</li>
+                            <li>关注行业发展趋势，适时升级护肤方案</li>
+                            <li>分享经验，帮助身边姐妹避开护肤坑</li>
+                            <li>建立个人护肤档案，追踪效果变化</li>
+                        </ul>
+                    `;
+                    actionPlan = `
+                        <ul>
+                            <li>✅ 继续深入学习专业护肤知识</li>
+                            <li>✅ 关注权威护肤研究和新技术</li>
+                            <li>✅ 分享护肤经验给需要的姐妹</li>
+                            <li>✅ 定期复盘和优化护肤方案</li>
+                        </ul>
+                    `;
+                    break;
+
+                case 'impulsive':
+                    typeName = '冲动消费型';
+                    typeIcon = '💰';
+                    riskLevel = "高风险 🚨";
+                    description = "你属于冲动消费型，容易被营销影响，需要调整消费习惯！";
+                    analysis = `
+                        <p><strong>主要风险点：</strong></p>
+                        <ul>
+                            <li>容易被网红直播和营销话术影响</li>
+                            <li>消费决策冲动，缺乏理性分析</li>
+                            <li>对产品成分和适用性了解不足</li>
+                            <li>经常购买后悔，造成资源浪费</li>
+                        </ul>
+                    `;
+                    advice = `
+                        <p><strong>避坑指南：</strong></p>
+                        <ul>
+                            <li>建立"冷静期"：看到心动产品先等24小时再决定</li>
+                            <li>学习基础护肤知识，了解成分和肤质匹配</li>
+                            <li>制定月度护肤预算，严格控制消费</li>
+                            <li>从小样试用开始，不要盲目购买大瓶</li>
+                            <li>多咨询专业人士意见，不要轻信网红推荐</li>
+                        </ul>
+                    `;
+                    actionPlan = `
+                        <ul>
+                            <li>✅ 学习护肤基础知识（成分、肤质识别）</li>
+                            <li>✅ 建立24小时冷静期购物规则</li>
+                            <li>✅ 制定月护肤预算并严格执行</li>
+                            <li>✅ 建立护肤品试用记录</li>
+                            <li>✅ 加入专业护肤社区获取靠谱建议</li>
+                        </ul>
+                    `;
+                    break;
+
+                case 'scientific':
+                    typeName = '科学美容型';
+                    typeIcon = '🔬';
+                    riskLevel = "中风险 ⚠️";
+                    description = "你属于科学美容型，追求科学护肤但仍需注意一些细节";
+                    analysis = `
+                        <p><strong>你的特点：</strong></p>
+                        <ul>
+                            <li>注重产品成分和科学依据</li>
+                            <li>愿意学习专业护肤知识</li>
+                            <li>定期进行皮肤检测和评估</li>
+                            <li>追求长期稳定的护肤效果</li>
+                        </ul>
+                        <p><strong>潜在风险：</strong></p>
+                        <ul>
+                            <li>可能过于追求完美，造成过度护肤</li>
+                            <li>对新兴科技过于乐观，缺乏辨别力</li>
+                        </ul>
+                    `;
+                    advice = `
+                        <p><strong>优化建议：</strong></p>
+                        <ul>
+                            <li>平衡科学与实际，倾听身体反馈</li>
+                            <li>定期进行专业皮肤检测，科学评估效果</li>
+                            <li>关注临床研究数据，而非仅凭成分表</li>
+                            <li>适度尝试新科技，但要有循证依据</li>
+                        </ul>
+                    `;
+                    actionPlan = `
+                        <ul>
+                            <li>✅ 学习解读临床研究和实验数据</li>
+                            <li>✅ 建立护肤效果追踪系统</li>
+                            <li>✅ 定期专业皮肤检测</li>
+                            <li>✅ 平衡科技与身体实际需求</li>
+                        </ul>
+                    `;
+                    break;
+
+                case 'effect':
+                    typeName = '效果至上型';
+                    typeIcon = '🎯';
+                    riskLevel = "中高风险 ⚠️";
+                    description = "你属于效果至上型，追求快速见效但需更注重安全";
+                    analysis = `
+                        <p><strong>你的特点：</strong></p>
+                        <ul>
+                            <li>追求明显的护肤效果和改善</li>
+                            <li>愿意尝试各种医美和护肤科技</li>
+                            <li>对结果有明确期待和要求</li>
+                        </ul>
+                        <p><strong>主要风险：</strong></p>
+                        <ul>
+                            <li>可能选择过于激进的护肤方案</li>
+                            <li>对医美风险认识不足</li>
+                            <li>期望过高，容易失望</li>
+                        </ul>
+                    `;
+                    advice = `
+                        <p><strong>安全护肤指南：</strong></p>
+                        <ul>
+                            <li>从小剂量、低浓度产品开始尝试</li>
+                            <li>充分了解医美项目的适应症和风险</li>
+                            <li>选择正规医疗机构和专业医生</li>
+                            <li>建立合理期望，不要追求完美</li>
+                            <li>基础护肤打底，医美锦上添花</li>
+                        </ul>
+                    `;
+                    actionPlan = `
+                        <ul>
+                            <li>✅ 学习医美基础知识和风险评估</li>
+                            <li>✅ 建立基础护肤体系</li>
+                            <li>✅ 选择正规医疗机构</li>
+                            <li>✅ 定期专业咨询和评估</li>
+                        </ul>
+                    `;
+                    break;
+
+                case 'newbie':
+                    typeName = '美容小白型';
+                    typeIcon = '👶';
+                    riskLevel = "中风险 ⚠️";
+                    description = "你属于美容小白型，这是最适合学习的阶段！";
+                    analysis = `
+                        <p><strong>你的现状：</strong></p>
+                        <ul>
+                            <li>护肤知识基础相对薄弱</li>
+                            <li>对产品选择缺乏经验</li>
+                            <li>消费预算有限但学习意愿强</li>
+                        </ul>
+                        <p><strong>发展潜力：</strong></p>
+                        <ul>
+                            <li>没有太多固有偏见，容易接受正确知识</li>
+                            <li>学习曲线平缓，可以打好基础</li>
+                            <li>避开前辈踩过的坑，少走弯路</li>
+                        </ul>
+                    `;
+                    advice = `
+                        <p><strong>学习成长计划：</strong></p>
+                        <ul>
+                            <li>从基础护肤知识开始学习（清洁、保湿、防晒）</li>
+                            <li>了解自己的肤质类型和特点</li>
+                            <li>从小品牌、大品牌的产品试用开始</li>
+                            <li>多看专业文章，少信网红推荐</li>
+                            <li>建立护肤记录，追踪学习效果</li>
+                        </ul>
+                    `;
+                    actionPlan = `
+                        <ul>
+                            <li>✅ 学习基础护肤三部曲</li>
+                            <li>✅ 了解自身肤质类型</li>
+                            <li>✅ 建立护肤学习笔记</li>
+                            <li>✅ 从平价产品开始试用</li>
+                            <li>✅ 加入护肤学习社区</li>
+                        </ul>
+                    `;
+                    break;
+
+                default:
+                    typeName = '理性护肤型';
+                    typeIcon = '🧠';
+                    riskLevel = "低风险 ✅";
+                    description = "恭喜！你对护肤的认知很理性，继续保持！";
+                    analysis = `
+                        <p><strong>优势：</strong></p>
+                        <ul>
+                            <li>护肤知识储备充足，决策理性</li>
+                            <li>消费习惯健康，避免了大部分坑</li>
+                            <li>对自身肤质和需求了解清楚</li>
+                        </ul>
+                    `;
+                    advice = `
+                        <p><strong>保持建议：</strong></p>
+                        <ul>
+                            <li>继续学习新知识，跟进行业发展</li>
+                            <li>定期分享经验，帮助身边姐妹</li>
+                            <li>关注专业渠道，获取最新信息</li>
+                            <li>适时尝试新品，保持护肤乐趣</li>
+                        </ul>
+                    `;
+                    actionPlan = `
+                        <ul>
+                            <li>✅ 继续深入学习护肤专业知识</li>
+                            <li>✅ 分享经验给需要的姐妹</li>
+                            <li>✅ 关注行业新品和新科技</li>
+                            <li>✅ 定期复盘自己的护肤效果</li>
+                        </ul>
+                    `;
+            }
+
+            // 更新页面标题显示用户类型
+            document.getElementById('risk-level').textContent = `${typeIcon} ${typeName} - ${riskLevel}`;
+            document.getElementById('risk-description').textContent = description;
+            document.getElementById('risk-analysis').innerHTML = analysis;
+            document.getElementById('personal-advice').innerHTML = advice;
+            document.getElementById('action-plan').innerHTML = actionPlan;
+        }
+
+        function retakeQuiz() {
+            // 重置状态
+            answers = {};
+            currentQuestion = 0;
+
+            // 隐藏结果页面
+            document.getElementById('result-page').classList.remove('active');
+
+            // 显示开始页面
+            document.getElementById('start-page').classList.add('active');
+            document.getElementById('progress-bar').style.display = 'none';
+        }
+
+        function shareToWechat() {
+            const riskScore = document.getElementById('risk-score').textContent;
+            const riskLevel = document.getElementById('risk-level').textContent;
+            const shareText = `我刚完成了美容避坑测试，我是${riskLevel}类型！快来测测你的护肤风险吧！\n\n测试链接：${window.location.href}`;
+            // 显示二维码分享提示
+            const qrCode = document.createElement('div');
+            qrCode.innerHTML = `
+                <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1000; display: flex; align-items: center; justify-content: center;">
+                    <div style="background: white; padding: 20px; border-radius: 10px; text-align: center;">
+                        <h3>分享到微信</h3>
+                        <p>请用微信扫码分享给朋友</p>
+                        <div id="qrcode" style="margin: 20px 0;"></div>
+                        <button onclick="this.parentElement.parentElement.remove()" style="background: #2c3e50; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">关闭</button>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(qrCode);
+            // 生成二维码
+            new QRCode(document.getElementById('qrcode'), {
+                text: shareText,
+                width: 128,
+                height: 128
+            });
+        }
+
+        function shareToWeibo() {
+            const riskScore = document.getElementById('risk-score').textContent;
+            const riskLevel = document.getElementById('risk-level').textContent;
+            const text = `我刚完成了美容避坑测试，我是${riskLevel}类型！快来测测你的护肤风险吧！#美容避坑指南 #护肤知识`;
+            const url = window.location.href;
+            window.open(`https://service.weibo.com/share/share.php?title=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`);
+        }
+
+        function copyLink() {
+            const riskScore = document.getElementById('risk-score').textContent;
+            const riskLevel = document.getElementById('risk-level').textContent;
+            const shareText = `我刚完成了美容避坑测试，我是${riskLevel}类型！快来测测你的护肤风险吧！\n\n测试链接：${window.location.href}`;
+            navigator.clipboard.writeText(shareText).then(() => {
+                alert('分享内容已复制到剪贴板！快分享给闺蜜吧！');
+            });
+        }
+
+        // 页面加载完成后的初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            // 可以在这里添加额外的初始化代码
+        });
+    </script>
+</body>
+</html>
