@@ -1,0 +1,261 @@
+/* 自定义样式文件 */
+
+:root {
+  --primary-color: #4CAF50;
+  --secondary-color: #2196F3;
+  --accent-color: #FF9800;
+  --text-color: #333;
+  --background-color: #f8f9fa;
+}
+
+/* 页面整体样式 */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: var(--text-color);
+  background-color: var(--background-color);
+}
+
+/* 标题样式 */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--primary-color);
+  font-weight: 600;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+h1 {
+  font-size: 2.5em;
+  border-bottom: 3px solid var(--primary-color);
+  padding-bottom: 0.3em;
+}
+
+/* 链接样式 */
+a {
+  color: var(--secondary-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--primary-color);
+  text-decoration: underline;
+}
+
+/* 按钮样式 */
+.btn {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  color: white;
+  padding: 0.5em 1em;
+  border-radius: 0.3em;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  background-color: darken(var(--primary-color), 10%);
+  border-color: darken(var(--primary-color), 10%);
+  transform: translateY(-2px);
+}
+
+/* 代码块样式 */
+code {
+  background-color: #f1f3f4;
+  padding: 0.2em 0.4em;
+  border-radius: 0.2em;
+  font-family: 'Consolas', 'Monaco', monospace;
+  font-size: 0.9em;
+}
+
+pre {
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 0.3em;
+  padding: 1em;
+  overflow-x: auto;
+}
+
+pre code {
+  background-color: transparent;
+  padding: 0;
+}
+
+/* 表格样式 */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1em 0;
+  background-color: white;
+  border-radius: 0.3em;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+th, td {
+  padding: 0.75em;
+  text-align: left;
+  border-bottom: 1px solid #e9ecef;
+}
+
+th {
+  background-color: var(--primary-color);
+  color: white;
+  font-weight: 600;
+}
+
+tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+tr:hover {
+  background-color: #e3f2fd;
+}
+
+/* 图表容器样式 */
+.figure {
+  text-align: center;
+  margin: 2em 0;
+}
+
+.figure img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.3em;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.figure-caption {
+  font-style: italic;
+  color: #666;
+  margin-top: 0.5em;
+  font-size: 0.9em;
+}
+
+/* 提示框样式 */
+.callout {
+  border-left: 4px solid var(--primary-color);
+  background-color: #e8f5e8;
+  padding: 1em;
+  margin: 1em 0;
+  border-radius: 0.3em;
+}
+
+.callout-tip {
+  border-left-color: var(--secondary-color);
+  background-color: #e3f2fd;
+}
+
+.callout-warning {
+  border-left-color: var(--accent-color);
+  background-color: #fff3e0;
+}
+
+.callout-important {
+  border-left-color: #f44336;
+  background-color: #ffebee;
+}
+
+/* 网格布局样式 */
+.grid {
+  display: grid;
+  gap: 1em;
+  margin: 1em 0;
+}
+
+.g-col-6 {
+  grid-column: span 6;
+}
+
+.g-col-4 {
+  grid-column: span 4;
+}
+
+.g-col-3 {
+  grid-column: span 3;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .g-col-6, .g-col-4, .g-col-3 {
+    grid-column: span 1;
+  }
+
+  h1 {
+    font-size: 2em;
+  }
+
+  table {
+    font-size: 0.9em;
+  }
+
+  th, td {
+    padding: 0.5em;
+  }
+}
+
+/* 导航栏样式 */
+.navbar {
+  background-color: var(--primary-color);
+  padding: 1em 0;
+  margin-bottom: 2em;
+}
+
+.navbar a {
+  color: white !important;
+  margin: 0 1em;
+  font-weight: 500;
+}
+
+.navbar a:hover {
+  color: #e8f5e8 !important;
+  text-decoration: none;
+}
+
+/* 页脚样式 */
+footer {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 2em 0;
+  margin-top: 3em;
+}
+
+footer a {
+  color: var(--secondary-color);
+}
+
+/* 加载动画 */
+.loading {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid var(--primary-color);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* 打印样式 */
+@media print {
+  body {
+    background-color: white;
+  }
+
+  .navbar, footer {
+    display: none;
+  }
+
+  a {
+    color: black;
+    text-decoration: underline;
+  }
+}

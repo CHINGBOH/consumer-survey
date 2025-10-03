@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>消费者调研问卷</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .question {
+            margin-bottom: 25px;
+            padding: 15px;
+            border-left: 4px solid #007bff;
+            background-color: #f8f9fa;
+        }
+        .question h3 {
+            margin-top: 0;
+            color: #495057;
+        }
+        .options {
+            margin-top: 10px;
+        }
+        .option {
+            margin-bottom: 8px;
+        }
+        input[type="radio"], input[type="checkbox"] {
+            margin-right: 10px;
+        }
+        input[type="text"], textarea, select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        textarea {
+            height: 100px;
+            resize: vertical;
+        }
+        .submit-btn {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            display: block;
+            margin: 30px auto 0;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 15px;
+        }
+        .stat-item {
+            background-color: white;
+            padding: 15px;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .stat-item h4 {
+            margin-top: 0;
+            color: #007bff;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 5px;
+        }
+        .stat-item div {
+            margin: 5px 0;
+            padding: 3px 0;
+        }
+        #statistics button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+        #statistics button:hover {
+            background-color: #218838;
+        }
+        .progress {
+            background-color: #e9ecef;
+            border-radius: 10px;
+            height: 10px;
+            margin-bottom: 20px;
+        }
+        .progress-bar {
+            background-color: #007bff;
+            height: 10px;
+            border-radius: 10px;
+            width: 0%;
+            transition: width 0.3s;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📊 消费者行为调研问卷</h1>
+        <div class="progress">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+
+        <form id="surveyForm">
+            <!-- 基本信息 -->
+            <div class="question">
+                <h3>1. 您的年龄是？</h3>
+                <div class="options">
+                    <label class="option"><input type="radio" name="age" value="18-25"> 18-25岁</label>
+                    <label class="option"><input type="radio" name="age" value="26-35"> 26-35岁</label>
+                    <label class="option"><input type="radio" name="age" value="36-45"> 36-45岁</label>
+                    <label class="option"><input type="radio" name="age" value="46+"> 46岁以上</label>
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>2. 您的性别是？</h3>
+                <div class="options">
+                    <label class="option"><input type="radio" name="gender" value="男"> 男</label>
+                    <label class="option"><input type="radio" name="gender" value="女"> 女</label>
+                    <label class="option"><input type="radio" name="gender" value="其他"> 其他</label>
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>3. 您的月收入水平是？</h3>
+                <div class="options">
+                    <label class="option"><input type="radio" name="income" value="3000以下"> 3000元以下</label>
+                    <label class="option"><input type="radio" name="income" value="3000-5000"> 3000-5000元</label>
+                    <label class="option"><input type="radio" name="income" value="5000-8000"> 5000-8000元</label>
+                    <label class="option"><input type="radio" name="income" value="8000-12000"> 8000-12000元</label>
+                    <label class="option"><input type="radio" name="income" value="12000+"> 12000元以上</label>
+                </div>
+            </div>
+
+            <!-- 消费行为 -->
+            <div class="question">
+                <h3>4. 您平均每月在购物上的花费是？</h3>
+                <div class="options">
+                    <label class="option"><input type="radio" name="spending" value="500以下"> 500元以下</label>
+                    <label class="option"><input type="radio" name="spending" value="500-1000"> 500-1000元</label>
+                    <label class="option"><input type="radio" name="spending" value="1000-2000"> 1000-2000元</label>
+                    <label class="option"><input type="radio" name="spending" value="2000-5000"> 2000-5000元</label>
+                    <label class="option"><input type="radio" name="spending" value="5000+"> 5000元以上</label>
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>5. 您最常使用的购物平台是？（可多选）</h3>
+                <div class="options">
+                    <label class="option"><input type="checkbox" name="platforms" value="淘宝"> 淘宝</label>
+                    <label class="option"><input type="checkbox" name="platforms" value="京东"> 京东</label>
+                    <label class="option"><input type="checkbox" name="platforms" value="拼多多"> 拼多多</label>
+                    <label class="option"><input type="checkbox" name="platforms" value="小红书"> 小红书</label>
+                    <label class="option"><input type="checkbox" name="platforms" value="抖音"> 抖音</label>
+                    <label class="option"><input type="checkbox" name="platforms" value="其他"> 其他</label>
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>6. 您购买商品时最看重哪些因素？（可多选）</h3>
+                <div class="options">
+                    <label class="option"><input type="checkbox" name="factors" value="价格"> 价格</label>
+                    <label class="option"><input type="checkbox" name="factors" value="质量"> 质量</label>
+                    <label class="option"><input type="checkbox" name="factors" value="品牌"> 品牌</label>
+                    <label class="option"><input type="checkbox" name="factors" value="设计"> 设计/颜值</label>
+                    <label class="option"><input type="checkbox" name="factors" value="评价"> 用户评价</label>
+                    <label class="option"><input type="checkbox" name="factors" value="售后"> 售后服务</label>
+                </div>
+            </div>
+
+            <!-- 产品体验 -->
+            <div class="question">
+                <h3>7. 您对最近购买的产品满意度如何？</h3>
+                <div class="options">
+                    <label class="option"><input type="radio" name="satisfaction" value="1"> 很不满意</label>
+                    <label class="option"><input type="radio" name="satisfaction" value="2"> 不满意</label>
+                    <label class="option"><input type="radio" name="satisfaction" value="3"> 一般</label>
+                    <label class="option"><input type="radio" name="satisfaction" value="4"> 满意</label>
+                    <label class="option"><input type="radio" name="satisfaction" value="5"> 很满意</label>
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>8. 您使用该产品的频率是？</h3>
+                <div class="options">
+                    <label class="option"><input type="radio" name="usage" value="高频"> 高频（每天）</label>
+                    <label class="option"><input type="radio" name="usage" value="中频"> 中频（每周）</label>
+                    <label class="option"><input type="radio" name="usage" value="低频"> 低频（每月几次）</label>
+                    <label class="option"><input type="radio" name="usage" value="偶尔"> 偶尔</label>
+                </div>
+            </div>
+
+            <!-- 开放性问题 -->
+            <div class="question">
+                <h3>9. 您对产品的改进建议是什么？</h3>
+                <textarea name="suggestions" placeholder="请分享您的宝贵意见..."></textarea>
+            </div>
+
+            <div class="question">
+                <h3>10. 还有什么想补充的吗？</h3>
+                <textarea name="additional" placeholder="其他想法或建议..."></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">提交问卷</button>
+        </form>
+    </div>
+
+    <script>
+        // 进度条功能
+        const form = document.getElementById('surveyForm');
+        const progressBar = document.getElementById('progressBar');
+        const questions = document.querySelectorAll('.question');
+
+        function updateProgress() {
+            const radios = form.querySelectorAll('input[type="radio"]:checked');
+            const checkboxes = form.querySelectorAll('input[type="checkbox"]:checked');
+            const texts = form.querySelectorAll('textarea:not(:placeholder-shown)');
+
+            const totalFields = form.querySelectorAll('input[type="radio"], input[type="checkbox"], textarea').length;
+            const filledFields = radios.length + checkboxes.length + texts.length;
+
+            const progress = (filledFields / totalFields) * 100;
+            progressBar.style.width = progress + '%';
+        }
+
+        // 监听输入变化
+        form.addEventListener('input', updateProgress);
+
+        // 表单提交
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // 收集数据
+            const formData = new FormData(form);
+            const data = {};
+
+            for (let [key, value] of formData.entries()) {
+                if (data[key]) {
+                    if (Array.isArray(data[key])) {
+                        data[key].push(value);
+                    } else {
+                        data[key] = [data[key], value];
+                    }
+                } else {
+                    data[key] = value;
+                }
+            }
+
+            // 添加时间戳
+            data.timestamp = new Date().toISOString();
+
+            // 保存到本地存储（临时存储）
+            let responses = JSON.parse(localStorage.getItem('surveyResponses') || '[]');
+            responses.push(data);
+            localStorage.setItem('surveyResponses', JSON.stringify(responses));
+
+            // 显示数据统计
+            updateStatistics();
+
+            // 显示感谢信息
+            alert('感谢您的参与！您的反馈对我们非常重要。\n\n已收集 ' + responses.length + ' 份问卷数据。');
+
+            // 重置表单
+            form.reset();
+            progressBar.style.width = '0%';
+        });
+
+        // 更新统计信息
+        function updateStatistics() {
+            const responses = JSON.parse(localStorage.getItem('surveyResponses') || '[]');
+            const statsDiv = document.getElementById('statistics') || createStatsDiv();
+
+            if (responses.length > 0) {
+                // 计算基本统计
+                const ageStats = {};
+                const genderStats = {};
+                const satisfactionStats = {};
+
+                responses.forEach(response => {
+                    if (response.age) {
+                        ageStats[response.age] = (ageStats[response.age] || 0) + 1;
+                    }
+                    if (response.gender) {
+                        genderStats[response.gender] = (genderStats[response.gender] || 0) + 1;
+                    }
+                    if (response.satisfaction) {
+                        satisfactionStats[response.satisfaction] = (satisfactionStats[response.satisfaction] || 0) + 1;
+                    }
+                });
+
+                statsDiv.innerHTML = `
+                    <h3>📊 实时统计 (${responses.length}份数据)</h3>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <h4>年龄分布</h4>
+                            ${Object.entries(ageStats).map(([age, count]) =>
+                                `<div>${age}: ${count}人</div>`).join('')}
+                        </div>
+                        <div class="stat-item">
+                            <h4>性别分布</h4>
+                            ${Object.entries(genderStats).map(([gender, count]) =>
+                                `<div>${gender}: ${count}人</div>`).join('')}
+                        </div>
+                        <div class="stat-item">
+                            <h4>满意度分布</h4>
+                            ${Object.entries(satisfactionStats).map(([sat, count]) =>
+                                `<div>${sat}分: ${count}人</div>`).join('')}
+                        </div>
+                    </div>
+                    <button onclick="exportData()">导出数据</button>
+                `;
+            }
+        }
+
+        // 创建统计区域
+        function createStatsDiv() {
+            const statsDiv = document.createElement('div');
+            statsDiv.id = 'statistics';
+            statsDiv.style.cssText = `
+                margin-top: 30px;
+                padding: 20px;
+                background-color: #f8f9fa;
+                border-radius: 8px;
+                border: 1px solid #dee2e6;
+            `;
+            document.querySelector('.container').appendChild(statsDiv);
+            return statsDiv;
+        }
+
+        // 导出数据功能
+        function exportData() {
+            const responses = JSON.parse(localStorage.getItem('surveyResponses') || '[]');
+            if (responses.length === 0) {
+                alert('暂无数据可导出');
+                return;
+            }
+
+            // 转换为CSV格式
+            const headers = Object.keys(responses[0]);
+            const csvContent = [
+                headers.join(','),
+                ...responses.map(row =>
+                    headers.map(header => {
+                        const value = row[header];
+                        if (Array.isArray(value)) {
+                            return `"${value.join(';')}"`;
+                        }
+                        return `"${value || ''}"`;
+                    }).join(',')
+                )
+            ].join('\n');
+
+            // 下载文件
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = `survey_data_${new Date().toISOString().split('T')[0]}.csv`;
+            link.click();
+        }
+
+        // 页面加载时显示现有统计
+        window.addEventListener('load', updateStatistics);
+    </script>
+</body>
+</html>
