@@ -1,49 +1,54 @@
-# 正确设置免费Netlify子域名
+# Netlify域名设置指南
 
-## 🎯 免费域名设置位置
+## 🎯 重要说明：免费子域名规则
 
-**重要**：免费子域名不是在DNS页面设置，而是在**网站域名管理**中设置！
+根据Netlify官方文档：
+- `*.netlify.app` 子域名是**自动分配**的
+- 每个站点只有一个免费子域名
+- **不能**作为自定义域名添加
+- 不能与其他站点重复使用
 
-## 📋 正确步骤
+## ✅ 你的免费域名
 
-### 1. 登录Netlify
-访问 https://netlify.com 登录账号
+你的站点已经分配了免费域名：
+**`https://deft-moxie-85aa8a.netlify.app`**
 
-### 2. 进入具体网站
-- 点击你的网站项目 `deft-moxie-85aa8a`
-- **不是**点击团队DNS！
+这个域名：
+- ✅ 完全免费
+- ✅ 自动HTTPS
+- ✅ 全球CDN
+- ✅ 专业稳定
 
-### 3. 网站设置
-- 点击 **Site settings**（网站设置）
-- 点击 **Domain management**（域名管理）
+## 💡 如果想要自定义子域名
 
-### 4. 添加免费子域名
-- 点击 **Add custom domain**（添加自定义域名）
-- 输入：`chuning.netlify.app`
-- 点击 **Verify**（验证）
+### 方法1：重命名站点（推荐）
+1. 在Netlify中删除当前站点
+2. 重新部署，选择 `chuning` 作为站点名
+3. 获得 `chuning.netlify.app`
 
-### 5. 自动配置
-Netlify会自动配置DNS，免费生效！
+### 方法2：使用其他免费域名
+- GitHub Pages：`chingboh.github.io/consumer-survey`
+- Vercel：可以设置自定义子域名
 
-## 🚨 常见错误
+### 方法3：购买域名
+- `chuning.cn`：¥70/年
+- `chuning.com`：¥50/年
 
-你刚才去的是团队DNS页面，那里是付费域名。
+## � 当前最佳方案
 
-**正确位置**：网站项目 → Site settings → Domain management
+**直接使用 `deft-moxie-85aa8a.netlify.app`** 
 
-## 💡 免费子域名特点
+这个域名已经可以正常访问，完全免费，功能完整。
 
-- 格式：`yourname.netlify.app`
-- 完全免费，无限期
-- 自动HTTPS证书
-- 全球CDN加速
-- 专业外观
+等网站成熟后再考虑购买专业域名。
 
-## 📞 如果还是找不到
+## � 下一步
 
-截图你的Netlify界面给我看，我帮你指出正确位置。
+你的调研网站已经可以开始使用了：
+- 网址：`https://deft-moxie-85aa8a.netlify.app`
+- 开始收集数据吧！
 
-免费域名确实存在，就是设置位置不对！� 域名费用对比
+有什么其他需要调整的吗？� 域名费用对比
 
 | 域名类型 | 年费 | 优势 | 推荐指数 |
 |---------|------|------|----------|
