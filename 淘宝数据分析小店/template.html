@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Image Template</title>
+    <style>
+        /* 定义字体 */
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 这是我们要截图的区域 */
+        #canvas {
+            width: 800px;
+            height: 600px;
+            background-color: #fef4d8; /* 一个温暖的米黄色 */
+            font-family: 'Noto Serif SC', serif;
+            position: relative; /* 关键：让内部元素可以相对于它定位 */
+        }
+
+        /* 绝对定位的标题 */
+        #title {
+            position: absolute;
+            top: 150px;
+            left: 100px;
+            font-size: 48px;
+            font-weight: 700;
+            color: #d2691e; /* 巧克力色 */
+        }
+
+        /* 绝对定位的副标题 */
+        #subtitle {
+            position: absolute;
+            top: 250px;
+            left: 100px;
+            font-size: 24px;
+            color: #8b4513; /* 鞍褐色 */
+        }
+    </style>
+</head>
+<body>
+    <div id="canvas">
+        <div id="title">这里是主标题</div>
+        <div id="subtitle">这里是副标题，可以有很多很多字。</div>
+    </div>
+</body>
+</html>

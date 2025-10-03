@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700;900&display=swap');
+body{margin:0;padding:0}
+#canvas{width:2400px;height:2400px;background:#f5f5f5;font-family:'Noto Sans SC',sans-serif;display:grid;grid-template-columns:repeat(3,800px);grid-template-rows:repeat(3,800px)}
+.grid-item{display:flex;align-items:center;justify-content:center;flex-direction:column;padding:60px;text-align:center}
+.item1{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:#fff}
+.item1 .title{font-size:72px;font-weight:900;margin-bottom:30px}
+.item1 .subtitle{font-size:32px;opacity:0.9}
+.item2{background:#fff}
+.item2 .label{font-size:36px;color:#666;margin-bottom:20px}
+.item2 .price{font-size:96px;font-weight:900;color:#e74c3c}
+.item3{background:#f8f9fa}
+.item3 .title{font-size:42px;font-weight:700;color:#333;margin-bottom:40px}
+.item3 .badges{display:flex;flex-wrap:wrap;gap:20px;justify-content:center}
+.badge{background:#667eea;color:#fff;padding:15px 35px;border-radius:25px;font-size:28px;font-weight:700}
+.item4{background:#fff}
+.item4 .title{font-size:42px;font-weight:700;color:#333;margin-bottom:40px}
+.item4 .steps{font-size:28px;color:#666;line-height:2;text-align:left}
+.item5{background:linear-gradient(135deg,#f093fb 0%,#f5576c 100%);color:#fff}
+.item5 .emoji{font-size:96px;margin-bottom:30px}
+.item5 .text{font-size:36px;font-weight:700;line-height:1.6}
+.item6{background:#f8f9fa}
+.item6 .title{font-size:42px;font-weight:700;color:#333;margin-bottom:40px}
+.item6 .features{font-size:28px;color:#666;line-height:2;text-align:left}
+.item7{background:#fff}
+.item7 .stars{font-size:64px;margin-bottom:30px}
+.item7 .review{font-size:28px;color:#666;line-height:1.8;font-style:italic}
+.item8{background:linear-gradient(135deg,#4facfe 0%,#00f2fe 100%);color:#fff}
+.item8 .title{font-size:48px;font-weight:700;margin-bottom:40px}
+.item8 .problems{font-size:28px;line-height:2;text-align:left}
+.item9{background:#ffd93d}
+.item9 .cta{font-size:64px;font-weight:900;color:#333;margin-bottom:30px}
+.item9 .arrow{font-size:96px}
+</style>
+</head>
+<body>
+<div id="canvas">
+<div class="grid-item item1"><div class="title">数据分析<br>代做服务</div><div class="subtitle">专业·快速·靠谱</div></div>
+<div class="grid-item item2"><div class="label">起步价</div><div class="price">¥100</div></div>
+<div class="grid-item item3"><div class="title">支持软件</div><div class="badges"><div class="badge">SPSS</div><div class="badge">R</div><div class="badge">Python</div><div class="badge">Stata</div><div class="badge">SAS</div></div></div>
+<div class="grid-item item4"><div class="title">4步搞定</div><div class="steps">1️⃣ 发数据样本<br>2️⃣ 确认方案<br>3️⃣ 开始分析<br>4️⃣ 交付验收</div></div>
+<div class="grid-item item5"><div class="emoji">📊</div><div class="text">已服务<br>100+客户</div></div>
+<div class="grid-item item6"><div class="title">服务保障</div><div class="features">✓ 数据严格保密<br>✓ 24-72小时交付<br>✓ 7天免费答疑<br>✓ 支持修改</div></div>
+<div class="grid-item item7"><div class="stars">⭐⭐⭐⭐⭐</div><div class="review">"图表做得很专业<br>导师说可以直接用<br>已推荐给同学"</div></div>
+<div class="grid-item item8"><div class="title">你是不是...</div><div class="problems">😰 问卷不会分析<br>😵 SPSS不会操作<br>😭 deadline快到了<br>😤 图表不够专业</div></div>
+<div class="grid-item item9"><div class="cta">立即咨询</div><div class="arrow">👇</div></div>
+</div>
+</body>
+</html>

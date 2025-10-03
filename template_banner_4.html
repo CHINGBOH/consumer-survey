@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banner 4: Value-Added Services</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        #canvas {
+            width: 1200px;
+            height: 480px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        #canvas::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="50" cy="10" r="0.5" fill="rgba(255,255,255,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .section-title {
+            grid-column: 1 / -1;
+            text-align: center;
+            font-size: 36px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 20px;
+            text-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            z-index: 1;
+        }
+
+        .service-card {
+            background: rgba(255,255,255,0.15);
+            border-radius: 12px;
+            padding: 24px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            z-index: 1;
+            transition: transform 0.2s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .service-icon {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+
+        .service-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 8px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .service-price {
+            font-size: 24px;
+            font-weight: 700;
+            color: #ff6b6b;
+            margin-bottom: 12px;
+        }
+
+        .service-description {
+            font-size: 14px;
+            color: rgba(255,255,255,0.9);
+            line-height: 1.5;
+        }
+
+        .highlight {
+            color: #ffd93d;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div id="canvas">
+        <div class="section-title">增值服务选项</div>
+
+        <div class="service-card">
+            <div class="service-icon">📈</div>
+            <div class="service-title">可视化增强</div>
+            <div class="service-price">{{chart_beautification}}元起</div>
+            <div class="service-description">
+                ✓ 专业图表设计<br/>
+                ✓ <span class="highlight">多格式导出</span><br/>
+                ✓ 配色方案优化<br/>
+                ✓ 交互式图表
+            </div>
+        </div>
+
+        <div class="service-card">
+            <div class="service-icon">📝</div>
+            <div class="service-title">报告润色</div>
+            <div class="service-price">{{report_polish}}元起</div>
+            <div class="service-description">
+                ✓ 学术写作规范<br/>
+                ✓ <span class="highlight">语言优化</span><br/>
+                ✓ 格式标准化<br/>
+                ✓ 专业排版
+            </div>
+        </div>
+
+        <div class="service-card">
+            <div class="service-icon">🔧</div>
+            <div class="service-title">代码交付</div>
+            <div class="service-price">{{code_delivery}}元起</div>
+            <div class="service-description">
+                ✓ 完整分析代码<br/>
+                ✓ <span class="highlight">详细注释</span><br/>
+                ✓ 可复现脚本<br/>
+                ✓ 技术文档
+            </div>
+        </div>
+
+        <div class="service-card">
+            <div class="service-icon">🎯</div>
+            <div class="service-title">VIP服务包</div>
+            <div class="service-price">{{vip_service}}元起</div>
+            <div class="service-description">
+                ✓ 以上全部服务<br/>
+                ✓ <span class="highlight">7天免费答疑</span><br/>
+                ✓ 优先处理<br/>
+                ✓ 专属客服
+            </div>
+        </div>
+    </div>
+</body>
+</html>

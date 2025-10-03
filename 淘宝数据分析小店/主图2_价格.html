@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>主图2-价格</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700;900&display=swap');
+        
+        body { margin: 0; padding: 0; }
+        
+        #canvas {
+            width: 800px;
+            height: 800px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            font-family: 'Noto Sans SC', sans-serif;
+            position: relative;
+        }
+        
+        #title {
+            position: absolute;
+            top: 80px;
+            left: 0;
+            right: 0;
+            font-size: 48px;
+            font-weight: 900;
+            color: #fff;
+            text-align: center;
+        }
+        
+        .price-box {
+            position: absolute;
+            width: 200px;
+            height: 140px;
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+        
+        .price-box .label {
+            margin-top: 25px;
+            font-size: 22px;
+            font-weight: 700;
+            color: #333;
+        }
+        
+        .price-box .price {
+            margin-top: 10px;
+            font-size: 48px;
+            font-weight: 900;
+            color: #f5576c;
+        }
+        
+        .box1 { top: 200px; left: 80px; }
+        .box2 { top: 200px; left: 300px; }
+        .box3 { top: 200px; right: 80px; }
+        
+        .consult {
+            position: absolute;
+            bottom: 150px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 28px;
+            color: #fff;
+            font-weight: 700;
+        }
+        
+        .consult .highlight {
+            font-size: 42px;
+            color: #fff200;
+        }
+    </style>
+</head>
+<body>
+    <div id="canvas">
+        <div id="title">💰 透明定价</div>
+        
+        <div class="price-box box1">
+            <div class="label">基础版</div>
+            <div class="price">¥100</div>
+        </div>
+        
+        <div class="price-box box2">
+            <div class="label">标准版</div>
+            <div class="price">¥200</div>
+        </div>
+        
+        <div class="price-box box3">
+            <div class="label">高级版</div>
+            <div class="price">¥300</div>
+        </div>
+        
+        <div class="consult">
+            咨询评估仅需 <span class="highlight">¥50</span>
+        </div>
+    </div>
+</body>
+</html>

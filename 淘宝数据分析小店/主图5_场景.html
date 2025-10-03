@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>主图5-适用场景</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700;900&display=swap');
+        
+        body { margin: 0; padding: 0; }
+        
+        #canvas {
+            width: 800px;
+            height: 800px;
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            font-family: 'Noto Sans SC', sans-serif;
+            position: relative;
+        }
+        
+        #title {
+            position: absolute;
+            top: 80px;
+            left: 0;
+            right: 0;
+            font-size: 48px;
+            font-weight: 900;
+            color: #fff;
+            text-align: center;
+        }
+        
+        .scene-card {
+            position: absolute;
+            width: 280px;
+            height: 100px;
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            display: flex;
+            align-items: center;
+            padding: 0 25px;
+        }
+        
+        .scene-card .emoji {
+            font-size: 36px;
+            margin-right: 15px;
+        }
+        
+        .scene-card .text {
+            font-size: 20px;
+            font-weight: 700;
+            color: #333;
+            line-height: 1.4;
+        }
+        
+        .s1 { top: 200px; left: 60px; }
+        .s2 { top: 200px; left: 460px; }
+        .s3 { top: 360px; left: 60px; }
+        .s4 { top: 360px; left: 460px; }
+        
+        .cta {
+            position: absolute;
+            bottom: 100px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 36px;
+            font-weight: 900;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+    <div id="canvas">
+        <div id="title">🎯 适用场景</div>
+        
+        <div class="scene-card s1">
+            <div class="emoji">📚</div>
+            <div class="text">毕业论文<br>问卷分析</div>
+        </div>
+        
+        <div class="scene-card s2">
+            <div class="emoji">📊</div>
+            <div class="text">市场调研<br>数据处理</div>
+        </div>
+        
+        <div class="scene-card s3">
+            <div class="emoji">📈</div>
+            <div class="text">课程作业<br>数据可视化</div>
+        </div>
+        
+        <div class="scene-card s4">
+            <div class="emoji">🔬</div>
+            <div class="text">科研项目<br>统计分析</div>
+        </div>
+        
+        <div class="cta">👇 立即咨询 👇</div>
+    </div>
+</body>
+</html>

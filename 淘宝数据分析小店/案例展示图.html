@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>案例展示</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap');
+        
+        body { margin: 0; padding: 0; }
+        
+        #canvas {
+            width: 800px;
+            height: 1200px;
+            background: #f5f5f5;
+            font-family: 'Noto Sans SC', sans-serif;
+            padding: 40px;
+        }
+        
+        .title {
+            font-size: 42px;
+            font-weight: 900;
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .case-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-left: 5px solid #667eea;
+        }
+        
+        .case-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .case-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #333;
+        }
+        
+        .case-badge {
+            background: #667eea;
+            color: #fff;
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 14px;
+            font-weight: 700;
+        }
+        
+        .case-info {
+            font-size: 16px;
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+        
+        .case-info-item {
+            margin-bottom: 8px;
+        }
+        
+        .label {
+            color: #999;
+            margin-right: 10px;
+        }
+        
+        .case-review {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+        
+        .stars {
+            color: #ffd93d;
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+        
+        .review-text {
+            font-size: 15px;
+            color: #666;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div id="canvas">
+        <div class="title">📊 真实案例展示</div>
+        
+        <div class="case-card">
+            <div class="case-header">
+                <div class="case-title">消费券接受度问卷</div>
+                <div class="case-badge">高级版</div>
+            </div>
+            <div class="case-info">
+                <div class="case-info-item"><span class="label">样本量：</span>413人</div>
+                <div class="case-info-item"><span class="label">分析内容：</span>描述统计+因子分析+回归分析</div>
+                <div class="case-info-item"><span class="label">交付物：</span>15页Word报告+12张图表</div>
+                <div class="case-info-item"><span class="label">交付时间：</span>48小时</div>
+            </div>
+            <div class="case-review">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <div class="review-text">"图表做得很专业，导师说可以直接用！"</div>
+            </div>
+        </div>
+        
+        <div class="case-card">
+            <div class="case-header">
+                <div class="case-title">员工满意度调研</div>
+                <div class="case-badge">标准版</div>
+            </div>
+            <div class="case-info">
+                <div class="case-info-item"><span class="label">样本量：</span>156人</div>
+                <div class="case-info-item"><span class="label">分析内容：</span>聚类分析+相关性分析</div>
+                <div class="case-info-item"><span class="label">交付物：</span>HTML交互报告+数据看板</div>
+                <div class="case-info-item"><span class="label">交付时间：</span>36小时</div>
+            </div>
+            <div class="case-review">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <div class="review-text">"老板很满意，已推荐给同事！"</div>
+            </div>
+        </div>
+        
+        <div class="case-card">
+            <div class="case-header">
+                <div class="case-title">本科毕业论文</div>
+                <div class="case-badge">高级版</div>
+            </div>
+            <div class="case-info">
+                <div class="case-info-item"><span class="label">样本量：</span>200+问卷</div>
+                <div class="case-info-item"><span class="label">分析内容：</span>完整统计分析+中介效应</div>
+                <div class="case-info-item"><span class="label">交付物：</span>20页报告+SPSS数据</div>
+                <div class="case-info-item"><span class="label">交付时间：</span>72小时</div>
+            </div>
+            <div class="case-review">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <div class="review-text">"顺利通过答辩，感谢！"</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

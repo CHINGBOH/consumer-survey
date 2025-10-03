@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>淘宝数据分析小店 - 服务流程说明</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        #canvas {
+            width: 1200px;
+            height: 2200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        #canvas::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="50" cy="10" r="0.5" fill="rgba(255,255,255,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .header-section {
+            text-align: center;
+            margin-bottom: 50px;
+            z-index: 1;
+            position: relative;
+        }
+
+        .main-title {
+            font-size: 48px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 16px;
+            text-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            font-size: 24px;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .tools-list {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .tool-item {
+            background: rgba(255,255,255,0.15);
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 500;
+            color: white;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .section {
+            margin-bottom: 60px;
+            z-index: 1;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 30px;
+            text-align: center;
+            text-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        .process-flow {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .process-step {
+            flex: 1;
+            text-align: center;
+            padding: 20px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            margin: 0 10px;
+            position: relative;
+        }
+
+        .process-step::after {
+            content: '→';
+            position: absolute;
+            right: -25px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 24px;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .process-step:last-child::after {
+            display: none;
+        }
+
+        .step-number {
+            font-size: 48px;
+            font-weight: 700;
+            color: #ffd93d;
+            margin-bottom: 10px;
+        }
+
+        .step-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .step-description {
+            font-size: 14px;
+            color: rgba(255,255,255,0.9);
+            line-height: 1.5;
+        }
+
+        .step-price {
+            font-size: 18px;
+            font-weight: 600;
+            color: #ff6b6b;
+            margin-top: 10px;
+        }
+
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .package-card {
+            background: rgba(255,255,255,0.15);
+            border-radius: 12px;
+            padding: 24px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: transform 0.2s;
+        }
+
+        .package-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .package-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .package-name {
+            font-size: 20px;
+            font-weight: 600;
+            color: white;
+        }
+
+        .package-price {
+            font-size: 28px;
+            font-weight: 700;
+            color: #ff6b6b;
+        }
+
+        .package-description {
+            font-size: 14px;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 16px;
+            line-height: 1.5;
+        }
+
+        .package-features {
+            font-size: 14px;
+            color: rgba(255,255,255,0.9);
+            line-height: 1.6;
+        }
+
+        .delivery-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .delivery-card {
+            background: rgba(255,255,255,0.15);
+            border-radius: 12px;
+            padding: 24px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .delivery-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 16px;
+        }
+
+        .delivery-list {
+            font-size: 14px;
+            color: rgba(255,255,255,0.9);
+            line-height: 1.6;
+        }
+
+        .guarantee-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .guarantee-item {
+            background: rgba(255,255,255,0.15);
+            border-radius: 12px;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            text-align: center;
+        }
+
+        .guarantee-icon {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+
+        .guarantee-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 8px;
+        }
+
+        .guarantee-description {
+            font-size: 14px;
+            color: rgba(255,255,255,0.9);
+            line-height: 1.5;
+        }
+
+        .faq-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .faq-item {
+            background: rgba(255,255,255,0.15);
+            border-radius: 12px;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .faq-question {
+            font-size: 16px;
+            font-weight: 600;
+            color: #ffd93d;
+            margin-bottom: 8px;
+        }
+
+        .faq-answer {
+            font-size: 14px;
+            color: rgba(255,255,255,0.9);
+            line-height: 1.5;
+        }
+
+        .contact-section {
+            text-align: center;
+            background: rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .contact-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 16px;
+        }
+
+        .contact-info {
+            font-size: 16px;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 20px;
+        }
+
+        .cta-button {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 16px 32px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 8px 20px rgba(255,107,107,0.4);
+            transition: transform 0.2s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+        }
+
+        .highlight {
+            color: #ffd93d;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div id="canvas">
+        <!-- 头部区域 -->
+        <div class="header-section">
+            <div class="main-title">淘宝数据分析小店</div>
+            <div class="subtitle">专业数据分析服务 · 学术级标准</div>
+            <div class="tools-list">
+                <div class="tool-item">SPSS</div>
+                <div class="tool-item">R语言</div>
+                <div class="tool-item">Python</div>
+                <div class="tool-item">SAS</div>
+            </div>
+        </div>
+
+        <!-- 服务流程 -->
+        <div class="section">
+            <div class="section-title">📋 服务流程（4步完成）</div>
+            <div class="process-flow">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <div class="step-title">咨询评估</div>
+                    <div class="step-description">
+                        ✓ 发送数据样本<br/>
+                        ✓ 评估数据质量<br/>
+                        ✓ 确定分析方案<br/>
+                        ✓ 专业建议
+                    </div>
+                    <div class="step-price">{{consultation}}元（可抵扣）</div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <div class="step-title">下单付款</div>
+                    <div class="step-description">
+                        ✓ 选择对应套餐<br/>
+                        ✓ 提供完整数据<br/>
+                        ✓ 说明具体需求<br/>
+                        ✓ 确认订单
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <div class="step-title">专业分析</div>
+                    <div class="step-description">
+                        ✓ 数据清洗处理<br/>
+                        ✓ 统计分析建模<br/>
+                        ✓ 图表制作美化<br/>
+                        ✓ 报告撰写整理
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <div class="step-title">交付验收</div>
+                    <div class="step-description">
+                        ✓ 发送全部文件<br/>
+                        ✓ 7天内免费答疑<br/>
+                        ✓ 支持小幅修改<br/>
+                        ✓ 满意验收
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 套餐详情 -->
+        <div class="section">
+            <div class="section-title">💎 分析套餐详情</div>
+            <div class="packages-grid">
+                <div class="package-card">
+                    <div class="package-header">
+                        <div class="package-name">{{package_basic_package}}</div>
+                        <div class="package-price">{{basic_package}}元起</div>
+                    </div>
+                    <div class="package-description">适合：简单问卷、课程作业</div>
+                    <div class="package-features">
+                        ✓ 数据清洗与整理<br/>
+                        ✓ 描述性统计分析<br/>
+                        ✓ 3-5张基础图表<br/>
+                        ✓ 简要分析报告（Word）<br/>
+                        ✓ <span class="highlight">交付：1个工作日</span>
+                    </div>
+                </div>
+
+                <div class="package-card">
+                    <div class="package-header">
+                        <div class="package-name">{{package_standard_package}} ⭐推荐</div>
+                        <div class="package-price">{{standard_package}}元起</div>
+                    </div>
+                    <div class="package-description">适合：本科毕业论文、市场调研</div>
+                    <div class="package-features">
+                        ✓ 基础版全部内容<br/>
+                        ✓ 相关性分析<br/>
+                        ✓ 信度效度检验<br/>
+                        ✓ 8-10张专业图表<br/>
+                        ✓ 详细分析报告（Word+PDF）<br/>
+                        ✓ <span class="highlight">交付：2个工作日</span>
+                    </div>
+                </div>
+
+                <div class="package-card">
+                    <div class="package-header">
+                        <div class="package-name">{{package_premium_package}}</div>
+                        <div class="package-price">{{premium_package}}元起</div>
+                    </div>
+                    <div class="package-description">适合：硕士论文、科研项目</div>
+                    <div class="package-features">
+                        ✓ 标准版全部内容<br/>
+                        ✓ 因子分析/聚类分析<br/>
+                        ✓ 回归分析/中介效应<br/>
+                        ✓ 15+张高级图表<br/>
+                        ✓ 综合分析报告+管理建议<br/>
+                        ✓ 一次免费修改<br/>
+                        ✓ <span class="highlight">交付：3个工作日</span>
+                    </div>
+                </div>
+
+                <div class="package-card">
+                    <div class="package-header">
+                        <div class="package-name">{{package_sas_enterprise_package}}</div>
+                        <div class="package-price">{{sas_enterprise_package}}元起</div>
+                    </div>
+                    <div class="package-description">适合：企业级项目、高级研究</div>
+                    <div class="package-features">
+                        ✓ 高级版全部内容<br/>
+                        ✓ SAS格式输出<br/>
+                        ✓ 企业级报告标准<br/>
+                        ✓ 商业化建议<br/>
+                        ✓ <span class="highlight">交付：3-5个工作日</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 交付物说明 -->
+        <div class="section">
+            <div class="section-title">📦 完整交付物</div>
+            <div class="delivery-section">
+                <div class="delivery-card">
+                    <div class="delivery-title">📊 数据处理</div>
+                    <div class="delivery-list">
+                        ✓ 清洗后的数据表格（Excel）<br/>
+                        ✓ 字段说明文档<br/>
+                        ✓ 数据质量报告<br/>
+                        ✓ 异常值处理记录<br/>
+                        ✓ 缺失值填补说明
+                    </div>
+                </div>
+
+                <div class="delivery-card">
+                    <div class="delivery-title">📈 分析报告</div>
+                    <div class="delivery-list">
+                        ✓ Word版详细报告<br/>
+                        ✓ PDF版打印报告<br/>
+                        ✓ 高清统计图表（PNG/PDF）<br/>
+                        ✓ 技术版详细说明<br/>
+                        ✓ 可选HTML交互报告
+                    </div>
+                </div>
+
+                <div class="delivery-card">
+                    <div class="delivery-title">💻 技术交付</div>
+                    <div class="delivery-list">
+                        ✓ 完整分析代码（R/Python）<br/>
+                        ✓ 代码注释说明<br/>
+                        ✓ 可复现脚本<br/>
+                        ✓ 技术参数文档<br/>
+                        ✓ 分析环境配置说明
+                    </div>
+                </div>
+
+                <div class="delivery-card">
+                    <div class="delivery-title">🎯 增值服务</div>
+                    <div class="delivery-list">
+                        ✓ {{addon_chart_beautification}}（{{chart_beautification}}元起）<br/>
+                        ✓ {{addon_report_polish}}（{{report_polish}}元起）<br/>
+                        ✓ {{addon_code_delivery}}（{{code_delivery}}元起）<br/>
+                        ✓ {{addon_vip_service}}（{{vip_service}}元起）<br/>
+                        ✓ {{addon_urgent_service}}（{{urgent_service}}元起）
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 服务保障 -->
+        <div class="section">
+            <div class="section-title">✅ 服务保障</div>
+            <div class="guarantee-grid">
+                <div class="guarantee-item">
+                    <div class="guarantee-icon">⏰</div>
+                    <div class="guarantee-title">按时交付</div>
+                    <div class="guarantee-description">
+                        ✓ <span class="highlight">标准时间严格执行</span><br/>
+                        ✓ 超时双倍赔偿<br/>
+                        ✓ 进度实时跟踪<br/>
+                        ✓ 加急服务可选
+                    </div>
+                </div>
+
+                <div class="guarantee-item">
+                    <div class="guarantee-icon">🔒</div>
+                    <div class="guarantee-title">数据安全</div>
+                    <div class="guarantee-description">
+                        ✓ <span class="highlight">签署保密协议</span><br/>
+                        ✓ 数据加密存储<br/>
+                        ✓ 分析后立即删除<br/>
+                        ✓ 严格保密承诺
+                    </div>
+                </div>
+
+                <div class="guarantee-item">
+                    <div class="guarantee-icon">🔄</div>
+                    <div class="guarantee-title">免费修改</div>
+                    <div class="guarantee-description">
+                        ✓ <span class="highlight">7天内免费答疑</span><br/>
+                        ✓ 内容修改无限制<br/>
+                        ✓ 技术问题解答<br/>
+                        ✓ 满意为止服务
+                    </div>
+                </div>
+
+                <div class="guarantee-item">
+                    <div class="guarantee-icon">🎯</div>
+                    <div class="guarantee-title">质量保证</div>
+                    <div class="guarantee-description">
+                        ✓ <span class="highlight">学术级分析标准</span><br/>
+                        ✓ 专业分析师把关<br/>
+                        ✓ 多重审核机制<br/>
+                        ✓ 同行评审标准
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 常见问题 -->
+        <div class="section">
+            <div class="section-title">❓ 常见问题</div>
+            <div class="faq-section">
+                <div class="faq-item">
+                    <div class="faq-question">数据会泄露吗？</div>
+                    <div class="faq-answer">绝对保密！我们签署保密协议，分析完成后立即删除所有数据，保障客户隐私安全。</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">能保证结果显著吗？</div>
+                    <div class="faq-answer">数据分析遵循科学规律，结果由数据本身决定。我们保证分析方法正确、过程规范。</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">不满意可以退款吗？</div>
+                    <div class="faq-answer">咨询阶段可全额退款，分析开始后不支持退款，但提供7天免费修改服务。</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">提供原始代码吗？</div>
+                    <div class="faq-answer">标准版以上提供完整R/Python代码（{{code_delivery}}元起），包含详细注释，可复现整个分析过程。</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">可以加急吗？</div>
+                    <div class="faq-answer">支持加急！+50%费用当天交付，+30%费用次日交付，满足紧急需求。</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">支持哪些软件？</div>
+                    <div class="faq-answer">SPSS、R、Python、SAS、Stata均可，默认使用R语言，满足不同客户需求。</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 联系方式 -->
+        <div class="section">
+            <div class="contact-section">
+                <div class="contact-title">🚀 立即开始您的项目</div>
+                <div class="contact-info">
+                    📞 咨询热线：请通过淘宝旺旺联系<br/>
+                    💬 在线咨询：24小时响应<br/>
+                    📧 技术支持：7天免费答疑<br/>
+                    ⚡ 加急服务：支持当天交付
+                </div>
+                <a href="#" class="cta-button">立即咨询 →</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

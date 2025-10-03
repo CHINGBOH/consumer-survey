@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Banner 4: Value-Added Services</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Noto Sans SC', sans-serif;
+        }
+
+        #canvas {
+            width: 1200px;
+            height: 480px;
+            background: linear-gradient(45deg, #0a192f, #172a45);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+        }
+
+        /* 主标题 */
+        #main-title {
+            font-size: 42px;
+            font-weight: 700;
+            color: #ccd6f6;
+            text-shadow: 0 0 10px rgba(204, 214, 246, 0.2);
+        }
+
+        /* 增值服务网格 */
+        #services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            width: 100%;
+            max-width: 900px;
+        }
+
+        /* 单个服务卡片 */
+        .service-card {
+            background-color: rgba(17, 34, 64, 0.75);
+            border: 1px solid #173a5e;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            color: #a8b2d1;
+        }
+
+        .service-icon {
+            font-size: 36px;
+            color: #64ffda;
+            margin-bottom: 10px;
+        }
+
+        .service-title {
+            font-size: 18px;
+            font-weight: 500;
+            color: #ccd6f6;
+        }
+    </style>
+</head>
+<body>
+    <div id="canvas">
+        <div id="main-title">升级您的报告，让成果大放异彩</div>
+        <div id="services-grid">
+            <!-- Service 1 -->
+            <div class="service-card">
+                <div class="service-icon">📊</div>
+                <div class="service-title">精美图表制作</div>
+            </div>
+
+            <!-- Service 2 -->
+            <div class="service-card">
+                <div class="service-icon">📄</div>
+                <div class="service-title">PDF格式报告</div>
+            </div>
+
+            <!-- Service 3 -->
+            <div class="service-card">
+                <div class="service-icon">🌐</div>
+                <div class="service-title">HTML交互式报告</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banner 5: Service Guarantee</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        #canvas {
+            width: 1200px;
+            height: 480px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        #canvas::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="50" cy="10" r="0.5" fill="rgba(255,255,255,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .header-section {
+            text-align: center;
+            margin-bottom: 40px;
+            z-index: 1;
+            position: relative;
+        }
+
+        .main-title {
+            font-size: 36px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 8px;
+            text-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: rgba(255,255,255,0.9);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .guarantee-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            z-index: 1;
+            position: relative;
+        }
+
+        .guarantee-item {
+            background: rgba(255,255,255,0.15);
+            border-radius: 12px;
+            padding: 24px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: transform 0.2s;
+        }
+
+        .guarantee-item:hover {
+            transform: translateY(-4px);
+        }
+
+        .guarantee-icon {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+
+        .guarantee-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 8px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .guarantee-description {
+            font-size: 14px;
+            color: rgba(255,255,255,0.9);
+            line-height: 1.5;
+        }
+
+        .highlight {
+            color: #ffd93d;
+            font-weight: 600;
+        }
+
+        .cta-section {
+            text-align: center;
+            margin-top: 30px;
+            z-index: 1;
+            position: relative;
+        }
+
+        .cta-button {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 16px 32px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 8px 20px rgba(255,107,107,0.4);
+            transition: transform 0.2s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div id="canvas">
+        <div class="header-section">
+            <div class="main-title">服务保障</div>
+            <div class="subtitle">专业 · 可靠 · 贴心</div>
+        </div>
+
+        <div class="guarantee-list">
+            <div class="guarantee-item">
+                <div class="guarantee-icon">⏰</div>
+                <div class="guarantee-title">按时交付</div>
+                <div class="guarantee-description">
+                    ✓ <span class="highlight">24小时标准交付</span><br/>
+                    ✓ 12小时加急可选<br/>
+                    ✓ 超时双倍赔偿<br/>
+                    ✓ 进度实时跟踪
+                </div>
+            </div>
+
+            <div class="guarantee-item">
+                <div class="guarantee-icon">🔒</div>
+                <div class="guarantee-title">数据安全</div>
+                <div class="guarantee-description">
+                    ✓ <span class="highlight">严格保密协议</span><br/>
+                    ✓ 数据加密存储<br/>
+                    ✓ 分析后立即删除<br/>
+                    ✓ 签署保密承诺
+                </div>
+            </div>
+
+            <div class="guarantee-item">
+                <div class="guarantee-icon">🔄</div>
+                <div class="guarantee-title">免费修改</div>
+                <div class="guarantee-description">
+                    ✓ <span class="highlight">7天内免费答疑</span><br/>
+                    ✓ 内容修改无限制<br/>
+                    ✓ 技术问题解答<br/>
+                    ✓ 满意为止
+                </div>
+            </div>
+
+            <div class="guarantee-item">
+                <div class="guarantee-icon">🎯</div>
+                <div class="guarantee-title">质量保证</div>
+                <div class="guarantee-description">
+                    ✓ <span class="highlight">学术级标准</span><br/>
+                    ✓ 专业分析师把关<br/>
+                    ✓ 多重审核机制<br/>
+                    ✓ 同行评审
+                </div>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <a href="#" class="cta-button">立即下单 →</a>
+        </div>
+    </div>
+</body>
+</html>

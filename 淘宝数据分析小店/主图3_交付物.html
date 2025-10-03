@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>主图3-交付物</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700;900&display=swap');
+        
+        body { margin: 0; padding: 0; }
+        
+        #canvas {
+            width: 800px;
+            height: 800px;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            font-family: 'Noto Sans SC', sans-serif;
+            position: relative;
+        }
+        
+        #title {
+            position: absolute;
+            top: 80px;
+            left: 0;
+            right: 0;
+            font-size: 48px;
+            font-weight: 900;
+            color: #fff;
+            text-align: center;
+        }
+        
+        .item {
+            position: absolute;
+            left: 120px;
+            right: 120px;
+            height: 70px;
+            background: rgba(255,255,255,0.95);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            padding: 0 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .item .icon {
+            font-size: 32px;
+            margin-right: 20px;
+        }
+        
+        .item .text {
+            font-size: 26px;
+            font-weight: 700;
+            color: #333;
+        }
+        
+        .item1 { top: 200px; }
+        .item2 { top: 300px; }
+        .item3 { top: 400px; }
+        .item4 { top: 500px; }
+    </style>
+</head>
+<body>
+    <div id="canvas">
+        <div id="title">📦 完整交付</div>
+        
+        <div class="item item1">
+            <div class="icon">✓</div>
+            <div class="text">清洗数据表</div>
+        </div>
+        
+        <div class="item item2">
+            <div class="icon">✓</div>
+            <div class="text">Word分析报告</div>
+        </div>
+        
+        <div class="item item3">
+            <div class="icon">✓</div>
+            <div class="text">专业统计图表</div>
+        </div>
+        
+        <div class="item item4">
+            <div class="icon">✓</div>
+            <div class="text">技术说明文档</div>
+        </div>
+    </div>
+</body>
+</html>
