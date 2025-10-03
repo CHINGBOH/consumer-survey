@@ -1,60 +1,49 @@
-# 设置 chuning.netlify.app 免费域名
+# 正确设置免费Netlify子域名
 
-## 🎯 目标域名：chuning.netlify.app
+## 🎯 免费域名设置位置
 
-这个域名简洁专业，非常适合你的调研网站！
+**重要**：免费子域名不是在DNS页面设置，而是在**网站域名管理**中设置！
 
-## 📋 设置步骤
+## 📋 正确步骤
 
 ### 1. 登录Netlify
 访问 https://netlify.com 登录账号
 
-### 2. 进入网站设置
-- 点击网站项目 `deft-moxie-85aa8a`
-- 点击 **Site settings**
+### 2. 进入具体网站
+- 点击你的网站项目 `deft-moxie-85aa8a`
+- **不是**点击团队DNS！
 
-### 3. 域名管理
-- 点击 **Domain management**
-- 点击 **Add custom domain**
+### 3. 网站设置
+- 点击 **Site settings**（网站设置）
+- 点击 **Domain management**（域名管理）
 
-### 4. 添加域名
+### 4. 添加免费子域名
+- 点击 **Add custom domain**（添加自定义域名）
 - 输入：`chuning.netlify.app`
-- 点击 **Verify**
+- 点击 **Verify**（验证）
 
 ### 5. 自动配置
-Netlify会自动处理DNS配置，通常几秒钟就生效。
+Netlify会自动配置DNS，免费生效！
 
-## ✅ 成功标志
+## 🚨 常见错误
 
-设置完成后，你会看到：
-- 域名状态：Active ✅
-- HTTPS：自动启用 🔒
-- 新网址：`https://chuning.netlify.app`
+你刚才去的是团队DNS页面，那里是付费域名。
 
-## 🚨 如果域名不可用
+**正确位置**：网站项目 → Site settings → Domain management
 
-如果 `chuning.netlify.app` 已经被占用，Netlify会提示你。
+## 💡 免费子域名特点
 
-### 备选域名：
-- `chuning-survey.netlify.app`
-- `chuning-research.netlify.app`
-- `consumer-chuning.netlify.app`
+- 格式：`yourname.netlify.app`
+- 完全免费，无限期
+- 自动HTTPS证书
+- 全球CDN加速
+- 专业外观
 
-## 💡 域名选择建议
+## 📞 如果还是找不到
 
-`chuning.netlify.app` 非常好，因为：
-- ✅ 简短好记
-- ✅ 包含你的名字/品牌
-- ✅ 专业外观
-- ✅ 完全免费
+截图你的Netlify界面给我看，我帮你指出正确位置。
 
-## 📞 需要帮助？
-
-如果在设置过程中遇到问题：
-1. 截图错误信息给我看
-2. 我来帮你分析解决方案
-
-设置完成后，记得把新网址发给我确认！� 域名费用对比
+免费域名确实存在，就是设置位置不对！� 域名费用对比
 
 | 域名类型 | 年费 | 优势 | 推荐指数 |
 |---------|------|------|----------|
