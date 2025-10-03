@@ -23,6 +23,7 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
+            padding-top: 120px;
         }
 
         .header {
@@ -56,6 +57,9 @@
             padding: 20px;
             margin-bottom: 30px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 20px;
+            z-index: 100;
         }
 
         .nav ul {
@@ -215,6 +219,11 @@
         }
 
         @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+                padding-top: 20px;
+            }
+
             .header {
                 padding: 40px 15px;
                 margin-bottom: 20px;
@@ -227,6 +236,12 @@
 
             .header p {
                 font-size: 1.1em;
+            }
+
+            .nav {
+                position: static;
+                padding: 15px;
+                margin-bottom: 20px;
             }
 
             .nav ul {
@@ -297,7 +312,8 @@
 
         @media (max-width: 480px) {
             .container {
-                padding: 15px;
+                padding: 10px;
+                padding-top: 20px;
             }
 
             .header h1 {
@@ -703,10 +719,9 @@
         </div>
 
         <div class="footer">
-            <p>� 美研智库 - 专业美容行业数据洞察平台 | 生成时间：2025年10月 | © 美研智库</p>
-            <p>� 数据驱动美丽 | � 科学护肤新纪元 | 🌟 引领美业未来</p>
+            <p>© 美研智库 - 专业美容行业数据洞察平台 | 生成时间：2025年10月 | © 美研智库</p>
+            <p>📊 数据驱动美丽 | 🔬 科学护肤新纪元 | 🌟 引领美业未来</p>
         </div>
     </div>
 </body>
-</html></content>
-<parameter name="filePath">C:\Users\l\Documents\GitHub\R_Code\SAQS\index.html
+</html>
