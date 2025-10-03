@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>你的美容避坑报告 - 冲动消费型</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+            color: #2d3436;
+            line-height: 1.8;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .report-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+        }
+
+        .type-header {
+            text-align: center;
+            padding: 30px;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+            color: white;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+
+        .type-header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .type-header .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .risk-level {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 10px 20px;
+            border-radius: 25px;
+            margin-top: 15px;
+            font-size: 1.1em;
+        }
+
+        .profile-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .profile-item {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #ff6b6b;
+        }
+
+        .profile-item strong {
+            color: #ff6b6b;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        h2 {
+            color: #ff6b6b;
+            font-size: 1.8em;
+            margin: 30px 0 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #ff6b6b;
+        }
+
+        .tip-card {
+            background: #fff5f5;
+            border-left: 5px solid #ff6b6b;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+
+        .tip-card h3 {
+            color: #ff6b6b;
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+
+        .tip-card .why {
+            background: #ffe0e0;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+
+        .tip-card .action {
+            background: #e8f5e9;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+
+        .project-card {
+            background: white;
+            border: 2px solid #e9ecef;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 10px;
+        }
+
+        .project-card.recommend {
+            border-color: #00b894;
+            background: #f0fff4;
+        }
+
+        .project-card.caution {
+            border-color: #fdcb6e;
+            background: #fffbf0;
+        }
+
+        .project-card.avoid {
+            border-color: #d63031;
+            background: #fff5f5;
+        }
+
+        .project-card h4 {
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+
+        .price {
+            color: #ff6b6b;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        .budget-box {
+            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+
+        .budget-box h3 {
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .budget-item {
+            background: rgba(255,255,255,0.2);
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 8px;
+        }
+
+        .share-box {
+            background: linear-gradient(135deg, #a29bfe 0%, #6c5ce7 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .share-box h3 {
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .share-code {
+            background: white;
+            color: #6c5ce7;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .profile-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .report-card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 类型头部 -->
+        <div class="report-card">
+            <div class="type-header">
+                <h1>💰 冲动消费型</h1>
+                <p class="subtitle">看到优惠就心动，办完卡就后悔的"月光女孩"</p>
+                <div class="risk-level">⭐⭐⭐⭐⭐ 高风险（最容易被套路）</div>
+            </div>
+
+            <!-- 你的画像 -->
+            <h2>📋 你的画像</h2>
+            <div class="profile-grid">
+                <div class="profile-item">
+                    <strong>✨ 消费习惯</strong>
+                    容易被"限时优惠""今天办卡打5折"吸引，冲动办卡
+                </div>
+                <div class="profile-item">
+                    <strong>💭 决策方式</strong>
+                    感性大于理性，当场就决定，回家就后悔
+                </div>
+                <div class="profile-item">
+                    <strong>📚 知识水平</strong>
+                    对美容项目了解不深，容易被专业话术忽悠
+                </div>
+                <div class="profile-item">
+                    <strong>💸 花钱现状</strong>
+                    办了很多卡，但很多没用完，或者效果不如预期
+                </div>
+            </div>
+        </div>
+
+        <!-- 避坑指南 -->
+        <div class="report-card">
+            <h2>🛡️ 你的避坑指南（8条保命技巧）</h2>
+
+            <div class="tip-card">
+                <h3>❌ 第1条：永远不要当天办卡</h3>
+                <div class="why">
+                    <strong>为什么：</strong>所有的"限时优惠"都是套路，今天不办明天还有。美容院最怕你回家冷静思考。
+                </div>
+                <div class="action">
+                    <strong>✅ 正确做法：</strong>
+                    <ul>
+                        <li>听完推销后说："我回家考虑一下"</li>
+                        <li>给自己3天冷静期</li>
+                        <li>3天后还想办，再去办</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="tip-card">
+                <h3>❌ 第2条：不要被"打折力度"迷惑</h3>
+                <div class="why">
+                    <strong>为什么：</strong>原价8000打3折=2400，但市场价可能就2000。虚标原价是常见套路。
+                </div>
+                <div class="action">
+                    <strong>✅ 正确做法：</strong>
+                    <ul>
+                        <li>先在美团/大众点评查同类项目价格</li>
+                        <li>对比3家以上的价格</li>
+                        <li>低于市场价50%以上的要警惕</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="tip-card">
+                <h3>❌ 第3条：拒绝"不做疗程没效果"的说法</h3>
+                <div class="why">
+                    <strong>为什么：</strong>这是绑定你长期消费的话术。很多项目单次就有效果。
+                </div>
+                <div class="action">
+                    <strong>✅ 正确做法：</strong>
+                    <ul>
+                        <li>先做1-2次单次体验</li>
+                        <li>确认有效果再考虑疗程</li>
+                        <li>疗程卡金额不超过你2个月工资</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="tip-card">
+                <h3>❌ 第4条：警惕"你的皮肤问题很严重"</h3>
+                <div class="why">
+                    <strong>为什么：</strong>制造焦虑是推销的第一步。80%的人皮肤都正常，不需要那么多项目。
+                </div>
+                <div class="action">
+                    <strong>✅ 正确做法：</strong>
+                    <ul>
+                        <li>听到这句话立刻警觉</li>
+                        <li>要求看检测报告（不是美容师口头说）</li>
+                        <li>回家查资料或问皮肤科医生</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 项目推荐 -->
+        <div class="report-card">
+            <h2>💡 项目推荐</h2>
+
+            <h3 style="color: #00b894; margin-top: 20px;">✅ 强烈推荐（适合你的3个项目）</h3>
+
+            <div class="project-card recommend">
+                <h4>1. 基础补水护理</h4>
+                <p class="price">150-250元/次</p>
+                <p><strong>推荐理由：</strong></p>
+                <ul>
+                    <li>价格透明，不容易被坑</li>
+                    <li>效果立竿见影，不会后悔</li>
+                    <li>可以先单次体验，满意再办卡</li>
+                </ul>
+                <p style="margin-top: 10px;"><strong>⚠️ 避坑提示：</strong>不要被升级成"深层补水""奢华补水"，基础款就够了</p>
+            </div>
+
+            <div class="project-card recommend">
+                <h4>2. 小气泡清洁</h4>
+                <p class="price">200-350元/次</p>
+                <p><strong>推荐理由：</strong></p>
+                <ul>
+                    <li>市场价格相对统一</li>
+                    <li>1-2周做一次就够，不会被推销频繁做</li>
+                    <li>效果可见，黑头白头能看到</li>
+                </ul>
+                <p style="margin-top: 10px;"><strong>⚠️ 避坑提示：</strong>不要每周都做（过度清洁伤皮肤）</p>
+            </div>
+
+            <h3 style="color: #fdcb6e; margin-top: 30px;">⚠️ 谨慎尝试（2个项目）</h3>
+
+            <div class="project-card caution">
+                <h4>1. 光电类项目（光子嫩肤、超声刀等）</h4>
+                <p><strong>为什么谨慎：</strong></p>
+                <ul>
+                    <li>价格不透明，容易被宰</li>
+                    <li>需要多次才有效果，容易被绑定疗程</li>
+                    <li>对机构资质要求高</li>
+                </ul>
+                <p style="margin-top: 10px;"><strong>如果要做：</strong>一定要去有医疗资质的正规机构，先做单次</p>
+            </div>
+
+            <h3 style="color: #d63031; margin-top: 30px;">❌ 不建议（2个项目）</h3>
+
+            <div class="project-card avoid">
+                <h4>1. 年卡/疗程卡（超过5000元的）</h4>
+                <p><strong>为什么不建议：</strong></p>
+                <ul>
+                    <li>你最容易冲动办卡，然后后悔</li>
+                    <li>金额大，退款难</li>
+                    <li>很多项目你根本用不完</li>
+                </ul>
+                <p style="margin-top: 10px;"><strong>替代方案：</strong>办次卡（10次以内），用完再续</p>
+            </div>
+        </div>
+
+        <!-- 省钱攻略 -->
+        <div class="report-card">
+            <h2>💰 你的专属省钱攻略</h2>
+
+            <div class="budget-box">
+                <h3>预算分配建议（月收入5000元为例）</h3>
+                <div class="budget-item">美容总预算：500元/月（10%）</div>
+                <div class="budget-item">├─ 基础护肤品：300元（60%）</div>
+                <div class="budget-item">├─ 美容院项目：150元（30%）</div>
+                <div class="budget-item">└─ 尝试新品：50元（10%）</div>
+                <p style="margin-top: 15px; font-size: 0.95em;">💡 核心原则：把钱花在日常护肤上，比偶尔做一次贵妇护理更有效</p>
+            </div>
+
+            <h3 style="margin-top: 30px;">🎁 薅羊毛技巧（专治冲动）</h3>
+
+            <div class="tip-card">
+                <h3>技巧1：只在这3个时间点办卡</h3>
+                <ul>
+                    <li>✅ 新店开业（体验价最低）</li>
+                    <li>✅ 店庆活动（老店才有，相对靠谱）</li>
+                    <li>✅ 淡季促销（7-8月、1-2月）</li>
+                    <li>❌ 不要在：双11、618、店员冲业绩的月底</li>
+                </ul>
+            </div>
+
+            <div class="tip-card">
+                <h3>技巧2：建立"3天冷静期"机制</h3>
+                <p>听完推销后，在手机备忘录记下：</p>
+                <ul>
+                    <li>项目名称</li>
+                    <li>价格</li>
+                    <li>承诺的效果</li>
+                </ul>
+                <p style="margin-top: 10px;">💡 3天后再看，90%你都不想办了</p>
+            </div>
+
+            <div class="tip-card">
+                <h3>技巧3：找"陪聊闺蜜"</h3>
+                <ul>
+                    <li>去美容院前告诉闺蜜</li>
+                    <li>让她提醒你不要冲动</li>
+                    <li>想办卡先给她打电话</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 成长路径 -->
+        <div class="report-card">
+            <h2>🌱 你的成长路径</h2>
+            <p style="font-size: 1.1em; margin-bottom: 20px;">从"冲动型"到"理性型"的3个阶段</p>
+
+            <div class="tip-card">
+                <h3>阶段1：止损（1-3个月）</h3>
+                <p><strong>目标：</strong>不再办新卡</p>
+                <p><strong>行动：</strong>建立3天冷静期机制</p>
+                <p><strong>标志：</strong>能拒绝美容师的推销</p>
+            </div>
+
+            <div class="tip-card">
+                <h3>阶段2：学习（3-6个月）</h3>
+                <p><strong>目标：</strong>了解基础美容知识</p>
+                <p><strong>行动：</strong>关注靠谱的美容博主，学习成分和项目原理</p>
+                <p><strong>标志：</strong>能分辨美容师的话术真假</p>
+            </div>
+
+            <div class="tip-card">
+                <h3>阶段3：理性消费（6个月后）</h3>
+                <p><strong>目标：</strong>只花该花的钱</p>
+                <p><strong>行动：</strong>建立自己的美容清单，按需消费</p>
+                <p><strong>标志：</strong>不再为优惠心动，只为效果买单</p>
+            </div>
+
+            <div style="background: #fff3cd; padding: 20px; border-radius: 10px; margin-top: 20px; text-align: center;">
+                <p style="font-size: 1.2em; line-height: 1.8;">
+                    亲爱的，你不是"傻"，只是太善良、太容易相信别人。<br><br>
+                    <strong>记住：</strong><br>
+                    ✅ 真正好的产品和服务，不需要用套路推销<br>
+                    ✅ 你的钱是辛苦赚来的，值得被好好对待<br>
+                    ✅ 美丽是长期投资，不是冲动消费<br><br>
+                    <strong style="font-size: 1.3em;">从今天开始，做自己钱包的主人！💪</strong>
+                </p>
+            </div>
+        </div>
+
+        <!-- 分享 -->
+        <div class="share-box">
+            <h3>📱 分享给闺蜜</h3>
+            <div class="share-code">
+                我是：💰 冲动消费型<br>
+                避坑指数：⭐⭐⭐⭐⭐ 高危<br>
+                最容易踩的坑：限时优惠、办卡打折
+            </div>
+            <p style="font-size: 1.1em; margin-top: 15px;">扫码测测你是哪种类型 →</p>
+            <p style="font-size: 0.9em; opacity: 0.8; margin-top: 10px;">让闺蜜也避开这些坑！</p>
+        </div>
+    </div>
+</body>
+</html>

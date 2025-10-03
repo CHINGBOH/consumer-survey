@@ -388,22 +388,134 @@
 
         /* 响应式设计 */
         @media (max-width: 768px) {
-            .cases-hero h1 {
-                font-size: 32px;
+            .navbar {
+                padding: 0.8rem 0;
             }
 
-            .cases-grid {
-                grid-template-columns: 1fr;
+            .nav-container {
+                padding: 0 15px;
+            }
+
+            .logo {
+                font-size: 20px;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+                flex-direction: column;
+                padding: 20px 0;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                margin: 5px 0;
+            }
+
+            .nav-links a {
+                padding: 12px 20px;
+                width: 100%;
+                text-align: center;
+            }
+
+            .menu-toggle {
+                display: block;
+                background: none;
+                border: none;
+                color: white;
+                font-size: 24px;
+                cursor: pointer;
+                padding: 5px;
+            }
+
+            .cases-hero {
+                padding: 100px 20px 60px;
+            }
+
+            .cases-hero h1 {
+                font-size: 28px;
+            }
+
+            .cases-hero p {
+                font-size: 16px;
             }
 
             .filter-buttons {
                 flex-direction: column;
                 align-items: center;
+                gap: 10px;
+            }
+
+            .filter-btn {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+
+            .cases-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .case-card {
+                padding: 20px;
             }
 
             .case-stats {
                 flex-direction: column;
-                gap: 10px;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .stat-item {
+                padding: 15px;
+            }
+
+            .modal-content {
+                width: 95%;
+                max-width: none;
+                margin: 20px;
+                max-height: 80vh;
+                overflow-y: auto;
+            }
+
+            .footer {
+                padding: 20px;
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .cases-hero {
+                padding: 80px 15px 50px;
+            }
+
+            .cases-hero h1 {
+                font-size: 24px;
+            }
+
+            .cases-hero p {
+                font-size: 14px;
+            }
+
+            .case-card {
+                padding: 18px;
+            }
+
+            .case-card h3 {
+                font-size: 18px;
+            }
+
+            .modal-content {
+                width: 98%;
+                margin: 10px;
             }
         }
     </style>
@@ -413,6 +525,7 @@
     <nav class="navbar">
         <div class="nav-container">
             <a href="index.html" class="logo">美研<span>智库</span></a>
+            <button class="menu-toggle" aria-label="Toggle menu">☰</button>
             <ul class="nav-links">
                 <li><a href="index.html">首页</a></li>
                 <li><a href="services.html">服务</a></li>
@@ -676,6 +789,30 @@
     </footer>
 
     <script>
+        // 移动端菜单切换
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        if (menuToggle && navLinks) {
+            menuToggle.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+            });
+
+            // 点击菜单项后关闭菜单
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', function() {
+                    navLinks.classList.remove('active');
+                });
+            });
+
+            // 点击页面其他地方关闭菜单
+            document.addEventListener('click', function(e) {
+                if (!menuToggle.contains(e.target) && !navLinks.contains(e.target)) {
+                    navLinks.classList.remove('active');
+                }
+            });
+        }
+
         // 案例筛选功能
         const filterButtons = document.querySelectorAll('.filter-btn');
         const caseCards = document.querySelectorAll('.case-card');

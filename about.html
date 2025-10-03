@@ -456,21 +456,121 @@
 
         /* 响应式设计 */
         @media (max-width: 768px) {
+            .navbar {
+                padding: 0.8rem 0;
+            }
+
+            .nav-container {
+                padding: 0 15px;
+            }
+
+            .logo {
+                font-size: 20px;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+                flex-direction: column;
+                padding: 20px 0;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                margin: 5px 0;
+            }
+
+            .nav-links a {
+                padding: 12px 20px;
+                width: 100%;
+                text-align: center;
+            }
+
+            .menu-toggle {
+                display: block;
+                background: none;
+                border: none;
+                color: white;
+                font-size: 24px;
+                cursor: pointer;
+                padding: 5px;
+            }
+
+            .about-hero {
+                padding: 100px 20px 60px;
+            }
+
             .about-hero h1 {
-                font-size: 32px;
+                font-size: 28px;
+            }
+
+            .about-hero p {
+                font-size: 16px;
             }
 
             .intro-container {
                 grid-template-columns: 1fr;
-                gap: 40px;
+                gap: 30px;
+            }
+
+            .intro-text, .intro-stats {
+                padding: 20px;
             }
 
             .values-grid, .team-grid, .certificates-grid {
                 grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .value-card, .team-card, .certificate-card {
+                padding: 20px;
             }
 
             .timeline {
                 padding-left: 20px;
+            }
+
+            .timeline-item {
+                padding-left: 30px;
+            }
+
+            .footer {
+                padding: 20px;
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .about-hero {
+                padding: 80px 15px 50px;
+            }
+
+            .about-hero h1 {
+                font-size: 24px;
+            }
+
+            .about-hero p {
+                font-size: 14px;
+            }
+
+            .intro-text, .intro-stats {
+                padding: 18px;
+            }
+
+            .value-card, .team-card, .certificate-card {
+                padding: 18px;
+            }
+
+            .timeline-item {
+                padding-left: 25px;
             }
         }
     </style>
@@ -480,6 +580,7 @@
     <nav class="navbar">
         <div class="nav-container">
             <a href="index.html" class="logo">美研<span>智库</span></a>
+            <button class="menu-toggle" aria-label="Toggle menu">☰</button>
             <ul class="nav-links">
                 <li><a href="index.html">首页</a></li>
                 <li><a href="services.html">服务</a></li>
@@ -701,6 +802,30 @@
     </footer>
 
     <script>
+        // 移动端菜单切换
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        if (menuToggle && navLinks) {
+            menuToggle.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+            });
+
+            // 点击菜单项后关闭菜单
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', function() {
+                    navLinks.classList.remove('active');
+                });
+            });
+
+            // 点击页面其他地方关闭菜单
+            document.addEventListener('click', function(e) {
+                if (!menuToggle.contains(e.target) && !navLinks.contains(e.target)) {
+                    navLinks.classList.remove('active');
+                }
+            });
+        }
+
         // 导航栏滚动效果
         window.addEventListener('scroll', function() {
             const navbar = document.querySelector('.navbar');
