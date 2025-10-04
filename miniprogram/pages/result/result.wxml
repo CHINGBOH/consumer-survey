@@ -1,0 +1,20 @@
+<view class="container">
+  <view class="result-card">
+    <text class="title">测评完成！</text>
+    <text class="icon">{{typeInfo.icon}}</text>
+    <text class="type-name">你是：{{typeInfo.name}}</text>
+    <text class="risk">风险等级：{{typeInfo.risk}}</text>
+    
+    <view class="desc">
+      <text>{{typeInfo.desc}}</text>
+    </view>
+
+    <view class="tips">
+      <text class="tips-title">💡 核心避坑提示</text>
+      <text class="tip-item" wx:for="{{typeInfo.tips}}" wx:key="index">{{index + 1}}. {{item}}</text>
+    </view>
+
+    <button class="btn-primary" bindtap="restart">重新测评</button>
+    <button class="btn-secondary" bindtap="share">分享给闺蜜</button>
+  </view>
+</view>

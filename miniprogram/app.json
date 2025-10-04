@@ -1,0 +1,16 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/quiz/quiz",
+    "pages/result/result"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#3a3a3a",
+    "navigationBarTitleText": "美容避坑测评",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#f5f5f0"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

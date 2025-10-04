@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>美容避坑测评</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Microsoft YaHei', sans-serif; background: #f5f5f0; color: #3a3a3a; padding: 20px; }
+.container { max-width: 700px; margin: 0 auto; }
+.progress-bar { background: #e8e8e0; height: 4px; margin-bottom: 40px; }
+.progress-fill { background: #3a3a3a; height: 100%; width: 12.5%; transition: width 0.3s; }
+.card { background: #fefefe; padding: 40px; border: 1px solid #e8e8e0; }
+.qnum { color: #666; margin-bottom: 20px; }
+.question { font-size: 1.3em; margin-bottom: 20px; line-height: 1.6; }
+.tip { background: #f9f9f5; padding: 15px; margin: 20px 0; border-left: 3px solid #3a3a3a; color: #666; }
+.option { background: #fefefe; border: 1px solid #e8e8e0; padding: 20px; margin: 15px 0; cursor: pointer; }
+.option:hover { border-color: #3a3a3a; }
+.option.selected { border-color: #3a3a3a; background: #f9f9f5; }
+.buttons { display: flex; justify-content: space-between; margin-top: 30px; }
+button { padding: 12px 30px; border: 2px solid #3a3a3a; background: #3a3a3a; color: #f5f5f0; cursor: pointer; font-size: 1em; }
+button:disabled { opacity: 0.3; cursor: not-allowed; }
+button.secondary { background: transparent; color: #3a3a3a; }
+</style>
+</head>
+<body>
+<div class="container">
+<div class="progress-bar"><div class="progress-fill" id="prog"></div></div>
+<div class="card" id="card">
+<div class="qnum" id="qnum"></div>
+<div class="question" id="q"></div>
+<div class="tip" id="tip"></div>
+<div id="opts"></div>
+<div class="buttons">
+<button class="secondary" id="prevBtn">上一题</button>
+<button id="nextBtn">下一题</button>
+</div>
+</div>
+</div>
+
+<script>
+var questions = [
+{q:"你的年龄段？",t:"💡 不同年龄段的皮肤需求差异很大",o:["18-22岁（学生党/职场新人）","23-28岁（职场打拼中）","29-35岁（轻熟女）","36岁以上"],s:[{newbie:1},{rational:1},{scientific:1},{result:1}]},
+{q:"你遇到过以下哪些"坑"？",t:"🚨 这些都是常见套路",o:["被推销办大额年卡/疗程卡","效果远不如承诺的好","做完皮肤反而变差","还好，没遇到过"],s:[{impulsive:3},{result:2},{scientific:2},{rational:3}]},
+{q:"当美容师说"你的皮肤需要深层清洁"时，你会？",t:"💡 正常皮肤1-2周做一次就够了",o:["立刻答应，听专业的","问清楚为什么需要，怎么做","拒绝，觉得是推销","回家查资料再决定"],s:[{newbie:3},{rational:3},{scientific:2},{rational:2}]},
+{q:"看到"限时优惠，今天办卡立减3000元"，你会？",t:"🎭 "限时优惠"永远都有",o:["心动！立刻办（怕错过优惠）","先体验一次，满意再说","回家考虑几天","直接拒绝（肯定是套路）"],s:[{impulsive:5},{rational:3},{rational:2},{scientific:2}]},
+{q:"你对美容知识的了解程度？",t:"📚 知识是最好的避坑武器",o:["完全小白（不懂成分、不懂项目）","略懂一点（知道基础概念）","比较了解（会看成分表，懂原理）","很专业（能分辨真假，知道避坑）"],s:[{newbie:5},{impulsive:2,newbie:2},{scientific:4},{rational:4}]},
+{q:"你最想改善的皮肤问题是？",t:"💡 对症下药很重要",o:["痘痘/粉刺/闭口","暗沉/肤色不均","细纹/松弛/抗衰","敏感/泛红"],s:[{newbie:1},{rational:1},{result:2},{scientific:1}]},
+{q:"你更看重？",t:"⚠️ 承诺"一次见效"的项目要谨慎",o:["快速见效（哪怕有一定风险）","温和安全（慢慢改善也没关系）","性价比（效果和价格都要考虑）","科学有效（相信数据和原理）"],s:[{result:5},{rational:3},{rational:2},{scientific:3}]},
+{q:"你会为了优惠办理年卡/疗程卡吗？",t:"💡 办卡前一定要签合同，问清退款条款",o:["会，算下来很划算","不会，怕店家跑路","看情况，信得过的店才办","只办小额的（3000元以内）"],s:[{impulsive:4},{rational:3},{rational:2},{scientific:1}]}
+];
+
+var cur = 0;
+var answers = [];
+var scores = {impulsive:0, rational:0, scientific:0, result:0, newbie:0};
+
+function loadQuestion() {
+document.getElementById('qnum').textContent = '问题 ' + (cur+1) + ' / 8';
+document.getElementById('q').textContent = questions[cur].q;
+document.getElementById('tip').textContent = questions[cur].t;
+
+var html = '';
+for(var i=0; i<questions[cur].o.length; i++) {
+html += '<div class="option" data-idx="' + i + '">' + questions[cur].o[i] + '</div>';
+}
+document.getElementById('opts').innerHTML = html;
+
+var opts = document.querySelectorAll('.option');
+opts.forEach(function(opt) {
+opt.addEventListener('click', function() {
+var idx = parseInt(this.getAttribute('data-idx'));
+opts.forEach(function(o) { o.classList.remove('selected'); });
+this.classList.add('selected');
+answers[cur] = idx;
+document.getElementById('nextBtn').disabled = false;
+});
+});
+
+if(answers[cur] !== undefined) {
+opts[answers[cur]].classList.add('selected');
+document.getElementById('nextBtn').disabled = false;
+} else {
+document.getElementById('nextBtn').disabled = true;
+}
+
+document.getElementById('prevBtn').disabled = (cur === 0);
+document.getElementById('nextBtn').textContent = (cur === 7) ? '查看结果' : '下一题';
+document.getElementById('prog').style.width = ((cur+1)/8*100) + '%';
+}
+
+document.getElementById('prevBtn').addEventListener('click', function() {
+if(cur > 0) {
+cur--;
+loadQuestion();
+}
+});
+
+document.getElementById('nextBtn').addEventListener('click', function() {
+if(answers[cur] === undefined) return;
+
+var s = questions[cur].s[answers[cur]];
+for(var k in s) {
+scores[k] += s[k];
+}
+
+if(cur < 7) {
+cur++;
+loadQuestion();
+} else {
+var max = 0;
+var type = 'rational';
+for(var k in scores) {
+if(scores[k] > max) {
+max = scores[k];
+type = k;
+}
+}
+
+var typeMap = {
+impulsive: {icon:'💰', name:'冲动消费型', file:'demo_report_impulsive.html'},
+rational: {icon:'🌸', name:'理性护肤型', file:'demo_report_rational.html'},
+scientific: {icon:'🔬', name:'科学美容型', file:'demo_report_scientific.html'},
+result: {icon:'🎯', name:'效果至上型', file:'demo_report_result_focused.html'},
+newbie: {icon:'👶', name:'美容小白型', file:'demo_report_newbie.html'}
+};
+
+var result = typeMap[type];
+document.getElementById('card').innerHTML = '<div style="text-align:center;padding:40px"><h2>测评完成！</h2><div style="font-size:4em;margin:20px 0">' + result.icon + '</div><h2>你是：' + result.name + '</h2><p style="margin:30px 0;color:#666">正在为你生成专属避坑指南...</p></div>';
+
+setTimeout(function() {
+window.location.href = result.file;
+}, 2000);
+}
+});
+
+loadQuestion();
+</script>
+</body>
+</html>

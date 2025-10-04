@@ -1,35 +1,32 @@
----
 project:
   type: website
-  output-dir: docs
+  output-dir: _site
+  render:
+    - "index.qmd"
+    - "services.qmd"
+    - "survey/index.qmd"
+    - "analysis/index.qmd"
+    - "results/index.qmd"
 
 website:
   title: "消费行为调查分析平台"
-  description: "基于数据驱动的消费行为研究与分析"
   navbar:
     left:
-      - href: index.qmd
-        text: 首页
-      - href: survey/index.qmd
-        text: 问卷设计
-      - href: analysis/index.qmd
-        text: 数据分析
-      - href: results/index.qmd
-        text: 研究成果
+      - text: "首页"
+        href: index.qmd
+      - text: "美业服务"
+        href: services.qmd
+      - text: "问卷设计"
+        href: survey/index.qmd
+      - text: "数据分析"
+        href: analysis/index.qmd
+      - text: "研究成果"
+        href: results/index.qmd
 
 format:
   html:
     theme: cosmo
     css: styles.css
     toc: true
-    toc-depth: 3
     code-fold: true
     code-tools: true
-    df-print: paged
-    highlight-style: github
-    include-in-header:
-      - text: |
-          <script src="https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js"></script>
-          <script>mermaid.initialize({startOnLoad:true});</script>
-</content>
-<parameter name="filePath">C:\Users\l\Documents\GitHub\SurveyAnalysis\_quarto.yml

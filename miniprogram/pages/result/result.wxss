@@ -1,0 +1,93 @@
+.container {
+  background: #f5f5f0;
+  min-height: 100vh;
+  padding: 40rpx;
+}
+
+.result-card {
+  background: white;
+  padding: 60rpx 40rpx;
+  text-align: center;
+  border: 1px solid #e8e8e0;
+}
+
+.title {
+  display: block;
+  font-size: 40rpx;
+  margin-bottom: 40rpx;
+}
+
+.icon {
+  display: block;
+  font-size: 120rpx;
+  margin: 40rpx 0;
+}
+
+.type-name {
+  display: block;
+  font-size: 44rpx;
+  font-weight: 500;
+  margin-bottom: 20rpx;
+}
+
+.risk {
+  display: block;
+  font-size: 28rpx;
+  color: #666;
+  margin-bottom: 40rpx;
+}
+
+.desc {
+  background: #f9f9f5;
+  padding: 30rpx;
+  border-left: 3px solid #3a3a3a;
+  text-align: left;
+  margin: 40rpx 0;
+}
+
+.desc text {
+  font-size: 28rpx;
+  line-height: 1.6;
+  color: #666;
+}
+
+.tips {
+  text-align: left;
+  margin: 40rpx 0;
+}
+
+.tips-title {
+  display: block;
+  font-size: 32rpx;
+  font-weight: 500;
+  margin-bottom: 30rpx;
+  padding-bottom: 20rpx;
+  border-bottom: 1px solid #e8e8e0;
+}
+
+.tip-item {
+  display: block;
+  font-size: 26rpx;
+  line-height: 1.8;
+  padding: 15rpx 0;
+  border-bottom: 1px solid #f5f5f5;
+}
+
+.btn-primary, .btn-secondary {
+  width: 100%;
+  margin: 20rpx 0;
+  padding: 24rpx;
+  font-size: 32rpx;
+}
+
+.btn-primary {
+  background: #3a3a3a;
+  color: white;
+  border: none;
+}
+
+.btn-secondary {
+  background: transparent;
+  color: #3a3a3a;
+  border: 2px solid #3a3a3a;
+}

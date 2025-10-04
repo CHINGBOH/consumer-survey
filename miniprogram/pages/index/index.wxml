@@ -1,0 +1,56 @@
+<view class="container">
+  <view class="hero">
+    <text class="title">💄 美容避坑测评</text>
+    <text class="subtitle">3分钟找到你的美容类型\n获取专属避坑指南</text>
+    <button class="btn-primary" bindtap="startQuiz">开始测评</button>
+  </view>
+
+  <view class="features">
+    <view class="feature">
+      <text class="icon">🎯</text>
+      <text class="label">了解自己</text>
+      <text class="desc">找到你的美容消费类型</text>
+    </view>
+    <view class="feature">
+      <text class="icon">🛡️</text>
+      <text class="label">避开陷阱</text>
+      <text class="desc">8条专属避坑指南</text>
+    </view>
+    <view class="feature">
+      <text class="icon">💰</text>
+      <text class="label">省钱攻略</text>
+      <text class="desc">最优消费建议</text>
+    </view>
+  </view>
+
+  <view class="types">
+    <text class="section-title">5种美容类型</text>
+    <view class="type-list">
+      <view class="type-item">
+        <text class="type-icon">💰</text>
+        <text class="type-name">冲动消费型</text>
+        <text class="type-risk">⭐⭐⭐⭐⭐ 高风险</text>
+      </view>
+      <view class="type-item">
+        <text class="type-icon">🌸</text>
+        <text class="type-name">理性护肤型</text>
+        <text class="type-risk">⭐ 低风险</text>
+      </view>
+      <view class="type-item">
+        <text class="type-icon">🔬</text>
+        <text class="type-name">科学美容型</text>
+        <text class="type-risk">⭐⭐ 中低风险</text>
+      </view>
+      <view class="type-item">
+        <text class="type-icon">🎯</text>
+        <text class="type-name">效果至上型</text>
+        <text class="type-risk">⭐⭐⭐⭐ 中高风险</text>
+      </view>
+      <view class="type-item">
+        <text class="type-icon">👶</text>
+        <text class="type-name">美容小白型</text>
+        <text class="type-risk">⭐⭐⭐ 中风险</text>
+      </view>
+    </view>
+  </view>
+</view>

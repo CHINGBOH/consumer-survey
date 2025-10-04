@@ -1,0 +1,25 @@
+<view class="container">
+  <view class="progress">
+    <view class="progress-bar" style="width: {{progress}}%"></view>
+  </view>
+
+  <view class="quiz-card">
+    <text class="qnum">问题 {{currentIndex + 1}} / 8</text>
+    <text class="question">{{currentQuestion.q}}</text>
+    <text class="tip">{{currentQuestion.t}}</text>
+
+    <radio-group bindchange="onSelectOption">
+      <label class="option" wx:for="{{currentQuestion.o}}" wx:key="index">
+        <radio value="{{index}}" checked="{{selectedOption == index}}"/>
+        <text>{{item}}</text>
+      </label>
+    </radio-group>
+
+    <view class="buttons">
+      <button class="btn-secondary" bindtap="prevQuestion" disabled="{{currentIndex == 0}}">上一题</button>
+      <button class="btn-primary" bindtap="nextQuestion" disabled="{{selectedOption === null}}">
+        {{currentIndex == 7 ? '查看结果' : '下一题'}}
+      </button>
+    </view>
+  </view>
+</view>

@@ -1,14 +1,1 @@
-respondent_id,gender,age,education,monthly_income,shopping_frequency,preferred_platform,price_sensitivity,brand_importance,service_importance,collection_date,source
-# 这是一个数据收集模板
-# respondent_id: 受访者ID (自动生成)
-# gender: 性别 (男/女)
-# age: 年龄 (数字)
-# education: 学历 (高中及以下/大专/本科/研究生及以上)
-# monthly_income: 月收入 (3000以下/3000-5000/5000-8000/8000以上)
-# shopping_frequency: 购物频率 (每天/每周几次/每月几次/很少)
-# preferred_platform: 偏好平台 (淘宝京东/小红书抖音/实体店/其他)
-# price_sensitivity: 价格敏感度 (1-5分)
-# brand_importance: 品牌重要性 (1-5分)
-# service_importance: 服务重要性 (1-5分)
-# collection_date: 收集日期 (YYYY-MM-DD)
-# source: 数据来源 (问卷星/手动录入/其他)
+id,age,gender,income,platform,price_importance,quality_importance,service_importance,satisfaction

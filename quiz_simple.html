@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>美容避坑测评</title>
+<style>
+body{font-family:Arial;background:#f5f5f0;padding:20px;margin:0}
+.box{max-width:700px;margin:0 auto;background:white;padding:40px;border:1px solid #ddd}
+h1{text-align:center;margin-bottom:30px}
+.q{background:#f9f9f5;padding:20px;margin:30px 0 15px 0;border-left:3px solid #333}
+.q h3{margin:0 0 10px 0;font-size:18px}
+.q p{margin:0;color:#666;font-size:14px}
+label{display:block;padding:15px;margin:8px 0;border:1px solid #ddd;cursor:pointer}
+label:hover{background:#f5f5f5}
+input[type=radio]{margin-right:10px}
+button{width:100%;padding:15px;font-size:18px;background:#333;color:white;border:none;cursor:pointer;margin-top:30px}
+button:hover{background:#000}
+</style>
+</head>
+<body>
+<div class="box">
+<h1>💄 美容避坑测评</h1>
+<p style="text-align:center;color:#666;margin-bottom:30px">8道题，2分钟，找到你的美容类型</p>
+
+<form id="quiz">
+
+<div class="q">
+<h3>1. 你的年龄段？</h3>
+<p>💡 不同年龄段的皮肤需求差异很大</p>
+</div>
+<label><input type="radio" name="q1" value="newbie:1" required>18-22岁（学生党/职场新人）</label>
+<label><input type="radio" name="q1" value="rational:1">23-28岁（职场打拼中）</label>
+<label><input type="radio" name="q1" value="scientific:1">29-35岁（轻熟女）</label>
+<label><input type="radio" name="q1" value="result:1">36岁以上</label>
+
+<div class="q">
+<h3>2. 你遇到过以下哪些"坑"？</h3>
+<p>🚨 这些都是常见套路</p>
+</div>
+<label><input type="radio" name="q2" value="impulsive:3" required>被推销办大额年卡/疗程卡</label>
+<label><input type="radio" name="q2" value="result:2">效果远不如承诺的好</label>
+<label><input type="radio" name="q2" value="scientific:2">做完皮肤反而变差</label>
+<label><input type="radio" name="q2" value="rational:3">还好，没遇到过</label>
+
+<div class="q">
+<h3>3. 当美容师说"你的皮肤需要深层清洁"时，你会？</h3>
+<p>💡 正常皮肤1-2周做一次就够了</p>
+</div>
+<label><input type="radio" name="q3" value="newbie:3" required>立刻答应，听专业的</label>
+<label><input type="radio" name="q3" value="rational:3">问清楚为什么需要，怎么做</label>
+<label><input type="radio" name="q3" value="scientific:2">拒绝，觉得是推销</label>
+<label><input type="radio" name="q3" value="rational:2">回家查资料再决定</label>
+
+<div class="q">
+<h3>4. 看到"限时优惠，今天办卡立减3000元"，你会？</h3>
+<p>🎭 "限时优惠"永远都有</p>
+</div>
+<label><input type="radio" name="q4" value="impulsive:5" required>心动！立刻办（怕错过优惠）</label>
+<label><input type="radio" name="q4" value="rational:3">先体验一次，满意再说</label>
+<label><input type="radio" name="q4" value="rational:2">回家考虑几天</label>
+<label><input type="radio" name="q4" value="scientific:2">直接拒绝（肯定是套路）</label>
+
+<div class="q">
+<h3>5. 你对美容知识的了解程度？</h3>
+<p>📚 知识是最好的避坑武器</p>
+</div>
+<label><input type="radio" name="q5" value="newbie:5" required>完全小白（不懂成分、不懂项目）</label>
+<label><input type="radio" name="q5" value="impulsive:2,newbie:2">略懂一点（知道基础概念）</label>
+<label><input type="radio" name="q5" value="scientific:4">比较了解（会看成分表，懂原理）</label>
+<label><input type="radio" name="q5" value="rational:4">很专业（能分辨真假，知道避坑）</label>
+
+<div class="q">
+<h3>6. 你最想改善的皮肤问题是？</h3>
+<p>💡 对症下药很重要</p>
+</div>
+<label><input type="radio" name="q6" value="newbie:1" required>痘痘/粉刺/闭口</label>
+<label><input type="radio" name="q6" value="rational:1">暗沉/肤色不均</label>
+<label><input type="radio" name="q6" value="result:2">细纹/松弛/抗衰</label>
+<label><input type="radio" name="q6" value="scientific:1">敏感/泛红</label>
+
+<div class="q">
+<h3>7. 你更看重？</h3>
+<p>⚠️ 承诺"一次见效"的项目要谨慎</p>
+</div>
+<label><input type="radio" name="q7" value="result:5" required>快速见效（哪怕有一定风险）</label>
+<label><input type="radio" name="q7" value="rational:3">温和安全（慢慢改善也没关系）</label>
+<label><input type="radio" name="q7" value="rational:2">性价比（效果和价格都要考虑）</label>
+<label><input type="radio" name="q7" value="scientific:3">科学有效（相信数据和原理）</label>
+
+<div class="q">
+<h3>8. 你会为了优惠办理年卡/疗程卡吗？</h3>
+<p>💡 办卡前一定要签合同，问清退款条款</p>
+</div>
+<label><input type="radio" name="q8" value="impulsive:4" required>会，算下来很划算</label>
+<label><input type="radio" name="q8" value="rational:3">不会，怕店家跑路</label>
+<label><input type="radio" name="q8" value="rational:2">看情况，信得过的店才办</label>
+<label><input type="radio" name="q8" value="scientific:1">只办小额的（3000元以内）</label>
+
+<button type="submit">查看我的测评结果</button>
+</form>
+</div>
+
+<script>
+document.getElementById('quiz').onsubmit = function(e) {
+e.preventDefault();
+var scores = {impulsive:0, rational:0, scientific:0, result:0, newbie:0};
+var form = new FormData(this);
+for(var i=1; i<=8; i++) {
+var val = form.get('q'+i);
+if(val) {
+var parts = val.split(',');
+for(var j=0; j<parts.length; j++) {
+var kv = parts[j].split(':');
+scores[kv[0]] += parseInt(kv[1]);
+}
+}
+}
+var max = 0;
+var type = 'rational';
+for(var k in scores) {
+if(scores[k] > max) {
+max = scores[k];
+type = k;
+}
+}
+var map = {
+impulsive: 'demo_report_impulsive.html',
+rational: 'demo_report_rational.html',
+scientific: 'demo_report_scientific.html',
+result: 'demo_report_result_focused.html',
+newbie: 'demo_report_newbie.html'
+};
+window.location.href = map[type];
+return false;
+};
+</script>
+</body>
+</html>

@@ -1,207 +1,36 @@
 ---
-title: "研究成果展示"
-subtitle: "消费行为调查的完整分析结果"
-author: "调研团队"
-date: today
-format: html
+title: "研究成果"
 ---
 
-# 📈 研究成果展示
-
-## 🎯 研究概述
-
-本次消费行为调查共收集有效样本 **205** 份，涵盖了不同年龄、性别和收入水平的消费者。通过科学的统计分析，我们发现了消费行为的若干重要规律。
-
-## 📊 核心发现
-
-### 消费行为特征分析
+## 📊 分析结果
 
 ```{r}
-#| label: load-sample-data
 #| echo: false
-#| message: false
 #| warning: false
 
-library(tidyverse)
-library(ggplot2)
-
-# 读取示例数据
-sample_data <- read_csv("data/sample_survey_data.csv")
-
-# 数据预处理
-processed_data <- sample_data %>%
-  mutate(
-    age_group = cut(age, breaks = c(0, 20, 25, 30, 100),
-                   labels = c("18-20", "21-25", "26-30", "30+")),
-    income_level = factor(monthly_income,
-                         levels = c("3000-5000", "5000-8000", "8000以上"))
-  )
+if (file.exists("../data/your_survey_data.csv")) {
+  data <- read.csv("../data/your_survey_data.csv")
+  
+  cat("## 样本概况\n\n")
+  cat("- 样本量:", nrow(data), "\n")
+  cat("- 数据收集完成\n\n")
+  
+  cat("## 主要发现\n\n")
+  cat("分析结果将在此展示...\n")
+  
+} else {
+  cat("⏳ 等待数据收集完成后生成分析结果\n\n")
+  cat("请先：\n")
+  cat("1. 设计问卷\n")
+  cat("2. 收集数据\n")
+  cat("3. 填写 data/your_survey_data.csv\n")
+}
 ```
 
-#### 年龄分布特征
+## 📈 可视化展示
 
-```{r}
-#| label: age-distribution
-#| fig-cap: "受访者年龄分布"
-#| echo: false
+数据收集完成后，这里将展示：
 
-ggplot(processed_data, aes(x = age)) +
-  geom_histogram(binwidth = 2, fill = "#4CAF50", color = "white", alpha = 0.8) +
-  theme_minimal() +
-  labs(title = "受访者年龄分布",
-       x = "年龄", y = "人数") +
-  theme(plot.title = element_text(hjust = 0.5, size = 16, face = "bold"))
-```
-
-#### 性别比例
-
-```{r}
-#| label: gender-distribution
-#| fig-cap: "性别比例分布"
-#| echo: false
-
-gender_counts <- processed_data %>%
-  count(gender) %>%
-  mutate(prop = n / sum(n) * 100)
-
-ggplot(gender_counts, aes(x = "", y = prop, fill = gender)) +
-  geom_bar(stat = "identity", width = 1) +
-  coord_polar("y", start = 0) +
-  theme_void() +
-  geom_text(aes(label = paste0(round(prop, 1), "%")),
-            position = position_stack(vjust = 0.5)) +
-  labs(title = "性别比例分布") +
-  scale_fill_manual(values = c("#2196F3", "#E91E63")) +
-  theme(plot.title = element_text(hjust = 0.5, size = 16, face = "bold"))
-```
-
-### 消费偏好分析
-
-#### 购物平台偏好
-
-```{r}
-#| label: platform-preference
-#| fig-cap: "主要购物平台偏好"
-#| echo: false
-
-platform_data <- processed_data %>%
-  separate_rows(preferred_platform, sep = " ") %>%
-  count(preferred_platform) %>%
-  mutate(prop = n / sum(n) * 100) %>%
-  arrange(desc(prop))
-
-ggplot(platform_data, aes(x = reorder(preferred_platform, prop), y = prop)) +
-  geom_bar(stat = "identity", fill = "#FF9800", alpha = 0.8) +
-  coord_flip() +
-  theme_minimal() +
-  labs(title = "主要购物平台偏好",
-       x = "平台", y = "比例 (%)") +
-  theme(plot.title = element_text(hjust = 0.5, size = 16, face = "bold"))
-```
-
-#### 消费决策因素重要性
-
-```{r}
-#| label: decision-factors
-#| fig-cap: "消费决策因素重要性评分"
-#| echo: false
-
-factor_data <- processed_data %>%
-  summarise(
-    价格敏感度 = mean(price_sensitivity),
-    品牌重要性 = mean(brand_importance),
-    服务重要性 = mean(service_importance)
-  ) %>%
-  pivot_longer(everything(), names_to = "factor", values_to = "score")
-
-ggplot(factor_data, aes(x = reorder(factor, score), y = score)) +
-  geom_bar(stat = "identity", fill = "#9C27B0", alpha = 0.8) +
-  geom_text(aes(label = round(score, 1)), hjust = -0.2) +
-  coord_flip() +
-  ylim(0, 5.5) +
-  theme_minimal() +
-  labs(title = "消费决策因素重要性评分 (1-5分)",
-       x = "因素", y = "平均评分") +
-  theme(plot.title = element_text(hjust = 0.5, size = 16, face = "bold"))
-```
-
-## 🔍 统计分析结果
-
-### 描述性统计
-
-```{r}
-#| label: descriptive-stats-table
-#| echo: false
-
-summary_stats <- processed_data %>%
-  summarise(
-    样本量 = n(),
-    平均年龄 = round(mean(age), 1),
-    年龄标准差 = round(sd(age), 1),
-    女性比例 = paste0(round(mean(gender == "女") * 100, 1), "%"),
-    本科以上比例 = paste0(round(mean(education %in% c("本科学历", "研究生")) * 100, 1), "%")
-  ) %>%
-  pivot_longer(everything(), names_to = "指标", values_to = "数值")
-
-knitr::kable(summary_stats, caption = "样本基本特征统计")
-```
-
-### 相关性分析
-
-```{r}
-#| label: correlation-analysis
-#| fig-cap: "消费行为相关性矩阵"
-#| echo: false
-#| message: false
-
-library(corrplot)
-
-# 选择数值变量进行相关性分析
-numeric_vars <- processed_data %>%
-  select(age, price_sensitivity, brand_importance, service_importance)
-
-cor_matrix <- cor(numeric_vars, use = "complete.obs")
-
-corrplot(cor_matrix,
-         method = "color",
-         type = "upper",
-         addCoef.col = "black",
-         tl.col = "black",
-         title = "消费行为相关性分析",
-         mar = c(0,0,2,0))
-```
-
-## 💡 关键洞察
-
-### 1. 消费群体特征
-- **主力消费群体**：21-25岁年轻人，占比最大
-- **性别特征**：女性消费者更注重服务体验
-- **教育背景**：本科及以上学历占比超过60%
-
-### 2. 消费行为模式
-- **平台偏好**：线上电商平台仍然是主流选择
-- **决策因素**：服务重要性评分最高（4.5分）
-- **价格敏感**：整体价格敏感度适中（3.8分）
-
-### 3. 营销建议
-- **精准定位**：针对21-25岁群体设计产品和服务
-- **渠道策略**：重点布局线上电商平台
-- **服务升级**：提升售后服务质量以赢得消费者信任
-
-## 📋 研究局限性
-
-1. **样本代表性**：主要集中在年轻群体，年龄覆盖面有待扩大
-2. **地域限制**：数据主要来自特定地区，可能存在地域偏差
-3. **时间跨度**：为一次性调查，未考虑消费行为的季节性变化
-
-## 🎯 未来研究方向
-
-1. **纵向研究**：建立消费行为跟踪数据库
-2. **细分领域**：针对特定消费品类进行深入研究
-3. **跨文化比较**：比较不同地区消费行为差异
-4. **技术影响**：研究新兴技术对消费行为的影响
-
----
-
-*本研究报告基于科学的方法论，所有分析结果均经过统计验证。如需获取完整数据集或详细分析代码，请联系研究团队。*</content>
-<parameter name="filePath">C:\Users\l\Documents\GitHub\SurveyAnalysis\results\index.qmd
+- 样本特征分布
+- 消费偏好分析
+- 关键洞察

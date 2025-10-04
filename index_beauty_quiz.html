@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>美容避坑测评 - 找到你的美容类型</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Noto Sans SC', sans-serif; 
+            background: #f5f5f0; 
+            color: #3a3a3a; 
+            line-height: 2; 
+            padding: 20px; 
+        }
+        .container { max-width: 900px; margin: 0 auto; }
+        
+        .hero {
+            text-align: center;
+            padding: 80px 20px;
+            background: #fefefe;
+            margin-bottom: 40px;
+            border: 1px solid #e8e8e0;
+        }
+        
+        .hero h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            font-weight: 400;
+            letter-spacing: 3px;
+        }
+        
+        .hero p {
+            font-size: 1.1em;
+            color: #666;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 15px 50px;
+            background: #3a3a3a;
+            color: #f5f5f0;
+            text-decoration: none;
+            font-size: 1.1em;
+            transition: all 0.3s;
+            border: 2px solid #3a3a3a;
+        }
+        
+        .cta-button:hover {
+            background: transparent;
+            color: #3a3a3a;
+        }
+        
+        .section {
+            background: #fefefe;
+            padding: 50px;
+            margin-bottom: 30px;
+            border: 1px solid #e8e8e0;
+        }
+        
+        .section h2 {
+            font-size: 1.8em;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #3a3a3a;
+            font-weight: 400;
+            letter-spacing: 2px;
+        }
+        
+        .types-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .type-card {
+            padding: 30px;
+            border: 1px solid #e8e8e0;
+            text-align: center;
+            transition: all 0.3s;
+            text-decoration: none;
+            color: #3a3a3a;
+            display: block;
+        }
+        
+        .type-card:hover {
+            border-color: #3a3a3a;
+            transform: translateY(-5px);
+        }
+        
+        .type-card .icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+        
+        .type-card h3 {
+            font-size: 1.3em;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+        
+        .type-card .risk {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 10px;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .feature {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .feature .icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+        
+        .feature h3 {
+            font-size: 1.1em;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+        
+        .feature p {
+            font-size: 0.95em;
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .stat {
+            text-align: center;
+            padding: 20px;
+            border-top: 2px solid #3a3a3a;
+        }
+        
+        .stat .number {
+            font-size: 2.5em;
+            font-weight: 300;
+            margin-bottom: 10px;
+        }
+        
+        .stat .label {
+            font-size: 0.9em;
+            color: #666;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 1.8em; }
+            .section { padding: 30px 20px; }
+            .types-grid { grid-template-columns: 1fr; }
+            .stats { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Hero Section -->
+        <div class="hero">
+            <h1>美容避坑测评</h1>
+            <p>3分钟找到你的美容类型，获取专属避坑指南</p>
+            <a href="quiz_simple.html" class="cta-button">开始测评</a>
+        </div>
+
+        <!-- 为什么需要这个测评 -->
+        <div class="section">
+            <h2>为什么需要这个测评？</h2>
+            <div class="features">
+                <div class="feature">
+                    <div class="icon">🎯</div>
+                    <h3>了解自己</h3>
+                    <p>找到你的美容消费类型，认识自己的优势和风险点</p>
+                </div>
+                <div class="feature">
+                    <div class="icon">🛡️</div>
+                    <h3>避开陷阱</h3>
+                    <p>针对你的类型，提供8条专属避坑指南</p>
+                </div>
+                <div class="feature">
+                    <div class="icon">💰</div>
+                    <h3>省钱攻略</h3>
+                    <p>根据你的预算和需求，给出最优消费建议</p>
+                </div>
+                <div class="feature">
+                    <div class="icon">📈</div>
+                    <h3>成长路径</h3>
+                    <p>从新手到专家，规划你的美容进阶之路</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5种美容类型 -->
+        <div class="section">
+            <h2>5种美容类型</h2>
+            <p style="margin-bottom: 20px; color: #666;">点击查看每种类型的详细报告</p>
+            
+            <div class="types-grid">
+                <a href="demo_report_impulsive.html" class="type-card">
+                    <div class="icon">💰</div>
+                    <h3>冲动消费型</h3>
+                    <p>看到优惠就心动<br>办完卡就后悔</p>
+                    <div class="risk">⭐⭐⭐⭐⭐ 高风险</div>
+                </a>
+                
+                <a href="demo_report_rational.html" class="type-card">
+                    <div class="icon">🌸</div>
+                    <h3>理性护肤型</h3>
+                    <p>做足功课再下单<br>会比价会看成分</p>
+                    <div class="risk">⭐ 低风险</div>
+                </a>
+                
+                <a href="demo_report_scientific.html" class="type-card">
+                    <div class="icon">🔬</div>
+                    <h3>科学美容型</h3>
+                    <p>追求效果懂原理<br>愿意尝试新技术</p>
+                    <div class="risk">⭐⭐ 中低风险</div>
+                </a>
+                
+                <a href="demo_report_result_focused.html" class="type-card">
+                    <div class="icon">🎯</div>
+                    <h3>效果至上型</h3>
+                    <p>想快速见效<br>愿意冒险投资</p>
+                    <div class="risk">⭐⭐⭐⭐ 中高风险</div>
+                </a>
+                
+                <a href="demo_report_newbie.html" class="type-card">
+                    <div class="icon">👶</div>
+                    <h3>美容小白型</h3>
+                    <p>刚入门缺经验<br>容易被忽悠</p>
+                    <div class="risk">⭐⭐⭐ 中风险</div>
+                </a>
+            </div>
+        </div>
+
+        <!-- 测评数据 -->
+        <div class="section">
+            <h2>测评数据</h2>
+            <div class="stats">
+                <div class="stat">
+                    <div class="number">15</div>
+                    <div class="label">道题目</div>
+                </div>
+                <div class="stat">
+                    <div class="number">3</div>
+                    <div class="label">分钟完成</div>
+                </div>
+                <div class="stat">
+                    <div class="number">5</div>
+                    <div class="label">种类型</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 如何使用 -->
+        <div class="section">
+            <h2>如何使用</h2>
+            <div style="padding: 20px 0;">
+                <div style="margin-bottom: 25px; padding-left: 30px; border-left: 2px solid #3a3a3a;">
+                    <h3 style="font-size: 1.1em; margin-bottom: 10px; font-weight: 500;">第1步：完成测评</h3>
+                    <p style="color: #666;">回答15道题目，每道题都包含小知识点，边答边学</p>
+                </div>
+                
+                <div style="margin-bottom: 25px; padding-left: 30px; border-left: 2px solid #3a3a3a;">
+                    <h3 style="font-size: 1.1em; margin-bottom: 10px; font-weight: 500;">第2步：查看报告</h3>
+                    <p style="color: #666;">获取你的美容类型、风险等级和专属避坑指南</p>
+                </div>
+                
+                <div style="margin-bottom: 25px; padding-left: 30px; border-left: 2px solid #3a3a3a;">
+                    <h3 style="font-size: 1.1em; margin-bottom: 10px; font-weight: 500;">第3步：开始行动</h3>
+                    <p style="color: #666;">根据建议调整消费习惯，避开常见陷阱</p>
+                </div>
+                
+                <div style="padding-left: 30px; border-left: 2px solid #3a3a3a;">
+                    <h3 style="font-size: 1.1em; margin-bottom: 10px; font-weight: 500;">第4步：分享给闺蜜</h3>
+                    <p style="color: #666;">让更多人避开美容消费陷阱</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="section" id="quiz" style="text-align: center;">
+            <h2>准备好了吗？</h2>
+            <p style="margin: 30px 0; color: #666;">
+                8道题，2分钟，找到你的美容类型<br>
+                立即获取专属避坑指南
+            </p>
+            <div style="margin-top: 30px;">
+                <a href="quiz_simple.html" class="cta-button" style="margin: 10px;">立即开始测评</a>
+            </div>
+            <p style="margin-top: 20px; font-size: 0.9em; color: #999;">
+                或者直接查看：
+                <a href="demo_report_impulsive.html" style="color: #3a3a3a; margin: 0 10px;">冲动消费型</a>
+                <a href="demo_report_rational.html" style="color: #3a3a3a; margin: 0 10px;">理性护肤型</a>
+            </p>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>美容避坑测评 · 让每一分钱都花在刀刃上</p>
+            <p style="margin-top: 10px; font-size: 0.85em;">本测评仅供参考，具体消费决策请结合自身情况</p>
+        </div>
+    </div>
+</body>
+</html>

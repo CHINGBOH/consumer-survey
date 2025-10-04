@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>测试问卷</title>
+<style>
+body{font-family:Arial;padding:20px;background:#f5f5f0}
+.box{max-width:600px;margin:0 auto;background:white;padding:30px;border:1px solid #ddd}
+.q{font-size:20px;margin:20px 0}
+.opt{border:1px solid #ddd;padding:15px;margin:10px 0;cursor:pointer}
+.opt:hover{background:#f0f0f0}
+.opt.sel{background:#e0e0e0;border-color:#000}
+button{padding:10px 20px;margin:10px 5px;font-size:16px}
+</style>
+</head>
+<body>
+<div class="box">
+<div class="q" id="q">你的年龄段？</div>
+<div class="opt" data-v="0">18-22岁</div>
+<div class="opt" data-v="1">23-28岁</div>
+<div class="opt" data-v="2">29-35岁</div>
+<div class="opt" data-v="3">36岁以上</div>
+<div><button id="next" disabled>下一题</button></div>
+<div id="msg"></div>
+</div>
+<script>
+var opts = document.querySelectorAll('.opt');
+var nextBtn = document.getElementById('next');
+var selected = null;
+
+opts.forEach(function(opt){
+  opt.addEventListener('click', function(){
+    opts.forEach(function(o){ o.classList.remove('sel'); });
+    this.classList.add('sel');
+    selected = this.getAttribute('data-v');
+    nextBtn.disabled = false;
+    document.getElementById('msg').textContent = '你选择了：' + this.textContent;
+  });
+});
+
+nextBtn.addEventListener('click', function(){
+  if(selected !== null){
+    alert('你选择了选项' + selected + '，功能正常！');
+    window.location.href = 'demo_report_rational.html';
+  }
+});
+</script>
+</body>
+</html>
