@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>成功案例 - 美研智库</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>�</text></svg>">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', 'PingFang SC', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* 导航栏 */
+        .navbar {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: #ffe4e1;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: #ffe4e1;
+        }
+
+        /* 案例页头部 */
+        .cases-hero {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            padding: 120px 20px 80px;
+            text-align: center;
+            color: white;
+        }
+
+        .cases-hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .cases-hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        /* 案例筛选 */
+        .cases-filter {
+            padding: 40px 20px;
+            background: #f8f9fa;
+            text-align: center;
+        }
+
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            border: 2px solid #1e3c72;
+            background: white;
+            color: #1e3c72;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: #1e3c72;
+            color: white;
+        }
+
+        /* 案例网格 */
+        .cases-section {
+            padding: 60px 20px;
+            background: white;
+        }
+
+        .cases-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .cases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .case-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .case-card.hidden {
+            opacity: 0;
+            transform: scale(0.8);
+            pointer-events: none;
+        }
+
+        .case-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .case-image {
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 48px;
+            position: relative;
+        }
+
+        .case-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #ffd700;
+            color: #1e3c72;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .case-content {
+            padding: 25px;
+        }
+
+        .case-category {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .case-title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #1e3c72;
+        }
+
+        .case-desc {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .case-results {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .result-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .result-label {
+            color: #666;
+        }
+
+        .result-value {
+            font-weight: bold;
+            color: #28a745;
+        }
+
+        .case-stats {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            color: #888;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: #1e3c72;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #2a5298;
+            transform: translateY(-2px);
+        }
+
+        /* 案例详情弹窗 */
+        .case-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            max-width: 800px;
+            margin: 50px auto;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            animation: modalSlideIn 0.3s ease-out;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-header {
+            padding: 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            color: white;
+        }
+
+        .modal-body {
+            padding: 30px;
+        }
+
+        .modal-challenge, .modal-solution, .modal-results {
+            margin-bottom: 30px;
+        }
+
+        .modal-section-title {
+            font-size: 20px;
+            color: #1e3c72;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* CTA 部分 */
+        .cta-section {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            text-align: center;
+            color: white;
+        }
+
+        .cta-section h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        /* 页脚 */
+        .footer {
+            text-align: center;
+            padding: 30px 20px;
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: rgba(255,255,255,0.9);
+            font-size: 0.95em;
+            margin-top: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 20px;
+            color: #ffd700;
+        }
+
+        .footer-section p, .footer-section a {
+            color: #bdc3c7;
+            text-decoration: none;
+            line-height: 1.6;
+        }
+
+        .footer-section a:hover {
+            color: #ffd700;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #34495e;
+            color: #95a5a6;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 0.8rem 0;
+            }
+
+            .nav-container {
+                padding: 0 15px;
+            }
+
+            .logo {
+                font-size: 20px;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+                flex-direction: column;
+                padding: 20px 0;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                margin: 5px 0;
+            }
+
+            .nav-links a {
+                padding: 12px 20px;
+                width: 100%;
+                text-align: center;
+            }
+
+            .menu-toggle {
+                display: block;
+                background: none;
+                border: none;
+                color: white;
+                font-size: 24px;
+                cursor: pointer;
+                padding: 5px;
+            }
+
+            .cases-hero {
+                padding: 100px 20px 60px;
+            }
+
+            .cases-hero h1 {
+                font-size: 28px;
+            }
+
+            .cases-hero p {
+                font-size: 16px;
+            }
+
+            .filter-buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .filter-btn {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+
+            .cases-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .case-card {
+                padding: 20px;
+            }
+
+            .case-stats {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .stat-item {
+                padding: 15px;
+            }
+
+            .modal-content {
+                width: 95%;
+                max-width: none;
+                margin: 20px;
+                max-height: 80vh;
+                overflow-y: auto;
+            }
+
+            .footer {
+                padding: 20px 15px;
+                font-size: 0.9em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .cases-hero {
+                padding: 80px 15px 50px;
+            }
+
+            .cases-hero h1 {
+                font-size: 24px;
+            }
+
+            .cases-hero p {
+                font-size: 14px;
+            }
+
+            .case-card {
+                padding: 18px;
+            }
+
+            .case-card h3 {
+                font-size: 18px;
+            }
+
+            .modal-content {
+                width: 98%;
+                margin: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">美研<span>智库</span></a>
+            <button class="menu-toggle" aria-label="Toggle menu">☰</button>
+            <ul class="nav-links">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="services.html">服务</a></li>
+                <li><a href="cases.html" class="active">案例</a></li>
+                <li><a href="survey.html">调研</a></li>
+                <li><a href="about.html">关于</a></li>
+                <li><a href="contact.html">联系</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 案例页头部 -->
+    <section class="cases-hero">
+        <h1>成功案例展示</h1>
+        <p>用数据驱动商业决策，成就合作伙伴的成功</p>
+    </section>
+
+    <!-- 案例筛选 -->
+    <section class="cases-filter">
+        <div class="filter-buttons">
+            <button class="filter-btn active" data-filter="all">全部案例</button>
+            <button class="filter-btn" data-filter="retail">零售电商</button>
+            <button class="filter-btn" data-filter="tech">科技互联网</button>
+            <button class="filter-btn" data-filter="finance">金融服务</button>
+            <button class="filter-btn" data-filter="healthcare">医疗健康</button>
+            <button class="filter-btn" data-filter="education">教育培训</button>
+        </div>
+    </section>
+
+    <!-- 案例展示 -->
+    <section class="cases-section">
+        <div class="cases-container">
+            <div class="cases-grid">
+                <!-- 零售电商案例 -->
+                <div class="case-card" data-category="retail">
+                    <div class="case-image">
+                        🏪
+                        <div class="case-badge">零售电商</div>
+                    </div>
+                    <div class="case-content">
+                        <div class="case-category">零售电商</div>
+                        <div class="case-title">新零售品牌定位调研</div>
+                        <div class="case-desc">为某新零售品牌进行市场定位调研，帮助其精准定位目标用户群体，提升市场份额20%。</div>
+                        <div class="case-results">
+                            <div class="result-item">
+                                <span class="result-label">样本量</span>
+                                <span class="result-value">2000+</span>
+                            </div>
+                            <div class="result-item">
+                                <span class="result-label">市场份额提升</span>
+                                <span class="result-value">20%</span>
+                            </div>
+                        </div>
+                        <div class="case-stats">
+                            <span>时长: 2周</span>
+                            <span>ROI: 350%</span>
+                        </div>
+                        <button class="btn btn-primary case-detail-btn" data-case="retail-1">查看详情</button>
+                    </div>
+                </div>
+
+                <div class="case-card" data-category="tech">
+                    <div class="case-image">
+                        📱
+                        <div class="case-badge">科技互联网</div>
+                    </div>
+                    <div class="case-content">
+                        <div class="case-category">科技互联网</div>
+                        <div class="case-title">APP用户体验优化</div>
+                        <div class="case-desc">通过用户调研发现关键痛点，指导产品优化，用户留存率提升35%。</div>
+                        <div class="case-results">
+                            <div class="result-item">
+                                <span class="result-label">样本量</span>
+                                <span class="result-value">1500+</span>
+                            </div>
+                            <div class="result-item">
+                                <span class="result-label">留存率提升</span>
+                                <span class="result-value">35%</span>
+                            </div>
+                        </div>
+                        <div class="case-stats">
+                            <span>时长: 1周</span>
+                            <span>ROI: 280%</span>
+                        </div>
+                        <button class="btn btn-primary case-detail-btn" data-case="tech-1">查看详情</button>
+                    </div>
+                </div>
+
+                <div class="case-card" data-category="finance">
+                    <div class="case-image">
+                        🏦
+                        <div class="case-badge">金融服务</div>
+                    </div>
+                    <div class="case-content">
+                        <div class="case-category">金融服务</div>
+                        <div class="case-title">银行客户满意度调研</div>
+                        <div class="case-desc">全面评估银行服务质量，识别改进机会，客户满意度提升25%。</div>
+                        <div class="case-results">
+                            <div class="result-item">
+                                <span class="result-label">样本量</span>
+                                <span class="result-value">3000+</span>
+                            </div>
+                            <div class="result-item">
+                                <span class="result-label">满意度提升</span>
+                                <span class="result-value">25%</span>
+                            </div>
+                        </div>
+                        <div class="case-stats">
+                            <span>时长: 3周</span>
+                            <span>ROI: 420%</span>
+                        </div>
+                        <button class="btn btn-primary case-detail-btn" data-case="finance-1">查看详情</button>
+                    </div>
+                </div>
+
+                <div class="case-card" data-category="healthcare">
+                    <div class="case-image">
+                        🏥
+                        <div class="case-badge">医疗健康</div>
+                    </div>
+                    <div class="case-content">
+                        <div class="case-category">医疗健康</div>
+                        <div class="case-title">医疗APP用户需求调研</div>
+                        <div class="case-desc">深入了解用户就医习惯，指导产品功能优化，日活跃用户增长40%。</div>
+                        <div class="case-results">
+                            <div class="result-item">
+                                <span class="result-label">样本量</span>
+                                <span class="result-value">2500+</span>
+                            </div>
+                            <div class="result-item">
+                                <span class="result-label">DAU增长</span>
+                                <span class="result-value">40%</span>
+                            </div>
+                        </div>
+                        <div class="case-stats">
+                            <span>时长: 2周</span>
+                            <span>ROI: 310%</span>
+                        </div>
+                        <button class="btn btn-primary case-detail-btn" data-case="healthcare-1">查看详情</button>
+                    </div>
+                </div>
+
+                <div class="case-card" data-category="education">
+                    <div class="case-image">
+                        🎓
+                        <div class="case-badge">教育培训</div>
+                    </div>
+                    <div class="case-content">
+                        <div class="case-category">教育培训</div>
+                        <div class="case-title">在线教育平台调研</div>
+                        <div class="case-desc">分析学习者行为模式，优化课程设置，课程完成率提升30%。</div>
+                        <div class="case-results">
+                            <div class="result-item">
+                                <span class="result-label">样本量</span>
+                                <span class="result-value">1800+</span>
+                            </div>
+                            <div class="result-item">
+                                <span class="result-label">完成率提升</span>
+                                <span class="result-value">30%</span>
+                            </div>
+                        </div>
+                        <div class="case-stats">
+                            <span>时长: 2周</span>
+                            <span>ROI: 380%</span>
+                        </div>
+                        <button class="btn btn-primary case-detail-btn" data-case="education-1">查看详情</button>
+                    </div>
+                </div>
+
+                <div class="case-card" data-category="retail">
+                    <div class="case-image">
+                        🛍️
+                        <div class="case-badge">零售电商</div>
+                    </div>
+                    <div class="case-content">
+                        <div class="case-category">零售电商</div>
+                        <div class="case-title">电商平台用户调研</div>
+                        <div class="case-desc">全面分析用户购物行为，为平台优化提供数据支撑，转化率提升25%。</div>
+                        <div class="case-results">
+                            <div class="result-item">
+                                <span class="result-label">样本量</span>
+                                <span class="result-value">3000+</span>
+                            </div>
+                            <div class="result-item">
+                                <span class="result-label">转化率提升</span>
+                                <span class="result-value">25%</span>
+                            </div>
+                        </div>
+                        <div class="case-stats">
+                            <span>时长: 3周</span>
+                            <span>ROI: 290%</span>
+                        </div>
+                        <button class="btn btn-primary case-detail-btn" data-case="retail-2">查看详情</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 案例详情弹窗 -->
+    <div class="case-modal" id="caseModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">案例详情</h2>
+                <span class="modal-close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="modal-challenge">
+                    <h3 class="modal-section-title">🎯 项目挑战</h3>
+                    <p id="modalChallenge">详细描述项目遇到的挑战和问题...</p>
+                </div>
+                <div class="modal-solution">
+                    <h3 class="modal-section-title">💡 解决方案</h3>
+                    <p id="modalSolution">我们提供的专业调研方案和实施过程...</p>
+                </div>
+                <div class="modal-results">
+                    <h3 class="modal-section-title">📈 实施结果</h3>
+                    <p id="modalResults">项目实施后的具体成果和数据表现...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA 部分 -->
+    <section class="cta-section">
+        <h2>您的成功案例会是下一个吗？</h2>
+        <p>让我们一起用数据驱动您的商业决策</p>
+        <a href="contact.html" class="btn btn-primary" style="background: #ffd700; color: #1e3c72;">立即咨询</a>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>数析智库</h3>
+                <p>专业的消费者调研服务平台，为企业提供科学、精准、高效的数据洞察服务。</p>
+            </div>
+            <div class="footer-section">
+                <h3>服务范围</h3>
+                <p><a href="services.html">市场调研</a></p>
+                <p><a href="services.html">用户研究</a></p>
+                <p><a href="services.html">品牌定位</a></p>
+                <p><a href="services.html">产品测试</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>联系我们</h3>
+                <p>📧 contact@shuxi.com</p>
+                <p>📱 400-888-8888</p>
+                <p>🏢 北京市朝阳区</p>
+            </div>
+            <div class="footer-section">
+                <h3>关注我们</h3>
+                <p><a href="#">微信公众号</a></p>
+                <p><a href="#">LinkedIn</a></p>
+                <p><a href="#">微博</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 数析智库. All rights reserved. | <a href="#">隐私政策</a> | <a href="#">服务条款</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // 移动端菜单切换
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        if (menuToggle && navLinks) {
+            menuToggle.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+            });
+
+            // 点击菜单项后关闭菜单
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', function() {
+                    navLinks.classList.remove('active');
+                });
+            });
+
+            // 点击页面其他地方关闭菜单
+            document.addEventListener('click', function(e) {
+                if (!menuToggle.contains(e.target) && !navLinks.contains(e.target)) {
+                    navLinks.classList.remove('active');
+                }
+            });
+        }
+
+        // 案例筛选功能
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const caseCards = document.querySelectorAll('.case-card');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // 移除所有按钮的active类
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // 添加当前按钮的active类
+                button.classList.add('active');
+
+                const filterValue = button.getAttribute('data-filter');
+
+                caseCards.forEach(card => {
+                    if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                        card.classList.remove('hidden');
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                });
+            });
+        });
+
+        // 案例详情弹窗
+        const modal = document.getElementById('caseModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalChallenge = document.getElementById('modalChallenge');
+        const modalSolution = document.getElementById('modalSolution');
+        const modalResults = document.getElementById('modalResults');
+        const modalClose = document.querySelector('.modal-close');
+
+        // 案例详情数据
+        const caseDetails = {
+            'retail-1': {
+                title: '新零售品牌定位调研',
+                challenge: '该新零售品牌面临市场定位不清、目标用户群体不明确的问题，导致营销成本高昂但效果不佳。品牌需要精准定位目标用户群体，优化产品策略和营销方案。',
+                solution: '我们设计了多维度调研方案，包括用户画像分析、竞品对比研究、购买行为调研等。通过线上问卷调查和深度访谈相结合的方式，采集了2000+有效样本。采用聚类分析等统计方法进行数据分析。',
+                results: '成功帮助品牌精准定位25-35岁都市白领群体，明确了产品定位策略。市场份额提升20%，营销ROI提高150%，品牌知名度提升35%。'
+            },
+            'tech-1': {
+                title: 'APP用户体验优化',
+                challenge: '某移动APP用户留存率低，活跃用户流失严重。产品团队无法准确识别用户痛点，导致功能优化方向不明确，用户体验改进缓慢。',
+                solution: '开展全面的用户体验调研，包括用户行为轨迹分析、用户访谈、可用性测试等。设计了包含40个问题的专业问卷，通过多种渠道采集1500+用户反馈数据。',
+                results: '识别出5个关键用户痛点，指导产品团队优先优化核心功能。用户留存率提升35%，日活跃用户增长28%，用户满意度评分从3.2提升到4.1。'
+            },
+            'finance-1': {
+                title: '银行客户满意度调研',
+                challenge: '银行面临服务质量参差不齐、客户满意度不稳定的问题。需要全面评估各项服务的表现，识别改进机会，提升整体服务水平。',
+                solution: '设计了涵盖柜台服务、网上银行、手机银行、客服热线等多渠道的综合满意度调研。采用NPS净推荐值、CSI客户满意指数等专业指标体系，采集3000+客户反馈。',
+                results: '识别出服务流程中的15个改进点，制定了详细的优化方案。客户满意度提升25%，NPS净推荐值提升18%，客户投诉率下降40%。'
+            },
+            'healthcare-1': {
+                title: '医疗APP用户需求调研',
+                challenge: '医疗APP功能丰富但用户使用率低，产品团队对用户真实需求了解不足，导致功能开发与用户期望脱节。',
+                solution: '开展用户需求深度调研，结合定量问卷调查和定性用户访谈。通过用户行为数据分析和竞品对比研究，采集2500+医疗用户反馈。',
+                results: '重新定义产品功能优先级，聚焦核心就医场景。日活跃用户增长40%，用户平均使用时长提升60%，用户好评率提升45%。'
+            },
+            'education-1': {
+                title: '在线教育平台调研',
+                challenge: '在线教育平台课程完成率低，学生学习动力不足。平台需要了解学习者行为模式，优化课程设置和学习体验。',
+                solution: '开展学习行为模式调研，分析学生学习习惯、课程偏好、学习障碍等因素。设计包含学习动机、课程质量、平台体验等多维度的调研问卷。',
+                results: '识别出影响学习的关键因素，优化课程结构和学习路径。课程完成率提升30%，学生留存率提升25%，学习效果评估得分提升35%。'
+            },
+            'retail-2': {
+                title: '电商平台用户调研',
+                challenge: '电商平台面临流量成本上升、转化率下降的问题。需要深入了解用户购物行为，优化平台运营策略。',
+                solution: '开展全面的用户购物行为调研，覆盖用户浏览习惯、购买决策过程、售后服务体验等关键环节。通过大数据分析和用户访谈相结合的方法。',
+                results: '优化了平台商品展示和推荐算法，简化了购买流程。转化率提升25%，客单价提升15%，用户复购率提升20%。'
+            }
+        };
+
+        // 绑定案例详情按钮事件
+        document.querySelectorAll('.case-detail-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const caseId = button.getAttribute('data-case');
+                const caseData = caseDetails[caseId];
+
+                if (caseData) {
+                    modalTitle.textContent = caseData.title;
+                    modalChallenge.textContent = caseData.challenge;
+                    modalSolution.textContent = caseData.solution;
+                    modalResults.textContent = caseData.results;
+
+                    modal.style.display = 'block';
+                }
+            });
+        });
+
+        // 关闭弹窗
+        modalClose.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        // 点击弹窗外部关闭
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+
+        // 导航栏滚动效果
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(30, 60, 114, 0.95)';
+            } else {
+                navbar.style.background = 'linear-gradient(135deg, #1e3c72 0%, #2a5298 100%)';
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,24 +1,21 @@
 project:
   type: website
   output-dir: _site
-  render:
-    - "index.qmd"
-    - "survey/index.qmd"
-    - "analysis/index.qmd"
-    - "results/index.qmd"
 
 website:
-  title: "消费行为调查分析平台"
+  title: "淘宝数据分析小店 - 专业数据分析服务"
   navbar:
     left:
       - text: "首页"
         href: index.qmd
-      - text: "问卷设计"
-        href: survey/index.qmd
-      - text: "数据分析"
-        href: analysis/index.qmd
-      - text: "研究成果"
-        href: results/index.qmd
+      - text: "服务介绍"
+        href: services.qmd
+      - text: "关于我们"
+        href: about.html
+      - text: "案例展示"
+        href: cases.html
+      - text: "联系我们"
+        href: contact.html
 
 format:
   html:

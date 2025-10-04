@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关于我们 - 美研智库</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>�</text></svg>">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', 'PingFang SC', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* 导航栏 */
+        .navbar {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: #ffe4e1;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: #ffe4e1;
+        }
+
+        /* 关于页头部 */
+        .about-hero {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            padding: 120px 20px 80px;
+            text-align: center;
+            color: white;
+        }
+
+        .about-hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .about-hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        /* 公司简介 */
+        .company-intro {
+            padding: 80px 20px;
+            background: white;
+        }
+
+        .intro-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .intro-text h2 {
+            font-size: 36px;
+            color: #1e3c72;
+            margin-bottom: 30px;
+        }
+
+        .intro-text p {
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            color: #666;
+        }
+
+        .intro-image {
+            text-align: center;
+        }
+
+        .intro-image img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        /* 核心价值观 */
+        .values-section {
+            padding: 80px 20px;
+            background: #f8f9fa;
+        }
+
+        .values-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .values-title {
+            text-align: center;
+            font-size: 36px;
+            color: #1e3c72;
+            margin-bottom: 60px;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .value-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .value-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .value-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .value-card h3 {
+            font-size: 24px;
+            color: #1e3c72;
+            margin-bottom: 15px;
+        }
+
+        .value-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* 团队介绍 */
+        .team-section {
+            padding: 80px 20px;
+            background: white;
+        }
+
+        .team-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .team-title {
+            text-align: center;
+            font-size: 36px;
+            color: #1e3c72;
+            margin-bottom: 60px;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .team-member {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+        }
+
+        .member-photo {
+            height: 250px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 48px;
+        }
+
+        .member-info {
+            padding: 25px;
+            text-align: center;
+        }
+
+        .member-name {
+            font-size: 22px;
+            font-weight: bold;
+            color: #1e3c72;
+            margin-bottom: 10px;
+        }
+
+        .member-title {
+            color: #666;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .member-desc {
+            color: #888;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        /* 资质证书 */
+        .certificates-section {
+            padding: 80px 20px;
+            background: #f8f9fa;
+        }
+
+        .certificates-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .certificates-title {
+            text-align: center;
+            font-size: 36px;
+            color: #1e3c72;
+            margin-bottom: 20px;
+        }
+
+        .certificates-subtitle {
+            text-align: center;
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 60px;
+        }
+
+        .certificates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+        }
+
+        .certificate-item {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .certificate-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: #28a745;
+        }
+
+        .certificate-item h4 {
+            font-size: 18px;
+            color: #1e3c72;
+            margin-bottom: 10px;
+        }
+
+        .certificate-item p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* 发展历程 */
+        .timeline-section {
+            padding: 80px 20px;
+            background: white;
+        }
+
+        .timeline-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .timeline-title {
+            text-align: center;
+            font-size: 36px;
+            color: #1e3c72;
+            margin-bottom: 60px;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #667eea, #764ba2);
+        }
+
+        .timeline-item {
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -22px;
+            top: 10px;
+            width: 12px;
+            height: 12px;
+            background: #667eea;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px #667eea;
+        }
+
+        .timeline-year {
+            font-size: 20px;
+            font-weight: bold;
+            color: #1e3c72;
+            margin-bottom: 10px;
+        }
+
+        .timeline-content h4 {
+            font-size: 18px;
+            color: #1e3c72;
+            margin-bottom: 10px;
+        }
+
+        .timeline-content p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* CTA 部分 */
+        .cta-section {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            text-align: center;
+            color: white;
+        }
+
+        .cta-section h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: #ffd700;
+            color: #1e3c72;
+        }
+
+        .btn-primary:hover {
+            background: #ffed4e;
+            transform: translateY(-2px);
+        }
+
+        /* 页脚 */
+        .footer {
+            text-align: center;
+            padding: 30px 20px;
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: rgba(255,255,255,0.9);
+            font-size: 0.95em;
+            margin-top: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 20px;
+            color: #ffd700;
+        }
+
+        .footer-section p, .footer-section a {
+            color: #bdc3c7;
+            text-decoration: none;
+            line-height: 1.6;
+        }
+
+        .footer-section a:hover {
+            color: #ffd700;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #34495e;
+            color: #95a5a6;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 0.8rem 0;
+            }
+
+            .nav-container {
+                padding: 0 15px;
+            }
+
+            .logo {
+                font-size: 20px;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+                flex-direction: column;
+                padding: 20px 0;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                margin: 5px 0;
+            }
+
+            .nav-links a {
+                padding: 12px 20px;
+                width: 100%;
+                text-align: center;
+            }
+
+            .menu-toggle {
+                display: block;
+                background: none;
+                border: none;
+                color: white;
+                font-size: 24px;
+                cursor: pointer;
+                padding: 5px;
+            }
+
+            .about-hero {
+                padding: 100px 20px 60px;
+            }
+
+            .about-hero h1 {
+                font-size: 28px;
+            }
+
+            .about-hero p {
+                font-size: 16px;
+            }
+
+            .intro-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .intro-text, .intro-stats {
+                padding: 20px;
+            }
+
+            .values-grid, .team-grid, .certificates-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .value-card, .team-card, .certificate-card {
+                padding: 20px;
+            }
+
+            .timeline {
+                padding-left: 20px;
+            }
+
+            .timeline-item {
+                padding-left: 30px;
+            }
+
+            .footer {
+                padding: 20px 15px;
+                font-size: 0.9em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .about-hero {
+                padding: 80px 15px 50px;
+            }
+
+            .about-hero h1 {
+                font-size: 24px;
+            }
+
+            .about-hero p {
+                font-size: 14px;
+            }
+
+            .intro-text, .intro-stats {
+                padding: 18px;
+            }
+
+            .value-card, .team-card, .certificate-card {
+                padding: 18px;
+            }
+
+            .timeline-item {
+                padding-left: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">美研<span>智库</span></a>
+            <button class="menu-toggle" aria-label="Toggle menu">☰</button>
+            <ul class="nav-links">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="services.html">服务</a></li>
+                <li><a href="cases.html">案例</a></li>
+                <li><a href="survey.html">调研</a></li>
+                <li><a href="about.html" class="active">关于</a></li>
+                <li><a href="contact.html">联系</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 关于页头部 -->
+    <section class="about-hero">
+        <h1>关于数析智库</h1>
+        <p>用专业的数据分析能力，助力企业科学决策</p>
+    </section>
+
+    <!-- 公司简介 -->
+    <section class="company-intro">
+        <div class="intro-container">
+            <div class="intro-text">
+                <h2>我们的使命</h2>
+                <p>数析智库成立于2020年，是一家专注于消费者行为研究和市场调研的专业数据分析公司。我们致力于为企业提供科学、精准、高效的数据洞察服务，帮助企业在激烈的市场竞争中做出明智的商业决策。</p>
+                <p>我们拥有一支由数据科学家、统计学家、市场研究专家组成的专业团队，具备丰富的行业经验和深厚的技术实力。迄今为止，我们已经为500多家企业提供了优质的调研服务，覆盖零售电商、科技互联网、金融服务、医疗健康、教育培训等多个领域。</p>
+                <p>我们相信，数据是企业最宝贵的资产。通过专业的调研方法和先进的数据分析技术，我们帮助企业深入了解消费者需求，发现市场机会，优化产品策略，提升运营效率。</p>
+            </div>
+            <div class="intro-image">
+                <div style="width: 100%; height: 300px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 15px; display: flex; align-items: center; justify-content: center; color: white; font-size: 72px;">📊</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 核心价值观 -->
+    <section class="values-section">
+        <div class="values-container">
+            <h2 class="values-title">核心价值观</h2>
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">🎯</div>
+                    <h3>专业专注</h3>
+                    <p>专注于数据分析领域，追求卓越的专业水准，为客户提供最优质的服务</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🔬</div>
+                    <h3>科学严谨</h3>
+                    <p>采用科学的调研方法和统计分析技术，确保数据的准确性和可靠性</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🤝</div>
+                    <h3>合作共赢</h3>
+                    <p>与客户建立长期的合作伙伴关系，共同成长，共享成功</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🚀</div>
+                    <h3>创新驱动</h3>
+                    <p>不断探索新的调研技术和分析方法，引领行业创新发展</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 团队介绍 -->
+    <section class="team-section">
+        <div class="team-container">
+            <h2 class="team-title">核心团队</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-photo">👨‍💼</div>
+                    <div class="member-info">
+                        <div class="member-name">张博士</div>
+                        <div class="member-title">创始人 & CEO</div>
+                        <div class="member-desc">拥有10年数据分析经验，曾在知名咨询公司担任高级分析师，负责大型企业的市场调研项目。</div>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-photo">👩‍🔬</div>
+                    <div class="member-info">
+                        <div class="member-name">李博士</div>
+                        <div class="member-title">首席数据科学家</div>
+                        <div class="member-desc">统计学博士，专注于机器学习和消费者行为建模，在国际顶级期刊发表多篇学术论文。</div>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-photo">👨‍💻</div>
+                    <div class="member-info">
+                        <div class="member-name">王工程师</div>
+                        <div class="member-title">技术总监</div>
+                        <div class="member-desc">全栈开发工程师，负责公司技术平台开发和数据处理系统的建设，拥有丰富的技术架构经验。</div>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-photo">👩‍💼</div>
+                    <div class="member-info">
+                        <div class="member-name">陈经理</div>
+                        <div class="member-title">客户总监</div>
+                        <div class="member-desc">拥有8年客户服务经验，擅长项目管理和客户关系维护，确保项目高质量按时交付。</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 资质证书 -->
+    <section class="certificates-section">
+        <div class="certificates-container">
+            <h2 class="certificates-title">资质认证</h2>
+            <p class="certificates-subtitle">我们具备完善的专业资质和行业认证</p>
+            <div class="certificates-grid">
+                <div class="certificate-item">
+                    <div class="certificate-icon">📜</div>
+                    <h4>市场调研资质</h4>
+                    <p>获得国家市场监督管理局颁发的市场调研机构资质证书</p>
+                </div>
+                <div class="certificate-item">
+                    <div class="certificate-icon">🔒</div>
+                    <h4>数据安全认证</h4>
+                    <p>通过ISO 27001信息安全管理体系认证，确保客户数据安全</p>
+                </div>
+                <div class="certificate-item">
+                    <div class="certificate-icon">📊</div>
+                    <h4>统计分析资质</h4>
+                    <p>具备国家统计局认可的统计分析从业资格</p>
+                </div>
+                <div class="certificate-item">
+                    <div class="certificate-icon">🏆</div>
+                    <h4>质量管理体系</h4>
+                    <p>通过ISO 9001质量管理体系认证，保证服务质量</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 发展历程 -->
+    <section class="timeline-section">
+        <div class="timeline-container">
+            <h2 class="timeline-title">发展历程</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-year">2020</div>
+                    <div class="timeline-content">
+                        <h4>公司成立</h4>
+                        <p>数析智库正式成立，专注于消费者调研和数据分析服务，开启专业化发展之路。</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-year">2021</div>
+                    <div class="timeline-content">
+                        <h4>业务拓展</h4>
+                        <p>服务客户突破100家，业务覆盖零售电商、科技互联网等多个领域，建立稳定的客户群体。</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-year">2022</div>
+                    <div class="timeline-content">
+                        <h4>技术升级</h4>
+                        <p>引入AI技术优化数据分析流程，分析效率提升300%，获得多项技术专利。</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-year">2023</div>
+                    <div class="timeline-content">
+                        <h4>规模扩张</h4>
+                        <p>服务客户超过500家，团队规模扩大到50人，成为业内领先的数据分析服务提供商。</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-year">2024</div>
+                    <div class="timeline-content">
+                        <h4>创新发展</h4>
+                        <p>推出创新解决方案，获得多项行业奖项，引领市场调研行业的新发展方向。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA 部分 -->
+    <section class="cta-section">
+        <h2>加入数析智库大家庭</h2>
+        <p>让我们一起用数据改变商业世界</p>
+        <a href="contact.html" class="btn btn-primary">联系我们</a>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>数析智库</h3>
+                <p>专业的消费者调研服务平台，为企业提供科学、精准、高效的数据洞察服务。</p>
+            </div>
+            <div class="footer-section">
+                <h3>服务范围</h3>
+                <p><a href="services.html">市场调研</a></p>
+                <p><a href="services.html">用户研究</a></p>
+                <p><a href="services.html">品牌定位</a></p>
+                <p><a href="services.html">产品测试</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>联系我们</h3>
+                <p>📧 contact@shuxi.com</p>
+                <p>📱 400-888-8888</p>
+                <p>🏢 北京市朝阳区</p>
+            </div>
+            <div class="footer-section">
+                <h3>关注我们</h3>
+                <p><a href="#">微信公众号</a></p>
+                <p><a href="#">LinkedIn</a></p>
+                <p><a href="#">微博</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 数析智库. All rights reserved. | <a href="#">隐私政策</a> | <a href="#">服务条款</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // 移动端菜单切换
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        if (menuToggle && navLinks) {
+            menuToggle.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+            });
+
+            // 点击菜单项后关闭菜单
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', function() {
+                    navLinks.classList.remove('active');
+                });
+            });
+
+            // 点击页面其他地方关闭菜单
+            document.addEventListener('click', function(e) {
+                if (!menuToggle.contains(e.target) && !navLinks.contains(e.target)) {
+                    navLinks.classList.remove('active');
+                }
+            });
+        }
+
+        // 导航栏滚动效果
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(30, 60, 114, 0.95)';
+            } else {
+                navbar.style.background = 'linear-gradient(135deg, #1e3c72 0%, #2a5298 100%)';
+            }
+        });
+    </script>
+</body>
+</html>
