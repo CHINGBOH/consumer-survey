@@ -1,0 +1,49 @@
+---
+title: "数据分析"
+---
+
+## 📊 分析流程
+
+```{r}
+#| echo: true
+#| eval: false
+
+# 1. 加载数据
+library(tidyverse)
+data <- read.csv("../data/your_survey_data.csv")
+
+# 2. 描述性统计
+summary(data)
+
+# 3. 可视化
+ggplot(data, aes(x = age)) + 
+  geom_bar() +
+  theme_minimal()
+```
+
+## 🔍 分析方法
+
+### 描述性统计
+- 频数分布
+- 集中趋势
+- 离散程度
+
+### 推断统计
+- 相关分析
+- 回归分析
+- 假设检验
+
+## 📈 示例分析
+
+```{r}
+#| echo: false
+#| warning: false
+
+if (file.exists("../data/survey_data_template.csv")) {
+  data <- read.csv("../data/survey_data_template.csv")
+  cat("使用模板数据演示分析方法\n")
+  cat("样本量:", nrow(data))
+} else {
+  cat("等待数据...")
+}
+```

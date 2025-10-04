@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>联系我们 - 美研智库</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>�</text></svg>">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', 'PingFang SC', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* 导航栏 */
+        .navbar {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: #ffe4e1;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: #ffe4e1;
+        }
+
+        /* 联系页头部 */
+        .contact-hero {
+            background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%);
+            padding: 120px 20px 80px;
+            text-align: center;
+            color: white;
+        }
+
+        .contact-hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .contact-hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        /* 联系信息 */
+        .contact-section {
+            padding: 80px 20px;
+            background: white;
+        }
+
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+
+        .contact-info h2 {
+            font-size: 36px;
+            color: #1e3c72;
+            margin-bottom: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 30px;
+        }
+
+        .contact-icon {
+            font-size: 24px;
+            margin-right: 20px;
+            color: #1e3c72;
+            min-width: 24px;
+        }
+
+        .contact-details h3 {
+            font-size: 18px;
+            color: #1e3c72;
+            margin-bottom: 5px;
+        }
+
+        .contact-details p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .contact-details a {
+            color: #1e3c72;
+            text-decoration: none;
+        }
+
+        .contact-details a:hover {
+            text-decoration: underline;
+        }
+
+        /* 联系表单 */
+        .contact-form {
+            background: #f8f9fa;
+            padding: 40px;
+            border-radius: 15px;
+        }
+
+        .form-title {
+            font-size: 28px;
+            color: #1e3c72;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #1e3c72;
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s;
+            width: 100%;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: #1e3c72;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #2a5298;
+            transform: translateY(-2px);
+        }
+
+        /* 地图区域 */
+        .map-section {
+            padding: 80px 20px;
+            background: #f8f9fa;
+        }
+
+        .map-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .map-title {
+            font-size: 36px;
+            color: #1e3c72;
+            margin-bottom: 20px;
+        }
+
+        .map-subtitle {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 40px;
+        }
+
+        .map-placeholder {
+            height: 400px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 48px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        /* FAQ 部分 */
+        .faq-section {
+            padding: 80px 20px;
+            background: white;
+        }
+
+        .faq-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .faq-title {
+            text-align: center;
+            font-size: 36px;
+            color: #1e3c72;
+            margin-bottom: 20px;
+        }
+
+        .faq-subtitle {
+            text-align: center;
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 60px;
+        }
+
+        .faq-item {
+            background: #f8f9fa;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: #1e3c72;
+            transition: background-color 0.3s;
+        }
+
+        .faq-question:hover {
+            background: #e9ecef;
+        }
+
+        .faq-icon {
+            font-size: 18px;
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            padding: 0 20px 20px;
+            color: #666;
+            line-height: 1.6;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+        }
+
+        /* CTA 部分 */
+        .cta-section {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            text-align: center;
+            color: white;
+        }
+
+        .cta-section h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        /* 页脚 */
+        .footer {
+            text-align: center;
+            padding: 30px 20px;
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: rgba(255,255,255,0.9);
+            font-size: 0.95em;
+            margin-top: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 20px;
+            color: #ffd700;
+        }
+
+        .footer-section p, .footer-section a {
+            color: #bdc3c7;
+            text-decoration: none;
+            line-height: 1.6;
+        }
+
+        .footer-section a:hover {
+            color: #ffd700;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #34495e;
+            color: #95a5a6;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 0.8rem 0;
+            }
+
+            .nav-container {
+                padding: 0 15px;
+            }
+
+            .logo {
+                font-size: 20px;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+                flex-direction: column;
+                padding: 20px 0;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                margin: 5px 0;
+            }
+
+            .nav-links a {
+                padding: 12px 20px;
+                width: 100%;
+                text-align: center;
+            }
+
+            .menu-toggle {
+                display: block;
+                background: none;
+                border: none;
+                color: white;
+                font-size: 24px;
+                cursor: pointer;
+                padding: 5px;
+            }
+
+            .contact-hero {
+                padding: 100px 20px 60px;
+            }
+
+            .contact-hero h1 {
+                font-size: 28px;
+            }
+
+            .contact-hero p {
+                font-size: 16px;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .contact-form {
+                padding: 25px 20px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .form-group {
+                margin-bottom: 20px;
+            }
+
+            .form-group input,
+            .form-group textarea {
+                padding: 14px;
+                font-size: 16px;
+            }
+
+            .contact-info {
+                padding: 25px 20px;
+            }
+
+            .info-item {
+                padding: 15px;
+                margin-bottom: 15px;
+            }
+
+            .map-placeholder {
+                height: 250px;
+            }
+
+            .faq-section {
+                padding: 40px 20px;
+            }
+
+            .faq-item {
+                margin-bottom: 15px;
+            }
+
+            .faq-question {
+                padding: 15px;
+                font-size: 16px;
+            }
+
+            .faq-answer {
+                padding: 15px;
+                font-size: 15px;
+            }
+
+            .footer {
+                padding: 20px 15px;
+                font-size: 0.9em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .contact-hero {
+                padding: 80px 15px 50px;
+            }
+
+            .contact-hero h1 {
+                font-size: 24px;
+            }
+
+            .contact-hero p {
+                font-size: 14px;
+            }
+
+            .contact-form {
+                padding: 20px 15px;
+            }
+
+            .contact-info {
+                padding: 20px 15px;
+            }
+
+            .info-item {
+                padding: 12px;
+            }
+
+            .map-placeholder {
+                height: 200px;
+            }
+
+            .faq-section {
+                padding: 30px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">美研<span>智库</span></a>
+            <button class="menu-toggle" aria-label="Toggle menu">☰</button>
+            <ul class="nav-links">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="services.html">服务</a></li>
+                <li><a href="cases.html">案例</a></li>
+                <li><a href="survey.html">调研</a></li>
+                <li><a href="about.html">关于</a></li>
+                <li><a href="contact.html" class="active">联系</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 联系页头部 -->
+    <section class="contact-hero">
+        <h1>联系我们</h1>
+        <p>让我们一起探讨如何用数据驱动您的商业成功</p>
+    </section>
+
+    <!-- 联系信息和表单 -->
+    <section class="contact-section">
+        <div class="contact-container">
+            <!-- 联系信息 -->
+            <div class="contact-info">
+                <h2>获取专业咨询</h2>
+                <div class="contact-item">
+                    <div class="contact-icon">📍</div>
+                    <div class="contact-details">
+                        <h3>公司地址</h3>
+                        <p>北京市朝阳区建国门外大街<br>中国国际贸易中心1号楼</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📞</div>
+                    <div class="contact-details">
+                        <h3>联系电话</h3>
+                        <p><a href="tel:400-888-8888">400-888-8888</a></p>
+                        <p><a href="tel:010-88888888">010-88888888</a></p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📧</div>
+                    <div class="contact-details">
+                        <h3>电子邮箱</h3>
+                        <p><a href="mailto:contact@shuxi.com">contact@shuxi.com</a></p>
+                        <p><a href="mailto:business@shuxi.com">business@shuxi.com</a></p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">🕒</div>
+                    <div class="contact-details">
+                        <h3>工作时间</h3>
+                        <p>周一至周五：9:00-18:00<br>周六：9:00-12:00<br>周日：休息</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">💬</div>
+                    <div class="contact-details">
+                        <h3>在线咨询</h3>
+                        <p>微信公众号：数析智库<br>企业微信：添加客服</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 联系表单 -->
+            <div class="contact-form">
+                <h2 class="form-title">发送咨询</h2>
+                <form id="contactForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">姓名 *</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="company">公司名称</label>
+                            <input type="text" id="company" name="company">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">邮箱地址 *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">联系电话 *</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="service">感兴趣的服务</label>
+                        <select id="service" name="service">
+                            <option value="">请选择服务类型</option>
+                            <option value="market-research">市场调研</option>
+                            <option value="user-research">用户研究</option>
+                            <option value="brand-positioning">品牌定位</option>
+                            <option value="product-testing">产品测试</option>
+                            <option value="data-analysis">数据分析</option>
+                            <option value="consulting">战略咨询</option>
+                            <option value="other">其他</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="budget">项目预算范围</label>
+                        <select id="budget" name="budget">
+                            <option value="">请选择预算范围</option>
+                            <option value="under-50k">5万元以下</option>
+                            <option value="50k-100k">5-10万元</option>
+                            <option value="100k-200k">10-20万元</option>
+                            <option value="200k-500k">20-50万元</option>
+                            <option value="over-500k">50万元以上</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">咨询内容 *</label>
+                        <textarea id="message" name="message" placeholder="请详细描述您的需求和期望..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">发送咨询</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- 地图 -->
+    <section class="map-section">
+        <div class="map-container">
+            <h2 class="map-title">我们的位置</h2>
+            <p class="map-subtitle">欢迎前来参观交流</p>
+            <div class="map-placeholder">
+                🗺️ 地图位置
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-section">
+        <div class="faq-container">
+            <h2 class="faq-title">常见问题</h2>
+            <p class="faq-subtitle">解答您可能关心的问题</p>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>你们的服务流程是怎样的？</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>我们的服务流程通常包括：需求沟通 → 方案设计 → 数据采集 → 分析报告 → 成果交付 → 持续支持。每个环节都有专业的团队负责，确保项目高质量完成。</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>最快多长时间能出结果？</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>根据项目复杂度不同，基础调研项目最快24小时出初步结果，完整报告通常需要3-7个工作日。紧急项目我们可以安排加急处理。</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>你们如何保证数据安全？</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>我们通过ISO 27001信息安全管理体系认证，所有数据采用加密存储，严格遵守《个人信息保护法》，签署保密协议，确保客户数据安全。</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>支持哪些支付方式？</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>我们支持银行转账、支付宝、微信支付等多种支付方式。大项目可以签订合同后分期付款。</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>可以提供定制化服务吗？</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>当然可以。我们提供完全定制化的调研服务，根据您的具体需求设计专属的调研方案和分析模型。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA 部分 -->
+    <section class="cta-section">
+        <h2>准备开始您的项目了吗？</h2>
+        <p>立即联系我们，开启数据驱动的商业之旅</p>
+        <a href="tel:400-888-8888" class="btn btn-primary" style="background: #ffd700; color: #1e3c72;">拨打电话咨询</a>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>数析智库</h3>
+                <p>专业的消费者调研服务平台，为企业提供科学、精准、高效的数据洞察服务。</p>
+            </div>
+            <div class="footer-section">
+                <h3>服务范围</h3>
+                <p><a href="services.html">市场调研</a></p>
+                <p><a href="services.html">用户研究</a></p>
+                <p><a href="services.html">品牌定位</a></p>
+                <p><a href="services.html">产品测试</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>联系我们</h3>
+                <p>📧 contact@shuxi.com</p>
+                <p>📱 400-888-8888</p>
+                <p>🏢 北京市朝阳区</p>
+            </div>
+            <div class="footer-section">
+                <h3>关注我们</h3>
+                <p><a href="#">微信公众号</a></p>
+                <p><a href="#">LinkedIn</a></p>
+                <p><a href="#">微博</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 美研智库. All rights reserved. | <a href="#">隐私政策</a> | <a href="#">服务条款</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // 移动端菜单切换
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        if (menuToggle && navLinks) {
+            menuToggle.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+            });
+
+            // 点击菜单项后关闭菜单
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', function() {
+                    navLinks.classList.remove('active');
+                });
+            });
+
+            // 点击页面其他地方关闭菜单
+            document.addEventListener('click', function(e) {
+                if (!menuToggle.contains(e.target) && !navLinks.contains(e.target)) {
+                    navLinks.classList.remove('active');
+                }
+            });
+        }
+
+        // 导航栏滚动效果
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(44, 62, 80, 0.95)';
+            } else {
+                navbar.style.background = 'linear-gradient(135deg, #2c3e50 0%, #34495e 100%)';
+            }
+        });
+
+        // FAQ 交互
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                faqItem.classList.toggle('active');
+            });
+        });
+
+        // 表单提交
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // 这里可以添加表单验证和提交逻辑
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData.entries());
+
+            // 模拟表单提交
+            alert('感谢您的咨询！我们会在24小时内联系您。\\n\\n咨询内容已发送：\\n' +
+                  '姓名：' + data.name + '\\n' +
+                  '邮箱：' + data.email + '\\n' +
+                  '电话：' + data.phone + '\\n' +
+                  '服务类型：' + data.service + '\\n' +
+                  '预算范围：' + data.budget);
+
+            // 重置表单
+            this.reset();
+        });
+    </script>
+</body>
+</html>
